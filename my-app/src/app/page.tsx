@@ -1,10 +1,9 @@
-
-
+import Landing from "./(sections)/landing/Landing";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col p-6 border-2 border-red-700 bg-yellow-300">
-      <h1 className="text-white">Hola que talllll</h1>
+    <main className="bg-violet-950 min-h-screen">
+      <Landing />
     </main>
   );
 }

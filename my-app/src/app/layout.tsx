@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Provider } from "./providers";
+import {  Poppins } from "next/font/google";
 import "./globals.css";
 
+const poppins = Poppins({ weight: "500",  subsets: ["latin"] });
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Property Scraper",
-  description: "Herramienta para hacer scraping en la industria inmobiliaria",
+  title: "Tomas Perez Portfolio",
+  description: "My web developer portfolio, make some noise!",
 };
 
 export default function RootLayout({
@@ -17,8 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
+      <body className={poppins.className}>
+        <Provider>
+          {children}
+        </Provider>
       </body>
     </html>
   );
