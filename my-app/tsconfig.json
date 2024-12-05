@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -16,7 +12,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve", // Cambiado de "preserve" a "react-jsx"
+    "jsx": "react-jsx", // Cambiado de "preserve" a "react-jsx"
     "plugins": [
       {
         "name": "next"
@@ -27,9 +23,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/page.tsx", "src/app/(sections)/landing/Landing.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/app/page.tsx", 
+    "src/app/(sections)/landing/Landing.jsx"
+  ],
+  "exclude": ["node_modules"]
 }
