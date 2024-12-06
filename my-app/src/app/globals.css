@@ -22,4 +22,11 @@ body {
 
 main {
   background-image: url("../../public/bg_portfolio.png");
+  background-repeat: repeat;
+}
+
+#navigation {
+  background-image: url("../../public/bg_vertical_dark_xl.JPG");
+  /* background-image: url("../../public/bg_portfolio.png"); */
+  /* background-color: rgb(53, 1, 53); */
 }
