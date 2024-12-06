@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import Spline from "@splinetool/react-spline";
 
 export default function Landing() {
   return (
@@ -17,6 +17,9 @@ export default function Landing() {
           <h1>Soy el trhee js</h1>
         </div>
       </article>
+      <div className="">
+        <Spline scene="https://prod.spline.design/kNH4bJ2gKmOkyLaU/scene.splinecode" />
+      </div>
       <div className="w-fit mx-auto mb-8 animate-bounce ">
         <p className="text-5xl ">👇</p>
       </div>

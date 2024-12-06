@@ -33,7 +33,6 @@ export default function NavBar() {
       observerOptions,
     );
 
-    // Observa todas las secciones
     navlinks.forEach((link) => {
       const element = document.getElementById(link.id);
       if (element) {
