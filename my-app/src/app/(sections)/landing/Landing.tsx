@@ -1,6 +1,7 @@
 "use client";
 
-import Spline from "@splinetool/react-spline";
+import dynamic from "next/dynamic";
+const Scene = dynamic(() => import("../../ui/Scene"), { ssr: false });
 
 export default function Landing() {
   return (
@@ -19,11 +20,7 @@ export default function Landing() {
 
       <div className="flex gap-10">
         <div className="w-fit border-2 border-red-500">
-          {/* <Spline
-            scene="https://prod.spline.design/RwbkyO8LXGVxotsj/scene.splinecode"
-            width={1080}
-            height={1080}
-          /> */}
+          <Scene />
         </div>
         <div className="border-2 border-red-500 w-[420px] h-[420px]"></div>
       </div>
