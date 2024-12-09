@@ -1,7 +1,6 @@
 "use client";
 import { ProfileCarroucel } from "./ProfileCarroucel";
-import { Button } from "@nextui-org/react";
-import { RiFilePdf2Fill, RiFilePdf2Line } from "@remixicon/react";
+import { RiFilePdf2Line } from "@remixicon/react";
 
 export default function AboutMe() {
   type Imgs = {
@@ -48,10 +47,14 @@ export default function AboutMe() {
           </p>
         </span>
       </article>
-      <button className="w-fit p-2 mx-auto border-[1px] hover:bg-opacity-80 bg-red-600 flex rounded-lg items-center">
+      <a
+        download
+        href="/CV_TOMAS_PEREZ_esp.pdf"
+        className="w-fit p-2 mx-auto border-[1px] hover:bg-opacity-80 bg-red-600 flex rounded-lg items-center"
+      >
         <p>Download CV</p>
-        <RiFilePdf2Line className="w-14 h-14 text-white  " />
-      </button>
+        <RiFilePdf2Line className="w-14 h-14 text-white" />
+      </a>
     </section>
   );
 }
