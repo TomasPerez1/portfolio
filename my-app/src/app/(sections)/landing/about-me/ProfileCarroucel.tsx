@@ -1,9 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 type Imgs = {
   name: string;
@@ -96,15 +96,15 @@ export const ProfileCarroucel = ({
         >
           <button
             onClick={handlePrev}
-            className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
+            className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
           >
-            <RiArrowLeftLine className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:text-white" />
+            <RiArrowLeftLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
           </button>
           <button
             onClick={handleNext}
-            className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
+            className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
           >
-            <RiArrowRightLine className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:text-white" />
+            <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
           </button>
         </section>
       </div>
