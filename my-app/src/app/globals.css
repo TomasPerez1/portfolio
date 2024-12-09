@@ -30,3 +30,21 @@ main {
   /* background-image: url("../../public/bg_portfolio.png"); */
   /* background-color: rgb(53, 1, 53); */
 }
+
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 6px; /* Reducido a 6px para hacerla más delgada */
+}
+
+::-webkit-scrollbar-track {
+  background: #2c2c2c; /* Gris muy claro para el fondo */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4d4d4d; /* Gris medio-oscuro para la barra */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d; /* Gris más oscuro al hacer hover */
+}
