@@ -24,7 +24,7 @@ export default function AboutMe() {
 
   return (
     <section id="about-me" className="border-2 border-green-500 min-h-screen ">
-      <article className="flex items-center">
+      <article className="flex items-center ">
         <ProfileCarroucel imgs={imgs} autoplay={true} />
         <span className="p-4 px-8">
           <p>
@@ -50,7 +50,7 @@ export default function AboutMe() {
       <a
         download
         href="/CV_TOMAS_PEREZ_esp.pdf"
-        className="w-fit p-2 mx-auto border-[1px] hover:bg-opacity-80 bg-red-600 flex rounded-lg items-center"
+        className="w-fit mt-4 p-2 mx-auto  border-[1px] hover:bg-opacity-80 bg-red-600 flex rounded-lg items-center"
       >
         <p>Download CV</p>
         <RiFilePdf2Line className="w-14 h-14 text-white" />

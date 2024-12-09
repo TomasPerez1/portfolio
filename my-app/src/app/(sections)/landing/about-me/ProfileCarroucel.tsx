@@ -42,7 +42,7 @@ export const ProfileCarroucel = ({
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
-    <div className=" mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
+    <div className=" mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-[4rem]">
       <div className="flex flex-col gap-10 w-fit">
         <picture className="">
           <div className="relative h-[20rem] w-[20rem]">
