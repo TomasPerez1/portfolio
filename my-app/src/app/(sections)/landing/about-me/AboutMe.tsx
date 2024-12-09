@@ -23,10 +23,10 @@ export default function AboutMe() {
   ];
 
   return (
-    <section id="about-me" className="border-2 border-green-500 min-h-screen ">
-      <article className="flex items-center ">
-        <ProfileCarroucel imgs={imgs} autoplay={true} />
-        <span className="p-4 px-8">
+    <section id="about-me" className=" min-h-screen ">
+      <article className="flex items-center">
+        <ProfileCarroucel imgs={imgs} autoplay={false} />
+        <span className="p-4  bg-gray-800 rounded-lg mr-10">
           <p>
             ¿Quién soy? Soy Tomas, desarrollador Full Stack, una persona que su
             entorno y vida profesional iba enfocado al deporte hasta hace un año
