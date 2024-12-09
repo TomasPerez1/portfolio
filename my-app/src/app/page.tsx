@@ -1,6 +1,7 @@
 import NavBar from "./ui/NavBar";
 import Landing from "./(sections)/landing/landing/Landing";
 import AboutMe from "./(sections)/landing/about-me/AboutMe";
+import Proyects from "./(sections)/landing/proyects/Proyects";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <section className="ml-[20%] w-[80%]" id="content">
         <Landing />
         <AboutMe />
+        <Proyects />
       </section>
     </main>
   );

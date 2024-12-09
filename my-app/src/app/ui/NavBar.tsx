@@ -21,11 +21,16 @@ export default function NavBar() {
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      let isAnySectionVisible = false;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
+          isAnySectionVisible = true;
         }
       });
+      if (!isAnySectionVisible) {
+        setActiveSection(null);
+      }
     };
 
     const observer = new IntersectionObserver(
@@ -69,7 +74,7 @@ export default function NavBar() {
             <button
               className="text-2xl"
               onClick={() => {
-                document.querySelector("#contact").scrollIntoView({
+                document.querySelector(`#${link.id}`).scrollIntoView({
                   behavior: "smooth",
                 });
               }}
