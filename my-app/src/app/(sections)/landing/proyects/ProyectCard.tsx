@@ -1,21 +1,35 @@
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Accordion,
+  AccordionItem,
+} from "@nextui-org/react";
+import { Carousel } from "./Carousel";
+import Image from "next/image";
 
 export default function ProyectCard({ proyect }) {
-  const { name, description, github, imgs } = proyect;
+  const { id, name, description, github, imgs } = proyect;
+
   return (
-    <Card className="py-4 bg-gray-600">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-        <p className="text-tiny uppercase font-bold">Daily Mix</p>
-        <small className="text-default-500">12 Tracks</small>
-        <h4 className="font-bold text-large">Frontend Radio</h4>
+    <Card className="py-2 bg-gray-600 flex-shrink-0 max-h-fit ">
+      <CardHeader className=" px-0 flex-col items-start">
+        <Carousel imgs={imgs} />
       </CardHeader>
-      <CardBody className="overflow-visible py-2">
-        <Image
-          alt="Card background"
-          className="object-cover rounded-xl"
-          src="https://nextui.org/images/hero-card-complete.jpeg"
-          width={270}
-        />
+      <CardBody className="overflow-visible py-0">
+        <Accordion className="py-0">
+          <AccordionItem
+            key={id}
+            aria-label={`Accordion ${id}`}
+            title={name}
+            // subtitle="descripción"
+            classNames={{
+              indicator: "text-3xl text-white p-0 ",
+            }}
+          >
+            {description}
+          </AccordionItem>
+        </Accordion>
       </CardBody>
     </Card>
   );

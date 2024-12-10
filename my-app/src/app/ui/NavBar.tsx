@@ -56,7 +56,7 @@ export default function NavBar() {
     <Navbar
       position="sticky"
       className="my-auto flex flex-col items-center"
-      height="99vh"
+      height="100vh"
       classNames={{
         item: ["data-[active=true]:after:border-b-2"],
       }}
