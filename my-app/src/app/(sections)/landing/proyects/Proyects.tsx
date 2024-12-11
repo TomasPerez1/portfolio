@@ -96,10 +96,11 @@ export default function Proyects() {
       skills: [react, tailwind, nestjs, prisma, typescript, puppeteer],
     },
   ];
+
   return (
-    <section id="proyects" className="min-h-screen  pb-[6rem]">
+    <section id="proyects" className="min-h-screen pb-[6rem]">
       <div className="w-[90%] mx-auto gap-8 grid grid-cols-2 ">
-        {proyects.map((proyect, i) => (
+        {proyects.map((proyect) => (
           <ProyectCard key={proyect.id} proyect={proyect} />
         ))}
       </div>

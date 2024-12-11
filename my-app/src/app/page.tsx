@@ -5,6 +5,7 @@ import NavBar from "./ui/NavBar";
 import Landing from "./(sections)/landing/landing/Landing";
 import AboutMe from "./(sections)/landing/about-me/AboutMe";
 import Proyects from "./(sections)/landing/proyects/Proyects";
+import Contact from "./(sections)/landing/contact/Contact";
 
 export default function Home() {
   // useEffect(() => {
@@ -30,6 +31,7 @@ export default function Home() {
         <Landing />
         <AboutMe />
         <Proyects />
+        <Contact />
       </section>
     </main>
   );
