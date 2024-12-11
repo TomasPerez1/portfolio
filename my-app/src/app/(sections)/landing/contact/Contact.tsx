@@ -14,7 +14,9 @@ export default function Contact() {
             scrollbarColor: "#4d4d4d #2c2c2c",
           }}
           pageSettings={{
-            backgroundColor: "#ffffff",
+            backgroundColor: "#6A669D",
+            primaryColor: "#ffffff",
+            textColor: "#640D5F",
             hideGdprBanner: true,
             hideEventTypeDetails: true,
             hideLandingPageDetails: true,
