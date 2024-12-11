@@ -15,7 +15,6 @@ import puppeteer from "@public/skills/puppeteer.svg";
 import nextjs from "@public/skills/nextjs-icon.svg"; // Todo crear una animacion para que parezca qeu volvi a abrir otra web pero qeu sea este mismo portfolio, utilizando next js
 
 export default function Proyects() {
-  console.log(cloudinary, "svgs");
   type Proyect = {
     id: number;
     name: string;
@@ -100,9 +99,10 @@ export default function Proyects() {
   return (
     <section id="proyects" className="min-h-screen  ">
       <div className="w-[90%] mx-auto gap-8 grid grid-cols-2 ">
-        {proyects.map((proyect, i) => (
+        {/* {proyects.map((proyect, i) => (
           <ProyectCard key={proyect.id} proyect={proyect} />
-        ))}
+        ))} */}
+        <ProyectCard key={proyects[0].id} proyect={proyects[0]} />
       </div>
     </section>
   );

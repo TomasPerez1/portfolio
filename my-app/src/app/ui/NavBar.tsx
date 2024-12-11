@@ -48,10 +48,6 @@ export default function NavBar() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    console.log(activeSection);
-  }, [activeSection]);
-
   return (
     <Navbar
       position="sticky"

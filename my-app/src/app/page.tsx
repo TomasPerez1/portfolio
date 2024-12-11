@@ -7,13 +7,13 @@ import AboutMe from "./(sections)/landing/about-me/AboutMe";
 import Proyects from "./(sections)/landing/proyects/Proyects";
 
 export default function Home() {
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: "smooth",
+  //   });
+  // }, []);
 
   return (
     <main className="bg-violet-950 min-h-screen flex">
