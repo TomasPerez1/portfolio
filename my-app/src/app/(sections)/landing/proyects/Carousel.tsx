@@ -33,12 +33,9 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       setCanScrollLeft(scrollLeft > 0);
-
-      console.log("scrollLeft", scrollLeft);
-      console.log("scrollWidth", scrollWidth);
-      console.log("clientWidth", clientWidth);
-      console.log("RESULT", scrollLeft < scrollWidth - clientWidth);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
+      setCanScrollRight(
+        Math.ceil(scrollLeft) < Math.floor(scrollWidth - clientWidth),
+      );
     }
   };
 

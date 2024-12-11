@@ -7,24 +7,43 @@ import {
 } from "@nextui-org/react";
 import { Carousel } from "./Carousel";
 import Image from "next/image";
+import github_icon from "@public/skills/github-icon.svg";
 
 export default function ProyectCard({ proyect }) {
   const { id, name, description, github, imgs, skills } = proyect;
 
   return (
     <Card className="p-0 bg-gray-800 flex-shrink-0 max-h-fit relative">
-      <CardHeader className="px-0.5 flex-col items-start">
+      <CardHeader className="px-0.5 flex-col items-start  py-0">
         <Carousel imgs={imgs} />
       </CardHeader>
-      <CardBody className="overflow-visible py-0">
-        <Accordion className="py-0">
+      <CardBody className="overflow-visible py-0 ">
+        {/* className="py-0 border-2 border-yellow-400" */}
+        <Accordion className="py-0 ">
           <AccordionItem
             key={id}
+            startContent={
+              <a
+                target="_blank"
+                href={github}
+                className="w-[40px] z-50 p-2 rounded-full"
+              >
+                <Image
+                  alt="Proyect img"
+                  className="rounded-xl mx-auto transition-all hover:brightness-0 hover:invert"
+                  src={github_icon}
+                  width={40}
+                  height={40}
+                  // fill={true}
+                />
+              </a>
+            }
             aria-label={`Accordion ${id}`}
             title={name}
             // subtitle="descripción"
             classNames={{
               indicator: "text-3xl text-white p-0 ",
+              base: "m-0 p-0",
             }}
           >
             {description}
