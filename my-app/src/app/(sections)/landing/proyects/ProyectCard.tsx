@@ -12,7 +12,7 @@ export default function ProyectCard({ proyect }) {
   const { id, name, description, github, imgs, skills } = proyect;
 
   return (
-    <Card className="py-0 bg-gray-600 flex-shrink-0 max-h-fit relative">
+    <Card className="py-0 bg-gray-800 flex-shrink-0 max-h-fit relative">
       <CardHeader className="px-0 flex-col items-start">
         <Carousel imgs={imgs} />
       </CardHeader>
