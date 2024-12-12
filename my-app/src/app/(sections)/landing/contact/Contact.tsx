@@ -4,19 +4,19 @@ export default function Contact() {
   return (
     <section id="contact" className="min-h-screen pb-[6rem]">
       <div className="w-[90%]  mx-auto gap-8 grid grid-cols-2 text-lg ">
-        <h1 className="rounded-lg bg-gray-800">SOY EL CONTACTT</h1>
+        <h1 className="rounded-lg bg-[#263345]">SOY EL CONTACTT</h1>
         <InlineWidget
           styles={{
             height: "610px",
-            border: "5px solid purple",
+            border: "5px solid #1f2937",
             borderRadius: "10px",
             scrollbarWidth: "thin",
             scrollbarColor: "#4d4d4d #2c2c2c",
           }}
           pageSettings={{
             backgroundColor: "#1f2937",
-            primaryColor: "#640D5F",
-            textColor: "#ffffff",
+            primaryColor: "#ffffff",
+            textColor: "#5b0f96",
             hideGdprBanner: true,
             hideEventTypeDetails: true,
             hideLandingPageDetails: true,
