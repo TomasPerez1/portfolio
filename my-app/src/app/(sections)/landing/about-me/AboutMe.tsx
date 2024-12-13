@@ -33,8 +33,8 @@ export default function AboutMe() {
             cuando di un giro de 180° y pude encontrar mi lugar en un espacio
             que siempre estuvo presente y me encantaba, el mundo de la
             tecnología. Finalice mis formación como desarrollador Full Stack 👨‍💻
-            en "soy HENRY" llevándome fuertes conocimientos de : . Java Script
-            ‣‣‣ (React, Redux, Node, Express, Sequelize) . CSS ‣‣‣ (pure css,
+            en soy HENRY llevándome fuertes conocimientos de : . Java Script ‣‣‣
+            (React, Redux, Node, Express, Sequelize) . CSS ‣‣‣ (pure css,
             Tailwind) . SQL ‣‣‣ (Postgres sql) . Git workflow . Metodología ágil
             (SCRUM) Me considero una persona con habilidad para administrar una
             sabia toma de decisiones, generar una efectiva resolución de
