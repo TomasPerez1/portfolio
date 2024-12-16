@@ -1,6 +1,12 @@
 "use client";
 import { ProfileCarroucel } from "./ProfileCarroucel";
-import { RiFilePdf2Line } from "@remixicon/react";
+import {
+  RiFilePdf2Line,
+  RiLinkedinBoxFill,
+  RiFileDownloadLine,
+} from "@remixicon/react";
+import Image from "next/image";
+import github_icon from "@public/skills/github-icon.svg";
 
 export default function AboutMe() {
   type Imgs = {
@@ -23,7 +29,7 @@ export default function AboutMe() {
   ];
 
   return (
-    <section id="about-me" className=" min-h-screen ">
+    <section id="about-me" className=" min-h-screen border-2 ">
       <article className="flex items-center">
         <ProfileCarroucel imgs={imgs} autoplay={false} />
         <span className="p-4  bg-gray-800 rounded-lg mr-10">
@@ -47,14 +53,40 @@ export default function AboutMe() {
           </p>
         </span>
       </article>
-      <a
-        download
-        href="/CV_TOMAS_PEREZ_esp.pdf"
-        className="w-fit mt-4 p-2 mx-auto  border-[1px] hover:bg-opacity-80 bg-red-600 flex rounded-lg items-center"
-      >
-        <p>Download CV</p>
-        <RiFilePdf2Line className="w-14 h-14 text-white" />
-      </a>
+      <article className="flex gap-10 items-center justify-around pb-2 border-b-[1.5px] w-fit ml-10 mr-auto">
+        <a
+          target="_blank"
+          href="https://github.com/TomasPerez1"
+          className="w-fit border-0 p-0 rounded-lg bg-white hover:bg-blue-400"
+        >
+          <RiLinkedinBoxFill className="w-14 h-14 text-blue-400 hover:text-white transition-colors" />
+        </a>
+        <a
+          target="_blank"
+          href="https://github.com/TomasPerez1"
+          className="w-fit p-0.5 rounded-full bg-white text-center "
+        >
+          <Image
+            alt="Proyect img"
+            className="rounded-xl mx-auto transition-all hover:opacity-90 "
+            src={github_icon}
+            width={56}
+            height={56}
+            // fill={true}
+          />
+        </a>
+        <a
+          download
+          href="/CV_TOMAS_PEREZ_esp.pdf"
+          className="w-fit text-center text-lg  gap-1 p-1  border-[1px] hover:brightness-200 transition-colors bg-red-600 flex rounded-lg items-center"
+        >
+          <p>
+            Download <br /> <p>Curriculum </p>
+          </p>
+
+          <RiFileDownloadLine className="w-12 h-12 text-white" />
+        </a>
+      </article>
     </section>
   );
 }

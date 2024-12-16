@@ -10,11 +10,21 @@ import { RiFileCopyLine } from "@remixicon/react";
 
 export default function Adress() {
   return (
-    <article className="w-[95%] mx-auto mt-3.5 flex flex-col gap-1">
-      <div className="flex items-center gap-2 w-fit border-gray-500 border-b-[1px] p-1 pb-1.5">
-        <RiMapPinFill className="w-10 h-10 rounded-full border-[1.5px] p-1" />
-        <p>Bariloche, Argentina.</p>
-      </div>
+    <article className="w-[95%] mx-auto mt-3.5 flex flex-col gap-1 ">
+      <Tooltip
+        content={<p className="flex items-center gap-1">Go to maps</p>}
+        className="text-red-400 bg-red-900"
+        placement="right-start"
+      >
+        <a
+          target="_blank"
+          href="https://maps.app.goo.gl/5TfGqDK88sD5bhjt8"
+          className="flex items-center gap-2 w-fit border-gray-500 border-b-[1px] p-1 pb-1.5"
+        >
+          <RiMapPinFill className="w-10 h-10 rounded-full border-[1.5px] p-1" />
+          <p>Bariloche, Argentina.</p>
+        </a>
+      </Tooltip>
       <Tooltip
         content={
           <p className="flex items-center gap-1">
@@ -25,7 +35,12 @@ export default function Adress() {
         placement="right-start"
       >
         <div
-          onClick={() => copyToClipboard("tomas.perez.developer@gmail.com")}
+          onClick={() =>
+            copyToClipboard(
+              "tomas.perez.developer@gmail.com",
+              "Se copio el email",
+            )
+          }
           className="flex items-center gap-2 w-fit border-gray-500 border-b-[1px] p-1 pb-1.5 hover:cursor-pointer"
         >
           <RiMailFill className="w-10 h-10 rounded-full border-[1.5px] p-1" />

@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <section id="contact" className="min-h-screen pb-[6rem]">
       <div className="w-[90%]  mx-auto gap-8 grid grid-cols-2 text-lg ">
-        <div className="rounded-lg bg-[#263345] flex flex-col">
+        <div className="rounded-lg bg-[#263345] flex flex-col pb-0.5">
           <Adress />
           <SendEmail />
         </div>
@@ -14,13 +14,13 @@ export default function Contact() {
         <InlineWidget
           styles={{
             height: "610px",
-            border: "5px solid #1f2937",
+            border: "5px solid #263345",
             borderRadius: "10px",
             scrollbarWidth: "thin",
             scrollbarColor: "#4d4d4d #2c2c2c",
           }}
           pageSettings={{
-            backgroundColor: "#1f2937",
+            backgroundColor: "#263345",
             primaryColor: "#ffffff",
             textColor: "#5b0f96",
             hideGdprBanner: false,

@@ -88,7 +88,7 @@ export default function SendEmail() {
 
   return (
     <Form
-      className="w-full justify-center items-center h-full"
+      className="w-full justify-center items-center h-full "
       validationBehavior="native"
       validationErrors={errors}
       onSubmit={onSubmit}
@@ -180,11 +180,10 @@ export default function SendEmail() {
           disabled={
             (Object.keys(errors).length && true) || !emailData.email.length
           }
-          className="w-1/3 mx-auto text-2xl disabled:opacity-20"
-          color="primary"
+          className="w-1/3 mx-auto text-2xl disabled:pointer-events-none disabled:opacity-20 bg-violet-800 text-white"
           type="submit"
         >
-          Submit
+          Enviar
         </Button>
       </div>
     </Form>
