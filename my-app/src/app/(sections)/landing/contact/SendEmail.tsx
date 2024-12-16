@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 
 // Definición del tipo para emailData
-interface EmailData {
+export interface EmailData {
   name: string;
   email: string;
   subject: string;

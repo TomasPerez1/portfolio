@@ -1,25 +1,29 @@
 import { EmailTemplate } from "../../(sections)/landing/contact/EmailTemplate";
 import { Resend } from "resend";
+import type { EmailData } from "../../(sections)/landing/contact/SendEmail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { firstName } = body;
+    const body: EmailData = await request.json();
+    const { name, email, subject, message } = body;
 
     const { data, error } = await resend.emails.send({
-      from: "TOMSONIANO <tomixdperez@gmail.com>",
+      from: `${name || "Anonimo"} ${"<" + email || "tomasperez.henry@gmail.com" + ">"}`,
       to: ["tomas.perez.developer@gmail.com"],
-      subject: "Hello world",
-      react: EmailTemplate({ firstName: "" }),
+      subject: `${subject || "empty"}`,
+      react: EmailTemplate({ name, message }),
     });
-    console.log("data", data);
+
     if (error) {
-      return Response.json({ error }, { status: 500 });
+      return Response.json(
+        { error },
+        { status: 500, statusText: error.message },
+      );
     }
 
-    return Response.json(body);
+    return Response.json(data);
   } catch (error) {
     return Response.json({ error }, { status: 500 });
   }
