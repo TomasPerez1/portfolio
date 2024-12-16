@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Form,
   Input,
@@ -8,7 +9,7 @@ import {
   Button,
   Textarea,
 } from "@nextui-org/react";
-import axios from "axios";
+import Adress from "./Adress";
 
 // Definición del tipo para emailData
 export interface EmailData {
@@ -44,9 +45,9 @@ export default function SendEmail() {
     if (!name?.length) {
       errors["name"] = "Ingrese su nombre";
     }
-    if (!subject?.length) {
-      errors["subject"] = "Ingrese un asunto";
-    }
+    // if (!subject?.length) {
+    //   errors["subject"] = "Ingrese un asunto";
+    // }
     if (!message?.length) {
       errors["message"] = "Escriba el mensaje que desea enviar";
     }
@@ -64,15 +65,22 @@ export default function SendEmail() {
         emailData.message,
       );
 
-      const result = await axios.post("/api/send", { jaja: "zaractungaa" });
+      const { name, email, subject, message } = emailData;
 
-      // setEmailData({
-      //   name: "",
-      //   email: "",
-      //   subject: "",
-      //   message: "",
-      // });
-      // setErrors({});
+      const result = await axios.post("/api/send", {
+        name,
+        email,
+        subject,
+        message,
+      });
+      console.log("RESUL", result);
+      setEmailData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+      setErrors({});
     } catch (error) {
       console.log(error);
     }
@@ -85,30 +93,30 @@ export default function SendEmail() {
       validationErrors={errors}
       onSubmit={onSubmit}
     >
-      <div className="flex flex-col gap-4 w-[90%] border-2 ">
+      <div className="flex flex-col gap-4 w-[90%]  ">
         <section className="flex gap-4">
           <Input
-            isRequired
-            errorMessage={({ validationDetails }) => {
-              if (validationDetails.valueMissing) {
-                return "Please enter your name";
-              } else if (errors["name"]) {
+            errorMessage={() => {
+              if (errors["name"]) {
                 return errors["name"];
               }
             }}
-            label="Name"
+            label={
+              <p>
+                Nombre <strong className="text-red-500">*</strong>
+              </p>
+            }
             value={emailData.name}
             labelPlacement="outside"
             name="name"
             onValueChange={(value) => {
               setEmailData((prev) => ({ ...prev, name: value }));
-              setErrors(checkErrors({ ...emailData, name: value }));
             }}
             placeholder="Enter your name"
           />
 
           <Input
-            label="Subject"
+            label="Asunto"
             labelPlacement="outside"
             name="subject"
             placeholder="Subject"
@@ -123,15 +131,16 @@ export default function SendEmail() {
         </section>
 
         <Input
-          isRequired
-          errorMessage={({ validationDetails }) => {
-            if (validationDetails.valueMissing) {
-              return "Please enter your email";
-            } else if (errors["email"]) {
+          errorMessage={() => {
+            if (errors["email"]) {
               return errors["email"];
             }
           }}
-          label="Email"
+          label={
+            <p>
+              Email <strong className="text-red-500">*</strong>
+            </p>
+          }
           labelPlacement="outside"
           name="email"
           value={emailData.email}
@@ -144,13 +153,17 @@ export default function SendEmail() {
         />
 
         <Textarea
-          isRequired
+          // isRequired
           errorMessage={() => {
             if (errors["message"]) {
               return errors["message"];
             }
           }}
-          label="Message"
+          label={
+            <p>
+              Mensaje <strong className="text-red-500">*</strong>
+            </p>
+          }
           minRows={8}
           maxRows={23}
           value={emailData.message}
@@ -163,16 +176,16 @@ export default function SendEmail() {
           placeholder="Enter a message"
         />
 
-        <div className="flex gap-4">
-          <Button
-            disabled={Object.keys(errors).length && true}
-            className="w-full disabled:opacity-20"
-            color="primary"
-            type="submit"
-          >
-            Submit
-          </Button>
-        </div>
+        <Button
+          disabled={
+            (Object.keys(errors).length && true) || !emailData.email.length
+          }
+          className="w-1/3 mx-auto text-2xl disabled:opacity-20"
+          color="primary"
+          type="submit"
+        >
+          Submit
+        </Button>
       </div>
     </Form>
   );
