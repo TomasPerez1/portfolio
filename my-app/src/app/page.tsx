@@ -20,18 +20,19 @@ export default function Home() {
     <main className="bg-violet-950 min-h-screen flex">
       <section
         id="navigation"
-        className="w-[15%] h-full min-h-screen mx-auto fixed top-0 z-50"
+        className="w-[30%] sm:w-[15%] h-full min-h-screen mx-auto fixed top-0 z-50"
       >
         <NavBar />
       </section>
       <section
-        className="ml-[15%] w-[85%] bg-grid-small-white/[0.2]"
+        className="ml-[30%] w-full h-[400vh] sm:w-[85%] sm:ml-[15%] bg-grid-small-white/[0.2] border-2"
         id="content"
       >
-        <Landing />
+        <h1 className="mt-20">Soy el section</h1>
+        {/* <Landing />
         <AboutMe />
         <Proyects />
-        <Contact />
+        <Contact /> */}
       </section>
     </main>
   );
