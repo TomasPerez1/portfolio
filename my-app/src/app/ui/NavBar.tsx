@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const navlinks = [
@@ -48,37 +48,25 @@ export default function NavBar() {
   }, []);
 
   return (
-    <Navbar
-      position="sticky"
-      className="my-auto flex flex-col items-center"
-      height="100vh"
-      classNames={{
-        item: ["data-[active=true]:after:border-b-2"],
-      }}
-    >
-      <NavbarContent className="gap-7 flex flex-col items-center h-fit ">
-        {navlinks.map((link, index) => (
-          <NavbarItem
-            key={index}
-            className={
-              activeSection === link.id
-                ? "border-b-2 border-[#6a2984] font-bold text-[#6a2984]"
-                : ""
-            }
-          >
-            <button
-              className="text-2xl"
-              onClick={() => {
-                document.querySelector(`#${link.id}`).scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
+    <div className="border-2 border-red-600 h-screen">
+      <nav className="border-2 w-full h-full flex flex-col items-center">
+        <div className="gap-7 flex flex-col items-center h-fit border-2  border-yellow-500">
+          {navlinks.map((link, index) => (
+            <div
+              key={index}
+              className={`w-full text-center ${
+                activeSection === link.id
+                  ? "border-b-2 border-[#6a2984] font-bold text-[#6a2984] "
+                  : "border-2 "
+              }`}
             >
-              {link.label}
-            </button>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
-    </Navbar>
+              <Link href={`#${link.id}`}>
+                <button className="md:text-2xl ">{link.label}</button>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </nav>
+    </div>
   );
 }

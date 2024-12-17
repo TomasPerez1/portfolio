@@ -9,9 +9,9 @@ import {
 
 export default function Landing() {
   return (
-    <section className=" min-h-screen w-full flex flex-col items-center justify-center ">
-      <div className="w-[80%] mt-16 flex items-center flex-shrink-0 ">
-        <span className="w-fit  mx-auto">
+    <section className=" min-h-screen w-full relative flex flex-col items-center justify-center ">
+      <div className="w-[80%] flex items-center flex-shrink-0 ">
+        <span className="w-fit  mx-auto ">
           <h1 className="text-8xl font-sans">
             TOMAS <br /> PEREZ
           </h1>
@@ -19,7 +19,8 @@ export default function Landing() {
             FULLSTACK DEVELOPER
           </h2>
         </span>
-        <div className="w-fit relative  z-50 ">
+
+        <div className="w-fit relative z-50 ">
           <Spline scene="https://prod.spline.design/OoBR4Z3NWKxkJac9/scene.splinecode" />
           <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px] h-[37px] bg-gray-900 text-white absolute z-50 right-5 bottom-[20px]">
             <RiArrowGoForwardFill className="w-4" />
@@ -29,7 +30,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="w-fit mx-auto mb-1 animate-[bounce_2s_infinite] mt-auto">
+      <div className="w-fit mx-auto bottom-1  animate-[bounce_2s_infinite] mt-auto absolute">
         <RiArrowDownDoubleFill className="w-20 h-20" />
       </div>
     </section>

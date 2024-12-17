@@ -66,23 +66,25 @@ export default function AboutMe() {
           href="https://github.com/TomasPerez1"
           className="w-fit p-0.5 rounded-full bg-white text-center "
         >
-          <Image
-            alt="Proyect img"
-            className="rounded-xl mx-auto transition-all hover:opacity-90 "
-            src={github_icon}
-            width={56}
-            height={56}
-            // fill={true}
-          />
+          <span className="transition-colors hover:text-black">
+            <Image
+              alt="Proyect img"
+              className="rounded-xl mx-auto transition-all hover:opacity-80 "
+              src={github_icon}
+              width={56}
+              height={56}
+              // fill={true}
+            />
+          </span>
         </a>
         <a
           download
           href="/CV_TOMAS_PEREZ_esp.pdf"
           className="w-fit text-center text-lg  gap-1 p-1  border-[1px] hover:brightness-200 transition-colors bg-red-600 flex rounded-lg items-center"
         >
-          <p>
+          <span>
             Download <br /> <p>Curriculum </p>
-          </p>
+          </span>
 
           <RiFileDownloadLine className="w-12 h-12 text-white" />
         </a>

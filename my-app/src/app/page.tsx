@@ -20,7 +20,7 @@ export default function Home() {
     <main className="bg-violet-950 min-h-screen flex">
       <section
         id="navigation"
-        className="w-[15%] h-full min-h-screen items-center fixed"
+        className="w-[15%] h-full min-h-screen mx-auto fixed top-0 z-50"
       >
         <NavBar />
       </section>
