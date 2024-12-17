@@ -1,10 +1,6 @@
 "use client";
 import { ProfileCarroucel } from "./ProfileCarroucel";
-import {
-  RiFilePdf2Line,
-  RiLinkedinBoxFill,
-  RiFileDownloadLine,
-} from "@remixicon/react";
+import { RiLinkedinBoxFill, RiFileDownloadLine } from "@remixicon/react";
 import Image from "next/image";
 import github_icon from "@public/skills/github-icon.svg";
 
@@ -73,7 +69,6 @@ export default function AboutMe() {
               src={github_icon}
               width={56}
               height={56}
-              // fill={true}
             />
           </span>
         </a>
