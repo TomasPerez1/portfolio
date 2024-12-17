@@ -56,7 +56,7 @@ export default function AboutMe() {
       <article className="flex gap-10 items-center justify-around pb-2 border-b-[1.5px] w-fit ml-10 mr-auto">
         <a
           target="_blank"
-          href="https://github.com/TomasPerez1"
+          href="https://www.linkedin.com/in/tomas-perez-developer/"
           className="w-fit border-0 p-0 rounded-lg bg-white hover:bg-blue-400"
         >
           <RiLinkedinBoxFill className="w-14 h-14 text-blue-400 hover:text-white transition-colors" />

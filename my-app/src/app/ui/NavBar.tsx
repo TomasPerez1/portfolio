@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const navlinks = [
+export const navlinks = [
   { label: "About me", id: "about-me" },
   { label: "Proyects", id: "proyects" },
   { label: "Contact", id: "contact" },
@@ -48,7 +48,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="border-2 border-red-600 h-screen">
+    <div className="border-2 border-orange-600 h-screen">
       <nav className="border-2 w-full h-full flex flex-col items-center">
         <div className="gap-7 flex flex-col items-center h-fit border-2  border-yellow-500">
           {navlinks.map((link, index) => (
