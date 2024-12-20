@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Provider } from "./providers";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
+
 import "./globals.css";
 
 const poppins = Poppins({ weight: "500", subsets: ["latin"] });

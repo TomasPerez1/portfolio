@@ -56,7 +56,7 @@ export default function NavBar() {
               key={index}
               className={`w-full text-center ${
                 activeSection === link.id
-                  ? "border-b-2 border-[#6a2984] font-bold text-[#6a2984] "
+                  ? "border-[#ce70f3] font-bold text-[#ce70f3] "
                   : "border-2 "
               }`}
             >

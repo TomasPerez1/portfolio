@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import NavBar from "./ui/NavBar";
 import Landing from "./(sections)/landing/landing/Landing";
 import AboutMe from "./(sections)/landing/about-me/AboutMe";
@@ -18,7 +18,7 @@ export default function Home() {
   // }, []);
 
   return (
-    <main className="bg-violet-950 min-h-screen flex">
+    <main className="bg-violet-950 min-h-screen flex overflow-hidden">
       <section className="sm:hidden relative  p-0 ">
         <SideBar />
       </section>
@@ -29,14 +29,15 @@ export default function Home() {
         <NavBar />
       </section>
       <section
-        className="w-full h-[400vh] sm:ml-[15%] bg-grid-small-white/[0.2] "
+        className="w-full !max-w-full h-[400vh] sm:ml-[15%] bg-grid-small-white/[0.2] "
         id="content"
       >
-        <h1 className="mt-20">Soy el section</h1>
-        {/* <Landing />
+        <Landing />
+        {/*
         <AboutMe />
         <Proyects />
-        <Contact /> */}
+        <Contact /> 
+        */}
       </section>
     </main>
   );
