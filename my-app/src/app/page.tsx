@@ -7,6 +7,7 @@ import AboutMe from "./(sections)/landing/about-me/AboutMe";
 import Proyects from "./(sections)/landing/proyects/Proyects";
 import Contact from "./(sections)/landing/contact/Contact";
 import SideBar from "./ui/SideBar";
+import Loading from "./ui/loading";
 
 export default function Home() {
   // useEffect(() => {

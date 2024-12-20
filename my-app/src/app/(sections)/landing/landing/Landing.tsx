@@ -1,11 +1,12 @@
-"use client";
-
-import Spline from "@splinetool/react-spline";
+// import Spline from "@splinetool/react-spline/next";
+import React, { Suspense } from "react";
+const Spline = React.lazy(() => import("@splinetool/react-spline"));
 import {
   RiArrowGoForwardFill,
   RiArrowGoBackFill,
   RiArrowDownDoubleFill,
 } from "@remixicon/react";
+import Loading from "../../../ui/loading";
 
 export default function Landing() {
   return (
@@ -29,16 +30,18 @@ export default function Landing() {
           </span>
         </div> */}
       </div>
-      <div className="w-fit relative z-50  ">
-        <Spline scene="https://prod.spline.design/C9mC3iFFASk9TjnB/scene.splinecode" />
-        <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[37px] bg-gray-900 text-white absolute z-50 right-5 bottom-[20px]">
-          <RiArrowGoForwardFill className="w-4" />
-          <p>Rotame!</p>
-          <RiArrowGoBackFill className="w-4" />
-        </span>
+      <div className="relative z-50  border-2 w-[220px] h-[250px]">
+        <Suspense fallback={<Loading />}>
+          <Spline scene="https://prod.spline.design/C9mC3iFFASk9TjnB/scene.splinecode" />
+          <span className="hidden sm:flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[37px] bg-gray-900 text-white absolute z-50 right-5 bottom-[20px]">
+            <RiArrowGoForwardFill className="w-4" />
+            <p>Rotame!</p>
+            <RiArrowGoBackFill className="w-4" />
+          </span>
+        </Suspense>
       </div>
 
-      <div className="hidden md:inline w-fit relative z-50  ">
+      {/* <div className="hidden md:inline w-fit relative z-50  ">
         <Spline
           className="hidden"
           scene="https://prod.spline.design/OoBR4Z3NWKxkJac9/scene.splinecode"
@@ -48,7 +51,7 @@ export default function Landing() {
           <p>Rotame!</p>
           <RiArrowGoBackFill className="w-4" />
         </span>
-      </div>
+      </div> */}
       <div className="w-fit mx-auto bottom-1  animate-[bounce_2s_infinite] mt-auto absolute">
         <RiArrowDownDoubleFill className="w-20 h-20" />
       </div>
