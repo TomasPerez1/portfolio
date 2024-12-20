@@ -91,12 +91,12 @@ export default function App() {
           onClick={() => setIsMenuOpen(false)}
           target="_blank"
           href="https://github.com/TomasPerez1"
-          className="w-fit mx-auto p-0.5 rounded-full bg-white text-center "
+          className="w-fit mx-auto p-0.5 rounded-full bg-white  text-center "
         >
-          <span className="transition-colors hover:text-black">
+          <span className=" hover:text-black">
             <Image
               alt="Proyect img"
-              className="rounded-xl mx-auto transition-all hover:opacity-80 "
+              className="rounded-xl mx-auto  hover:opacity-80 "
               src={github_icon}
               width={56}
               height={56}
