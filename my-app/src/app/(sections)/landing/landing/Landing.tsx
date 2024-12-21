@@ -16,13 +16,13 @@ export default function Landing() {
   }
 
   return (
-    <section className="border-2  border-yellow-300 h-screen w-full  relative flex flex-col gap-2 items-center justify-center lg:flex-row">
+    <section className="border-2  border-yellow-300 h-screen w-full  relative flex flex-col gap-2 items-center justify-center lg:flex-row lg:gap-5  xl:gap-10">
       <div className="border-2 flex items-center flex-shrink-0 ">
         <span className="w-fit text-center  mx-auto ">
-          <h1 className="text-[5.5rem] lg:text-[7.7rem] leading-none font-sans">
+          <h1 className="text-[5.5rem] sm:text-[6rem] lg:text-[7.7rem] xl:text-[8.5rem]  leading-none font-sans">
             TOMAS <br /> PEREZ
           </h1>
-          <h2 className="text-[1.5rem] text-xl   px-2 text-[#cda3ff]">
+          <h2 className="text-[1.5rem] sm:text-2xl  px-2 text-[#cda3ff]">
             FULLSTACK DEVELOPER
           </h2>
         </span>

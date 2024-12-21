@@ -24,12 +24,12 @@ export default function Home() {
       </section>
       <section
         id="navigation"
-        className="hidden sm:inline fixed sm:w-[15%] h-full min-h-screen mx-auto  top-0 z-50"
+        className="hidden sm:inline fixed sm:w-[20%] lg:w-[15%]  h-full min-h-screen mx-auto  top-0 z-50"
       >
         <NavBar />
       </section>
       <section
-        className="w-full !max-w-full h-[400vh] sm:ml-[15%] bg-grid-small-white/[0.2] "
+        className="w-full !max-w-full sm:ml-[20%] lg:ml-[15%]  bg-grid-small-white/[0.2] "
         id="content"
       >
         <Landing />

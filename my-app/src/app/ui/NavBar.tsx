@@ -48,16 +48,16 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="border-2 border-orange-600 h-screen">
-      <nav className="border-2 w-full h-full flex flex-col items-center">
-        <div className="gap-7 flex flex-col items-center h-fit border-2  border-yellow-500">
+    <div className=" h-screen">
+      <nav className=" w-full h-full flex flex-col justify-center items-center">
+        <div className="gap-14 flex flex-col items-center h-fit ">
           {navlinks.map((link, index) => (
             <div
               key={index}
-              className={`w-full text-center ${
+              className={`w-full text-center text-xl border-b-[1.5px] ${
                 activeSection === link.id
                   ? "border-[#ce70f3] font-bold text-[#ce70f3] "
-                  : "border-2 "
+                  : ""
               }`}
             >
               <Link href={`#${link.id}`}>
