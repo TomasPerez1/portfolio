@@ -1,4 +1,3 @@
-// import Spline from "@splinetool/react-spline/next";
 import React, { Suspense, useState } from "react";
 const Spline = React.lazy(() => import("@splinetool/react-spline"));
 import {
@@ -6,7 +5,7 @@ import {
   RiArrowGoBackFill,
   RiArrowDownDoubleFill,
 } from "@remixicon/react";
-import Loading from "../../../ui/loading";
+import Loading from "../../../ui/Loading";
 
 export default function Landing() {
   const [showBanner, setShowBanner] = useState(false);
@@ -16,7 +15,7 @@ export default function Landing() {
   }
 
   return (
-    <section className="border-2  border-yellow-300 h-screen w-full  relative flex flex-col gap-2 items-center justify-center lg:flex-row lg:gap-5  xl:gap-10">
+    <section className="h-screen w-full  relative flex flex-col gap-2 items-center justify-center lg:flex-row lg:gap-5  xl:gap-10">
       <div className="border-2 flex items-center flex-shrink-0 ">
         <span className="w-fit text-center  mx-auto ">
           <h1 className="text-[5.5rem] sm:text-[6rem] lg:text-[7.7rem] xl:text-[8.5rem]  leading-none font-sans">
@@ -28,7 +27,7 @@ export default function Landing() {
         </span>
       </div>
       <div className="relative z-4  0  border-2 w-[220px] h-[250px] lg:w-[320px] lg:h-[350px]">
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading className="w-full h-full" />}>
           <div className="lg:hidden">
             <Spline
               onLoad={manageBanner}

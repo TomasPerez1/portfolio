@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
+import { useEffect } from "react";
 import NavBar from "./ui/NavBar";
 import Landing from "./(sections)/landing/landing/Landing";
 import AboutMe from "./(sections)/landing/about-me/AboutMe";
@@ -34,8 +34,8 @@ export default function Home() {
       >
         <Landing />
 
-        {/* <AboutMe />
-        <Proyects />
+        <AboutMe />
+        {/* <Proyects />
         <Contact /> */}
       </section>
     </main>

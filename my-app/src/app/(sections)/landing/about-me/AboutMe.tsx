@@ -1,8 +1,12 @@
 "use client";
-import { ProfileCarroucel } from "./ProfileCarroucel";
+import React from "react";
+// import { ProfileCarroucel } from "./ProfileCarroucel";
 import { RiLinkedinBoxFill, RiFileDownloadLine } from "@remixicon/react";
 import Image from "next/image";
 import github_icon from "@public/skills/github-icon.svg";
+import { Suspense } from "react";
+import Loading from "../../../ui/Loading";
+const ProfileCarroucel = React.lazy(() => import("./ProfileCarroucel"));
 
 export default function AboutMe() {
   type Imgs = {
@@ -11,24 +15,27 @@ export default function AboutMe() {
   };
   const imgs: Imgs[] = [
     {
-      name: "web",
-      src: "https://res.cloudinary.com/dnxa8khx9/image/upload/v1730993636/scraper/internet2.png",
+      name: "profile1",
+      src: "/profile/profile_box.jpg",
     },
     {
-      name: "wpp",
-      src: "https://res.cloudinary.com/dnxa8khx9/image/upload/v1730993636/scraper/wpp.png",
+      name: "profile2",
+      src: "/profile/lentes.jpg",
     },
     {
-      name: "ig",
-      src: "https://res.cloudinary.com/dnxa8khx9/image/upload/v1730993636/scraper/instagram.png",
+      name: "profile3",
+      src: "/profile/srious.jpg",
     },
   ];
 
   return (
-    <section id="about-me" className=" min-h-screen border-2 ">
-      <article className="flex items-center">
-        <ProfileCarroucel imgs={imgs} autoplay={false} />
-        <span className="p-4  bg-gray-800 rounded-lg mr-10">
+    <section id="about-me" className=" min-h-screen ">
+      <article className="flex flex-col items-center justify-center border-2  border-red-600  ">
+        <Suspense fallback={<Loading className="w-[15rem] h-[15rem]" />}>
+          <ProfileCarroucel imgs={imgs} autoplay={false} />
+        </Suspense>
+
+        <span className="p-4  bg-gray-800 rounded-lg  w-1/2 mx-auto">
           <p>
             ¿Quién soy? Soy Tomas, desarrollador Full Stack, una persona que su
             entorno y vida profesional iba enfocado al deporte hasta hace un año
@@ -49,7 +56,7 @@ export default function AboutMe() {
           </p>
         </span>
       </article>
-      <article className="flex gap-10 items-center justify-around pb-2 border-b-[1.5px] w-fit ml-10 mr-auto">
+      {/* <article className="flex gap-10 items-center justify-around pb-2 border-b-[1.5px] w-fit ml-10 mr-auto">
         <a
           target="_blank"
           href="https://www.linkedin.com/in/tomas-perez-developer/"
@@ -83,7 +90,7 @@ export default function AboutMe() {
 
           <RiFileDownloadLine className="w-12 h-12 text-white" />
         </a>
-      </article>
+      </article> */}
     </section>
   );
 }

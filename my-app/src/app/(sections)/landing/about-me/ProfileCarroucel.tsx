@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import { motion, AnimatePresence } from "framer-motion";
+
 import Image from "next/image";
 
 type Imgs = {
@@ -10,7 +11,7 @@ type Imgs = {
   src: string;
 };
 
-export const ProfileCarroucel = ({
+const ProfileCarroucel = ({
   imgs,
   autoplay = false,
 }: {
@@ -18,14 +19,9 @@ export const ProfileCarroucel = ({
   autoplay?: boolean;
 }) => {
   const [active, setActive] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const [rotationValues] = useState(() =>
     imgs.map(() => Math.floor(Math.random() * 21) - 10),
   );
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleNext = () => {
     setActive((prev) => (prev + 1) % imgs.length);
@@ -46,115 +42,72 @@ export const ProfileCarroucel = ({
     }
   }, [autoplay]);
 
-  if (!mounted) {
-    return (
-      <div className="mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-[4rem]">
-        <div className="flex flex-col gap-10 w-fit">
-          <picture>
-            <div className="relative h-[20rem] w-[20rem]">
-              {imgs.map((img) => (
-                <div key={img.src} className="absolute inset-0">
-                  <Image
-                    src={img.src}
-                    alt={img.name}
-                    width={500}
-                    height={500}
-                    draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
-                  />
-                </div>
-              ))}
-            </div>
-          </picture>
-          <section
-            id="buttons"
-            className="flex justify-start gap-4 w-fit mx-auto "
-          >
-            <button
-              onClick={handlePrev}
-              className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
-            >
-              <RiArrowLeftLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
-            >
-              <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
-            </button>
-          </section>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className=" mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-[4rem]">
-      <div className="flex flex-col gap-10 w-fit">
-        <picture className="">
-          <div className="relative h-[20rem] w-[20rem]">
-            <AnimatePresence>
-              {imgs.map((img, index) => (
-                <motion.div
-                  key={img.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: rotationValues[index],
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : rotationValues[index],
-                    zIndex: isActive(index) ? 999 : imgs.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: rotationValues[index],
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 origin-bottom"
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.name}
-                    width={500}
-                    height={500}
-                    draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+    <div className="border-2 mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-[4rem] w-[85%] ">
+      <div className="border-2 border-violet-500 flex flex-col gap-10 w-[90%] mx-auto h-[14.5rem] sm:h-[17.5rem]">
+        <picture className="relative border-2 border-green-400">
+          <AnimatePresence>
+            {imgs.map((img, index) => (
+              <motion.div
+                className="border-2 border-yellow-500 absolute inset-0 origin-bottom h-[13rem] w-[13rem] sm:h-[16rem] sm:w-[16rem]   mx-auto"
+                key={img.src}
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                  z: -100,
+                  rotate: rotationValues[index],
+                  x: isActive(index) ? 0 : index % 2 === 0 ? -20 : 20,
+                  y: isActive(index) ? 0 : 10,
+                }}
+                animate={{
+                  opacity: isActive(index) ? 1 : 0.7,
+                  scale: isActive(index) ? 1 : 0.95,
+                  z: isActive(index) ? 0 : -100,
+                  rotate: isActive(index) ? 0 : rotationValues[index],
+                  zIndex: isActive(index) ? 999 : imgs.length + 2 - index,
+                  y: isActive(index) ? [0, -80, 0] : 0,
+                  x: isActive(index) ? 0 : index % 2 === 0 ? -20 : 20,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.9,
+                  z: 100,
+                  rotate: rotationValues[index],
+                  x: isActive(index) ? 0 : index % 2 === 0 ? -20 : 20,
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeInOut",
+                }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.name}
+                  fill={true}
+                  draggable={false}
+                  className="rounded-3xl object-cover object-center"
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </picture>
-
-        <section
-          id="buttons"
-          className="flex justify-start gap-4 w-fit mx-auto "
-        >
-          <button
-            onClick={handlePrev}
-            className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
-          >
-            <RiArrowLeftLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
-          >
-            <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
-          </button>
-        </section>
       </div>
+      <section id="buttons" className="flex  gap-4 w-fit mx-auto border-4 ">
+        <button
+          onClick={handlePrev}
+          className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
+        >
+          <RiArrowLeftLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
+        </button>
+        <button
+          onClick={handleNext}
+          className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
+        >
+          <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
+        </button>
+      </section>
     </div>
   );
 };
+
+export default ProfileCarroucel;
