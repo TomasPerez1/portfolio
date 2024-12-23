@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Suspense } from "react";
-import Loading from "../../../ui/Loading";
+import Loader from "../../../ui/Loader";
 const ProfileCarroucel = React.lazy(() => import("./ProfileCarroucel"));
 
 export default function AboutMe() {
@@ -27,7 +27,7 @@ export default function AboutMe() {
   return (
     <section id="about-me" className=" min-h-screen  flex">
       <article className="flex flex-col lg:flex-row items-center justify-center  lg:px-10">
-        <Suspense fallback={<Loading className="w-[15rem] h-[15rem]" />}>
+        <Suspense fallback={<Loader className="w-[15rem] h-[15rem]" />}>
           <ProfileCarroucel imgs={imgs} autoplay={false} />
         </Suspense>
 

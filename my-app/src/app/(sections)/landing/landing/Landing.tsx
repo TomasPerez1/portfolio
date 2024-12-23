@@ -5,7 +5,7 @@ import {
   RiArrowGoBackFill,
   RiArrowDownDoubleFill,
 } from "@remixicon/react";
-import Loading from "../../../ui/Loading";
+import Loader from "../../../ui/Loader";
 
 export default function Landing() {
   const [showBanner, setShowBanner] = useState(false);
@@ -27,7 +27,7 @@ export default function Landing() {
         </span>
       </div>
       <div className="relative z-4  w-[220px] h-[250px] lg:w-[320px] lg:h-[350px]">
-        <Suspense fallback={<Loading className="w-full h-full" />}>
+        <Suspense fallback={<Loader className="w-full h-full" />}>
           <div className="lg:hidden">
             <Spline
               onLoad={manageBanner}
