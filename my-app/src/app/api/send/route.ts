@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       html: `
       <h1>${name.toUpperCase()}</h1>
       <hr/>
-      <h2>Termino su book con ${message} </h1>
+      <h2>${message}</h2>
       `,
     });
 
