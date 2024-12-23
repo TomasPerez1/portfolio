@@ -30,13 +30,6 @@ export async function POST(request: Request) {
       `,
     });
 
-    if (!info) {
-      return Response.json(
-        { error: "zaracatunga" },
-        { status: 500, statusText: "nono" },
-      );
-    }
-
     return Response.json(info);
   } catch (error) {
     return Response.json({ error }, { status: 500 });
