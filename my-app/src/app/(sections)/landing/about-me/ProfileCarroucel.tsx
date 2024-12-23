@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import ExternalLinks from "./ExternalLinks";
 import Image from "next/image";
 
 type Imgs = {
@@ -43,13 +43,13 @@ const ProfileCarroucel = ({
   }, [autoplay]);
 
   return (
-    <div className="border-2 mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-[4rem] w-[85%] ">
-      <div className="border-2 border-violet-500 flex flex-col gap-10 w-[90%] mx-auto h-[14.5rem] sm:h-[17.5rem]">
-        <picture className="relative border-2 border-green-400">
+    <div className=" mx-auto antialiased font-sans px-4 md:px-8 py-[2.5rem] lg:p-0 lg:gap-4 w-[85%] ">
+      <div className="flex flex-col gap-10 w-[90%]  mx-auto h-[14.5rem] sm:h-[17.5rem] md:h-[19.5rem]">
+        <picture className="relative ">
           <AnimatePresence>
             {imgs.map((img, index) => (
               <motion.div
-                className="border-2 border-yellow-500 absolute inset-0 origin-bottom h-[13rem] w-[13rem] sm:h-[16rem] sm:w-[16rem]   mx-auto"
+                className="absolute inset-0 origin-bottom h-[13rem] w-[13rem] sm:h-[16rem] sm:w-[16rem] md:h-[18rem] md:w-[18rem]    mx-auto"
                 key={img.src}
                 initial={{
                   opacity: 0,
@@ -92,7 +92,7 @@ const ProfileCarroucel = ({
           </AnimatePresence>
         </picture>
       </div>
-      <section id="buttons" className="flex  gap-4 w-fit mx-auto border-4 ">
+      <section id="buttons" className="flex  gap-4 w-fit mx-auto ">
         <button
           onClick={handlePrev}
           className="h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button hover:bg-neutral-800 hover:text-white transition-colors"
@@ -106,6 +106,7 @@ const ProfileCarroucel = ({
           <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
         </button>
       </section>
+      <ExternalLinks />
     </div>
   );
 };
