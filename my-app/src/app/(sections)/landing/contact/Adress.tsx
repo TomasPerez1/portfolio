@@ -1,9 +1,4 @@
-import {
-  RiMapPinFill,
-  RiMailFill,
-  RiPhoneFill,
-  RiWhatsappLine,
-} from "@remixicon/react";
+import { RiMapPinFill, RiMailFill, RiWhatsappLine } from "@remixicon/react";
 import { copyToClipboard } from "../../../lib/utils";
 import { Tooltip } from "@nextui-org/react";
 import { RiFileCopyLine } from "@remixicon/react";

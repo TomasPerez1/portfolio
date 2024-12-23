@@ -29,14 +29,13 @@ export default function Home() {
         <NavBar />
       </section>
       <section
-        className="w-full !max-w-full sm:ml-[20%] lg:ml-[15%]  bg-grid-small-white/[0.2] "
+        className="w-full !max-w-full sm:ml-[20%] lg:ml-[15%] flex flex-col justify-between gap-8  bg-grid-small-white/[0.2] "
         id="content"
       >
         <Landing />
-
         <AboutMe />
-        {/* <Proyects />
-        <Contact /> */}
+        <Proyects />
+        <Contact />
       </section>
     </main>
   );

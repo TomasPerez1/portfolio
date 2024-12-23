@@ -16,7 +16,7 @@ export default function Landing() {
 
   return (
     <section className="h-screen w-full  relative flex flex-col gap-2 items-center justify-center lg:flex-row lg:gap-5  xl:gap-10">
-      <div className="border-2 flex items-center flex-shrink-0 ">
+      <div className="flex items-center flex-shrink-0 ">
         <span className="w-fit text-center  mx-auto ">
           <h1 className="text-[5.5rem] sm:text-[6rem] lg:text-[7.7rem] xl:text-[8.5rem]  leading-none font-sans">
             TOMAS <br /> PEREZ
@@ -26,7 +26,7 @@ export default function Landing() {
           </h2>
         </span>
       </div>
-      <div className="relative z-4  0  border-2 w-[220px] h-[250px] lg:w-[320px] lg:h-[350px]">
+      <div className="relative z-4  w-[220px] h-[250px] lg:w-[320px] lg:h-[350px]">
         <Suspense fallback={<Loading className="w-full h-full" />}>
           <div className="lg:hidden">
             <Spline

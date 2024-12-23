@@ -98,8 +98,8 @@ export default function Proyects() {
   ];
 
   return (
-    <section id="proyects" className="min-h-screen pb-[6rem]">
-      <div className="w-[90%] mx-auto gap-8 grid grid-cols-2 ">
+    <section id="proyects" className="min-h-screen  py-4">
+      <div className="w-[90%] mx-auto  gap-8 grid grid-cols-1 lg:w-[97%] xl:w-[90%] lg:grid-cols-2 ">
         {proyects.map((proyect) => (
           <ProyectCard key={proyect.id} proyect={proyect} />
         ))}

@@ -30,7 +30,7 @@ export default function ExternalLinks() {
       </a>
       <a
         download
-        href="/CV_TOMAS_PEREZ_esp.pdf"
+        href="/cv/CV_TOMAS_PEREZ_esp.pdf"
         className="w-fit text-center text-lg  px-1 py-0.5   border-[1px] hover:brightness-200 transition-colors bg-red-600 flex rounded-lg items-center"
       >
         <p className="text-xl">CV</p>

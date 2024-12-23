@@ -29,7 +29,7 @@ export default function AboutMe() {
   ];
 
   return (
-    <section id="about-me" className=" min-h-screen mt-[7.5rem]">
+    <section id="about-me" className=" min-h-screen  flex">
       <article className="flex flex-col lg:flex-row items-center justify-center  lg:px-10">
         <Suspense fallback={<Loading className="w-[15rem] h-[15rem]" />}>
           <ProfileCarroucel imgs={imgs} autoplay={false} />

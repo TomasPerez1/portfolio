@@ -4,7 +4,7 @@ import Adress from "./Adress";
 
 export default function Contact() {
   return (
-    <section id="contact" className="min-h-screen pb-[6rem]">
+    <section id="contact" className=" min-h-screen pb-[6rem]">
       <div className="w-[90%]  mx-auto gap-8 grid grid-cols-2 text-lg ">
         <div className="rounded-lg bg-[#263345] flex flex-col pb-0.5">
           <Adress />
