@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Form,
-  Input,
-  Select,
-  SelectItem,
-  Checkbox,
-  Button,
-  Textarea,
-} from "@nextui-org/react";
-import Adress from "./Adress";
+import { Form, Input, Button, Textarea } from "@nextui-org/react";
 
 // Definición del tipo para emailData
 export interface EmailData {
@@ -180,7 +171,7 @@ export default function SendEmail() {
           disabled={
             (Object.keys(errors).length && true) || !emailData.email.length
           }
-          className="w-1/3 mx-auto text-2xl disabled:pointer-events-none disabled:opacity-20 bg-violet-800 text-white"
+          className="w-fit mx-auto px-5 text-2xl disabled:pointer-events-none disabled:opacity-20 bg-violet-800 text-white"
           type="submit"
         >
           Enviar
