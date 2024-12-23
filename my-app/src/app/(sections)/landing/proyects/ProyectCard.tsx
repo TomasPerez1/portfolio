@@ -25,7 +25,7 @@ export default function ProyectCard({ proyect }) {
               <a
                 target="_blank"
                 href={github}
-                className="w-[40px] z-50 p-2 rounded-full"
+                className="w-[40px] z-40 p-2 rounded-full"
               >
                 <Image
                   alt="Proyect img"
@@ -55,7 +55,7 @@ export default function ProyectCard({ proyect }) {
 
 function Skills({ logos }) {
   return (
-    <div className="w-full flex items-center gap-2 sm:gap-2.5 flex-wrap absolute z-40 bg-white/35 rounded-sm backdrop-blur-sm px-1.5 py-1">
+    <div className="w-full flex items-center gap-2 sm:gap-2.5 flex-wrap absolute z-30 bg-white/35 rounded-sm backdrop-blur-sm px-1.5 py-1">
       {logos?.length ? (
         logos.map((logo, index) => (
           <div

@@ -4,10 +4,7 @@ import Adress from "./Adress";
 
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      className="border-1 border-yellow-500 min-h-screen pb-[6rem]"
-    >
+    <section id="contact" className=" min-h-screen pb-[4rem]">
       <div className="w-[90%] mx-auto gap-8 grid grid-cols-1 lg:grid-cols-2 text-lg justify-center items-center">
         <div className="rounded-lg bg-[#263345] flex flex-col gap-2 py-4">
           <Adress />

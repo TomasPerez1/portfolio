@@ -5,7 +5,7 @@ import {
   NavbarMenuToggle,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { RiLinkedinBoxFill } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -50,6 +50,7 @@ export default function App() {
 
     return () => observer.disconnect();
   }, []);
+
   return (
     <Navbar
       isBlurred={true}
