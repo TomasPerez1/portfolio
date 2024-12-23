@@ -5,7 +5,7 @@ export default function Loading({ className }: { className: string }) {
     <Skeleton
       className={`min-w-[220px] min-h-[250px]  rounded-lg shadow-lg  bg-violet-950 ${className}`}
     >
-      {/* <div></div> */}
+      <div></div>
     </Skeleton>
   );
 }

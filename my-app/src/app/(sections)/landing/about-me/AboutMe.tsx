@@ -1,9 +1,5 @@
 "use client";
 import React from "react";
-// import { ProfileCarroucel } from "./ProfileCarroucel";
-// import { RiLinkedinBoxFill, RiFileDownloadLine } from "@remixicon/react";
-// import Image from "next/image";
-// import github_icon from "@public/skills/github-icon.svg";
 import { Suspense } from "react";
 import Loading from "../../../ui/Loading";
 const ProfileCarroucel = React.lazy(() => import("./ProfileCarroucel"));
