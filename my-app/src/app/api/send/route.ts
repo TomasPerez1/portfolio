@@ -1,5 +1,6 @@
 // import { EmailTemplate } from "../../(sections)/landing/contact/EmailTemplate";
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 import type { EmailData } from "../../(sections)/landing/contact/SendEmail";
 const { EMAIL_PASSWORD, EMAIL_USER } = process.env;
 
