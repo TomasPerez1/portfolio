@@ -33,22 +33,30 @@ export default function AboutMe() {
 
         <span className="p-4  bg-gray-800 rounded-lg  w-[85%] mx-auto lg:w-[90%]">
           <p>
-            ¿Quién soy? Soy Tomas, desarrollador Full Stack, una persona que su
-            entorno y vida profesional iba enfocado al deporte hasta hace un año
-            cuando di un giro de 180° y pude encontrar mi lugar en un espacio
-            que siempre estuvo presente y me encantaba, el mundo de la
-            tecnología. Finalice mis formación como desarrollador Full Stack 👨‍💻
-            en soy HENRY llevándome fuertes conocimientos de : . Java Script ‣‣‣
-            (React, Redux, Node, Express, Sequelize) . CSS ‣‣‣ (pure css,
-            Tailwind) . SQL ‣‣‣ (Postgres sql) . Git workflow . Metodología ágil
-            (SCRUM) Me considero una persona con habilidad para administrar una
-            sabia toma de decisiones, generar una efectiva resolución de
-            problemas, dirigir a mi equipo a los objetivos planteados,
-            identificar que espera el cliente como producto y llevarlo a cabo.
-            Estoy en busca de un trabajo en tecnología, que me permita seguir
-            aprendiendo mas en este hermoso mundo de la programación 🚀.
-            Contacto: Email: tomas.perez.developer@gmail.com || GitHub:
-            https://github.com/TomasPerez1 Celular: +54 9 2944140001
+            Soy Tomás, desarrollador Full Stack apasionado por la tecnología, el
+            aprendizaje continuo y la creación de soluciones innovadoras. Me
+            especializo en diseñar y construir aplicaciones web robustas y
+            escalables, utilizando tecnologías modernas como Node.js, React,
+            Next.js, Redux, Nest.js, Prisma, y PostgreSQL. Mi enfoque no solo
+            está en el código, sino también en el impacto que las soluciones
+            pueden generar. Combino mi experiencia técnica con habilidades
+            interpersonales que me permiten liderar equipos, comunicar ideas
+            complejas de manera efectiva y colaborar en entornos ágiles bajo la
+            metodología SCRUM. Entre mis habilidades técnicas destacan:
+            Frontend: Desarrollo de interfaces intuitivas y responsivas con
+            React, Next.js, y Tailwind CSS. Backend: Creación de APIs sólidas y
+            seguras con Node.js, Nest.js, y Express, acompañado de un enfoque en
+            bases de datos relacionales con PostgreSQL y herramientas como
+            Prisma y Sequelize. TypeScript: Garantizando un código limpio,
+            tipado y escalable. Control de versiones: Experiencia en flujos de
+            trabajo colaborativos con Git y GitHub. Además, mi nivel de inglés
+            Upper Intermediate (B2) me permite trabajar cómodamente con equipos
+            internacionales, asegurando una comunicación clara y eficiente.
+            Fuera del ámbito técnico, soy una persona orientada a la resolución
+            de problemas, con capacidad de análisis, pensamiento crítico y
+            creatividad para proponer soluciones que realmente aporten valor. Me
+            motiva enfrentar desafíos, tanto profesionales como personales, y
+            busco constantemente mejorar, aprender y crecer.
           </p>
         </span>
       </article>
