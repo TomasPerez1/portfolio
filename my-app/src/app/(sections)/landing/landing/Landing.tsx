@@ -43,7 +43,7 @@ export default function Landing() {
           </div>
           <div className="hidden lg:inline">
             <Spline scene="https://prod.spline.design/OoBR4Z3NWKxkJac9/scene.splinecode" />
-            <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[40px] bg-gray-900 text-white absolute z-40 right-4 bottom-[15px]">
+            <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[40px] bg-gray-900 text-white absolute z-40 right-4 bottom-[16px]">
               <RiArrowGoForwardFill className="w-4" />
               <p>Rotame!</p>
               <RiArrowGoBackFill className="w-4" />

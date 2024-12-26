@@ -5,7 +5,7 @@ import { RiFileCopyLine } from "@remixicon/react";
 
 export default function Adress() {
   return (
-    <article className="w-[95%] mx-auto flex flex-col justify-center gap-1 text-sm xs:text-base sm:text-lg lg:text-base">
+    <article className="w-[95%]  mx-auto flex flex-col justify-center gap-1 text-sm xs:text-base sm:text-lg lg:text-base">
       <Tooltip
         content={<p className="flex items-center gap-1">Go to maps</p>}
         className="text-red-400 bg-red-900 "

@@ -1,11 +1,14 @@
-// import { EmailTemplate } from "../../(sections)/landing/contact/EmailTemplate";
-// const nodemailer = require("nodemailer");
 import nodemailer from "nodemailer";
 import type { EmailData } from "../../(sections)/landing/contact/SendEmail";
 const { EMAIL_PASSWORD, EMAIL_USER } = process.env;
 
 export async function POST(request: Request) {
   try {
+    // const isValidEmail = (string: string) => {
+    //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //   return emailRegex.test(string);
+    // };
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -16,7 +19,7 @@ export async function POST(request: Request) {
       },
     });
     const body: EmailData = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, subject, message } = body;
 
     const info = await transporter.sendMail({
       from: `"🎉 RRHH" <${EMAIL_USER}>`,

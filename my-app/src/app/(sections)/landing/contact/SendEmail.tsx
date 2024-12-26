@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Form, Input, Button, Textarea } from "@nextui-org/react";
+import { toast } from "sonner";
 
 // Definición del tipo para emailData
 export interface EmailData {
   name: string;
-  email: string;
   subject: string;
   message: string;
 }
@@ -13,26 +13,15 @@ export interface EmailData {
 export default function SendEmail() {
   const [emailData, setEmailData] = useState<EmailData>({
     name: "",
-    email: "",
     subject: "",
     message: "",
   });
 
   const [errors, setErrors] = React.useState({});
 
-  const isValidEmail = (string: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(string);
-  };
-
   const checkErrors = (data: EmailData) => {
-    const { email, message, name, subject } = data;
+    const { message, name, subject } = data;
     const errors = {};
-    if (!email?.length) {
-      errors["email"] = "Ingrese un email";
-    } else if (!isValidEmail(email)) {
-      errors["email"] = "Ingrese un email valido";
-    }
     if (!name?.length) {
       errors["name"] = "Ingrese su nombre";
     }
@@ -48,31 +37,31 @@ export default function SendEmail() {
   const onSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(
-        "SUBMITEOOO",
-        emailData.name,
-        emailData.email,
-        emailData.subject,
-        emailData.message,
-      );
 
-      const { name, email, subject, message } = emailData;
+      const { name, subject, message } = emailData;
 
       const result = await axios.post("/api/send", {
         name,
-        email,
         subject,
         message,
       });
+
       console.log("RESUL", result);
+      toast.success("Email enviado con exito");
+
       setEmailData({
         name: "",
-        email: "",
         subject: "",
         message: "",
       });
       setErrors({});
     } catch (error) {
+      setEmailData({
+        name: "",
+        subject: "",
+        message: "",
+      });
+      toast.error("Error al enviar email");
       console.log(error);
     }
   };
@@ -121,7 +110,7 @@ export default function SendEmail() {
           />
         </section>
 
-        <Input
+        {/* <Input
           errorMessage={() => {
             if (errors["email"]) {
               return errors["email"];
@@ -141,7 +130,7 @@ export default function SendEmail() {
             setEmailData((prev) => ({ ...prev, email: value }));
             setErrors(checkErrors({ ...emailData, email: value }));
           }}
-        />
+        /> */}
 
         <Textarea
           // isRequired
@@ -168,10 +157,8 @@ export default function SendEmail() {
         />
 
         <Button
-          disabled={
-            (Object.keys(errors).length && true) || !emailData.email.length
-          }
-          className="w-fit mx-auto px-5 text-2xl disabled:pointer-events-none disabled:opacity-20 bg-violet-800 text-white"
+          disabled={Object.keys(errors).length && true}
+          className="font-mono uppercase w-fit mx-auto px-5 text-2xl disabled:pointer-events-none disabled:opacity-20 bg-violet-800 text-white"
           type="submit"
         >
           Enviar
