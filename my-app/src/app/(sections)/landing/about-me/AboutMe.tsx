@@ -33,30 +33,35 @@ export default function AboutMe() {
 
         <span className="p-4  bg-gray-800 rounded-lg  w-[85%] mx-auto lg:w-[90%]">
           <p>
-            Soy Tomás, desarrollador Full Stack apasionado por la tecnología, el
-            aprendizaje continuo y la creación de soluciones innovadoras. Me
-            especializo en diseñar y construir aplicaciones web robustas y
-            escalables, utilizando tecnologías modernas como Node.js, React,
-            Next.js, Redux, Nest.js, Prisma, y PostgreSQL. Mi enfoque no solo
-            está en el código, sino también en el impacto que las soluciones
-            pueden generar. Combino mi experiencia técnica con habilidades
-            interpersonales que me permiten liderar equipos, comunicar ideas
-            complejas de manera efectiva y colaborar en entornos ágiles bajo la
-            metodología SCRUM. Entre mis habilidades técnicas destacan:
-            Frontend: Desarrollo de interfaces intuitivas y responsivas con
-            React, Next.js, y Tailwind CSS. Backend: Creación de APIs sólidas y
-            seguras con Node.js, Nest.js, y Express, acompañado de un enfoque en
-            bases de datos relacionales con PostgreSQL y herramientas como
-            Prisma y Sequelize. TypeScript: Garantizando un código limpio,
-            tipado y escalable. Control de versiones: Experiencia en flujos de
-            trabajo colaborativos con Git y GitHub. Además, mi nivel de inglés
-            Upper Intermediate (B2) me permite trabajar cómodamente con equipos
-            internacionales, asegurando una comunicación clara y eficiente.
-            Fuera del ámbito técnico, soy una persona orientada a la resolución
-            de problemas, con capacidad de análisis, pensamiento crítico y
-            creatividad para proponer soluciones que realmente aporten valor. Me
-            motiva enfrentar desafíos, tanto profesionales como personales, y
-            busco constantemente mejorar, aprender y crecer.
+            Soy Tomás, desarrollador <strong>Full Stack</strong> apasionado por
+            la tecnología, el aprendizaje continuo y la creación de soluciones
+            innovadoras. Me especializo en diseñar y construir aplicaciones web
+            robustas y escalables.
+            <br />
+            Mi enfoque no solo está en el código, sino también en el impacto que
+            las soluciones pueden generar. Combino mi experiencia técnica con
+            habilidades interpersonales que me permiten liderar equipos,
+            comunicar ideas complejas de manera efectiva y colaborar en entornos
+            ágiles bajo la <strong>metodología SCRUM</strong>.
+            <br />
+            Entre mis habilidades técnicas en el frontend, desarrollo interfaces
+            intuitivas y responsivas con{" "}
+            <strong>React, Next.js, y Tailwind CSS</strong> para ofrecer
+            resultados modernos y funcionales. En el backend, mi enfoque está en
+            construir APIs sólidas y seguras con tecnologías como{" "}
+            <strong>Node.js, Nest.js, y Express</strong> , siempre
+            complementando estas soluciones con bases de datos relacionales bien
+            estructuradas utilizando <strong>PostgreSQL/Mysql</strong>, además
+            de una ORM como <strong>Prisma/Sequelize</strong> para optimizar el
+            flujo de datos.
+            <br />
+            Mi nivel de inglés es <strong>Upper Intermediate (B2)</strong> me
+            permite comunicarme de manera efectiva con equipos internacionales.
+            <br />
+            Más allá de lo técnico, soy una persona analítica, creativa y
+            orientada a la resolución de problemas. Disfruto de los desafíos,
+            porque cada uno representa una oportunidad para aprender y crecer,
+            tanto en el ámbito profesional como en el personal.
           </p>
         </span>
       </article>
