@@ -20,30 +20,33 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+input, input[type="text"],input[type="password"], input[type="email"], input[type="number"],textarea {
+  caret-color: #000000;
+}
+
 #content {
   background-color: #22014d;
 } 
-
 
 
 #navigation {
   background-image: url("../../public/background/bg_vertical_dark_xl.JPG");
 }
 
-/* Estilos para la barra de desplazamiento */
+
 ::-webkit-scrollbar {
-  width: 6px; /* Reducido a 6px para hacerla más delgada */
+  width: 6px; 
 }
 
 ::-webkit-scrollbar-track {
-  background: #2c2c2c; /* Gris muy claro para el fondo */
+  background: #2c2c2c; 
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4d4d4d; /* Gris medio-oscuro para la barra */
+  background: #4d4d4d;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4d4d4d; /* Gris más oscuro al hacer hover */
+  background: #4d4d4d; 
 }

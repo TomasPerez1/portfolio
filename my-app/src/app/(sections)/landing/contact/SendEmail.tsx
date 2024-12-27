@@ -76,6 +76,7 @@ export default function SendEmail() {
       <div className="flex flex-col gap-4 w-[90%]  ">
         <section className="flex gap-4">
           <Input
+            // className="caret-red-600"
             errorMessage={() => {
               if (errors["name"]) {
                 return errors["name"];
