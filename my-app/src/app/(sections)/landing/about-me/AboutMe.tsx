@@ -16,7 +16,7 @@ export default function AboutMe() {
     },
     {
       name: "profile2",
-      src: "/profile/profile_box.jpg",
+      src: "/profile/profilebox.jpg",
     },
     {
       name: "profile3",
