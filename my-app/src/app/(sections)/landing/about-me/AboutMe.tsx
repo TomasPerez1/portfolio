@@ -11,12 +11,12 @@ export default function AboutMe() {
   };
   const imgs: Imgs[] = [
     {
-      name: "profile1",
-      src: "/profile/profile_box.jpg",
+      name: "profile2",
+      src: "/profile/cvprofile.jpg",
     },
     {
-      name: "profile2",
-      src: "/profile/lentes.jpg",
+      name: "profile1",
+      src: "/profile/profile_box.jpg",
     },
     {
       name: "profile3",
