@@ -62,7 +62,7 @@ export default function Proyects() {
     },
     {
       id: 3,
-      name: "Spotline ecommerce",
+      name: "Spotsline ecommerce",
       description:
         "E-commerce para metalurgica argentina con gran flujo de clientes y stock, integrando una base de datos con un sistema en un servidor local (SQL server)",
       github: "https://github.com/TomasPerez1/spotsline-frontend",
