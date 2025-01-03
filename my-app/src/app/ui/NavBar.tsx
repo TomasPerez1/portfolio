@@ -60,7 +60,16 @@ export default function NavBar() {
                   : ""
               }`}
             >
-              <Link href={`#${link.id}`}>
+              <Link
+                href={`#${link.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const target = document.getElementById(link.id);
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
                 <button className="md:text-2xl ">{link.label}</button>
               </Link>
             </div>

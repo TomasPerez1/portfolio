@@ -9,14 +9,6 @@ import Contact from "./(sections)/landing/contact/Contact";
 import SideBar from "./ui/SideBar";
 
 export default function Home() {
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: "smooth",
-  //   });
-  // }, []);
-
   return (
     <main className="bg-violet-950 min-h-screen flex overflow-hidden">
       <section className="sm:hidden relative  p-0 ">
