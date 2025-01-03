@@ -55,13 +55,13 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider value={{ currentIndex }}>
       <div className="w-full relative  p-0">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-0  scroll-smooth [scrollbar-width:none] "
+          className="flex w-full overflow-x-scroll overscroll-x-auto py-0 scroll-smooth [scrollbar-width:none] "
           ref={carouselRef}
           onScroll={checkScrollability}
         >
           <div
             className={cn(
-              "flex flex-row justify-center items-center  mt-10 xs:mt-12 md:mt-14 gap-4 px-4",
+              "flex flex-row justify-center  items-center mt-10 xs:mt-12 md:mt-14 gap-4 px-4",
               "mx-auto",
             )}
           >
@@ -78,7 +78,7 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="rounded-3xl max-w-[90%]"
+                className="rounded-3xl  max-w-[90%]"
               >
                 <div className=" w-[430px]">
                   <Image
@@ -86,7 +86,7 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
                     className="rounded-xl mx-auto "
                     src={img}
                     width={430}
-                    height={430}
+                    height={223}
                     // fill={true}
                   />
                 </div>
