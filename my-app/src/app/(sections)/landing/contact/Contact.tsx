@@ -26,7 +26,7 @@ export default function Contact() {
               primaryColor: "#ffffff",
               textColor: "#ce70f3",
               hideGdprBanner: false,
-              hideEventTypeDetails: true,
+              hideEventTypeDetails: false,
               hideLandingPageDetails: true,
             }}
             url="https://calendly.com/tomas-perez-developer/30min"
