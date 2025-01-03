@@ -55,13 +55,13 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider value={{ currentIndex }}>
       <div className="w-full relative  p-0">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-0 mt-16  scroll-smooth [scrollbar-width:none] "
+          className="flex w-full overflow-x-scroll overscroll-x-auto py-0  scroll-smooth [scrollbar-width:none] "
           ref={carouselRef}
           onScroll={checkScrollability}
         >
           <div
             className={cn(
-              "flex flex-row justify-center items-center gap-4 px-4",
+              "flex flex-row justify-center items-center  mt-10 xs:mt-12 md:mt-14 gap-4 px-4",
               "mx-auto",
             )}
           >
@@ -97,7 +97,7 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
         {/* //? Arrow handler  */}
         <div
           id="arrows"
-          className="flex justify-between w-full px-1 absolute top-1/2 -translate-y-1/2"
+          className="flex justify-between w-full px-1 absolute  top-1/2 -translate-y-1/2"
         >
           <button
             className="relative z-40 h-9 w-9 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"

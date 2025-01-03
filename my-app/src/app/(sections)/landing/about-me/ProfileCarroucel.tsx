@@ -45,11 +45,11 @@ const ProfileCarroucel = ({
   return (
     <div className=" mx-auto antialiased font-sans px-4 md:px-8 py-[2.5rem] lg:p-0 lg:gap-4 w-[85%] ">
       <div className="flex flex-col gap-10 w-[90%]  mx-auto h-[14.5rem] sm:h-[17.5rem] md:h-[19.5rem]">
-        <picture className="relative ">
+        <picture className="relative z-30">
           <AnimatePresence>
             {imgs.map((img, index) => (
               <motion.div
-                className="absolute inset-0 origin-bottom h-[13rem] w-[13rem] sm:h-[16rem] sm:w-[16rem] md:h-[18rem] md:w-[18rem]    mx-auto"
+                className="absolute z-20 inset-0 origin-bottom h-[13rem] w-[13rem] sm:h-[16rem] sm:w-[16rem] md:h-[18rem] md:w-[18rem]    mx-auto"
                 key={img.src}
                 initial={{
                   opacity: 0,
