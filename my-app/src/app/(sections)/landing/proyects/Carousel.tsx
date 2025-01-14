@@ -87,7 +87,6 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
                     src={img}
                     width={430}
                     height={223}
-                    // fill={true}
                   />
                 </div>
               </motion.div>
