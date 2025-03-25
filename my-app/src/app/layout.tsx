@@ -3,9 +3,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Provider } from "./providers";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
+import { cookies } from "next/headers";
 import "./globals.css";
 
-const poppins = Poppins({ weight: "500", subsets: ["latin"] });
+const poppins = Poppins({
+  weight: "500",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Tomas Perez Portfolio",
@@ -14,20 +19,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const lang = cookies().get("NEXT_LOCALE")?.value || "en";
+
   return (
-    <html lang="en">
-      <body className={`${poppins.className}`}>
-        <Provider>{children}</Provider>
-        <Toaster
-          duration={3000}
-          style={{ backgroundColor: "#D9D9D9" }}
-          richColors={true}
-          gap={2}
-        />
-        <SpeedInsights />
+    <html lang={lang} suppressHydrationWarning>
+      <body className={poppins.className}>
+        <Provider>
+          {children}
+          <Toaster
+            duration={3000}
+            style={{ backgroundColor: "#D9D9D9" }}
+            richColors
+            gap={2}
+          />
+          <SpeedInsights />
+        </Provider>
       </body>
     </html>
   );

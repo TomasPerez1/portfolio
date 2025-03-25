@@ -2,6 +2,10 @@
 
 import { NextUIProvider } from "@nextui-org/react";
 
-export function Provider({ children }: { children: React.ReactNode }) {
+interface ProviderProps {
+  children: React.ReactNode;
+}
+
+export function Provider({ children }: ProviderProps) {
   return <NextUIProvider>{children}</NextUIProvider>;
 }

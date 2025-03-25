@@ -23,7 +23,7 @@ export default function Adress() {
       <Tooltip
         content={
           <p className="flex items-center gap-1">
-            <RiFileCopyLine /> Copiar
+            <RiFileCopyLine /> Copy
           </p>
         }
         className="text-blue-400 bg-blue-900"
