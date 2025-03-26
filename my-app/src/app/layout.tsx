@@ -27,15 +27,18 @@ export default function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={poppins.className}>
+        {/* @ts-expect-error - NextUI type complexity */}
         <Provider>
-          {children}
-          <Toaster
-            duration={3000}
-            style={{ backgroundColor: "#D9D9D9" }}
-            richColors
-            gap={2}
-          />
-          <SpeedInsights />
+          <>
+            {children}
+            <Toaster
+              duration={3000}
+              style={{ backgroundColor: "#D9D9D9" }}
+              richColors
+              gap={2}
+            />
+            <SpeedInsights />
+          </>
         </Provider>
       </body>
     </html>

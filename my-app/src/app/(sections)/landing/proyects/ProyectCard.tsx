@@ -19,20 +19,61 @@ export default function ProyectCard({ proyect, lang, index }) {
       <CardHeader className="px-0.5 flex-col items-start  py-0">
         <Carousel imgs={imgs} />
       </CardHeader>
-      <CardBody className="overflow-visible py-0 ">
-        <Accordion>
+      <CardBody className="overflow-visible py-0">
+        {/* @ts-expect-error - NextUI type complexity */}
+        <Accordion
+          selectionMode="single"
+          defaultExpandedKeys={["1"]}
+          variant="light"
+          motionProps={{
+            variants: {
+              enter: {
+                y: 0,
+                opacity: 1,
+                height: "auto",
+                transition: {
+                  height: {
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30,
+                    duration: 1,
+                  },
+                  opacity: {
+                    easings: "ease",
+                    duration: 1,
+                  },
+                },
+              },
+              exit: {
+                y: -10,
+                opacity: 0,
+                height: 0,
+                transition: {
+                  height: {
+                    easings: "ease",
+                    duration: 0.25,
+                  },
+                  opacity: {
+                    easings: "ease",
+                    duration: 0.3,
+                  },
+                },
+              },
+            },
+          }}
+        >
           <AccordionItem
             key={index}
-            // title={`accordion-${index}`}
             startContent={
               <a
                 target="_blank"
                 href={github}
                 className="w-[40px] z-40 p-2 rounded-full"
+                rel="noopener noreferrer" // Añadido por seguridad
               >
                 <Image
                   alt="Proyect img"
-                  className=" p-0.5 rounded-full bg-white text-center  mx-auto transition-all hover:brightness-150 hover:bg-gray-800"
+                  className="p-0.5 rounded-full bg-white text-center mx-auto transition-all hover:brightness-150 hover:bg-gray-800"
                   src={github_icon}
                   width={40}
                   height={40}
@@ -42,9 +83,9 @@ export default function ProyectCard({ proyect, lang, index }) {
             aria-label={`Accordion ${id}`}
             title={name}
             classNames={{
-              indicator: "text-3xl text-white p-0 ",
+              indicator: "text-3xl text-white p-0",
               heading: "h-20",
-              base: "m-0 p-0  ",
+              base: "m-0 p-0",
             }}
           >
             <p dangerouslySetInnerHTML={{ __html: t(description) }}></p>
