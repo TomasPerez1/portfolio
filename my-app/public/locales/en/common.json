@@ -4,7 +4,7 @@
     "proyects": "Proyects",
     "contact": "Contact"
   },
-  "CV": "FULLSTACK-TOMAS_PEREZ_en.pdf",
+  "CV": "/cv/FULLSTACK-TOMAS_PEREZ_en.pdf",
   "spline": {
     "rotate": "Rotate me!",
     "rotate-mobile": "Rotate me with 2 fingers!"
@@ -17,7 +17,7 @@
     "message": "Message",
     "message-input": "Enter de message"
   },
-  "about-me": "I'm Tomás, a full-stack developer with a passion for technology, continuous learning, and creating innovative solutions. I specialize in designing and building robust and scalable web applications. My focus is not only on the code, but also on the impact the solutions can have. I combine my technical expertise with interpersonal skills that allow me to lead teams, communicate complex ideas effectively, and collaborate in agile environments using the SCRUM methodology. My technical skills on the frontend include developing intuitive and responsive interfaces with React, Next.js, and Tailwind CSS to deliver modern and functional results. On the backend, I focus on building solid and secure APIs with technologies like Node.js, Nest.js, and Express, always complementing these solutions with well-structured relational databases like PostgreSQL/Mysql, and an ORM like Prisma/Sequelize to optimize the data flow. My English level is Upper Intermediate (B2), which allows me to communicate effectively with international teams. Beyond the technical, I am an analytical, creative and problem solving person. I enjoy challenges because each one is an opportunity to learn and grow, both professionally and personally.",
+  "about-me": "I'm Tomás, a <strong>Full-stack</strong> developer with a passion for technology, continuous learning, and creating innovative solutions. I specialize in designing and building robust and scalable web applications.<br /> My focus is not only on the code, but also on the impact the solutions can have. I combine my technical expertise with interpersonal skills that allow me to lead teams, communicate complex ideas effectively, and collaborate in agile environments using the <strong>SCRUM methodology</strong>.<br /> My technical skills on the frontend include developing intuitive and responsive interfaces with <strong> React, Next.js, Typescript and Tailwind CSS </strong> to deliver modern and functional results. On the backend, I focus on building solid and secure APIs with technologies like <strong>Node.js, Nest.js, and Express</strong>, always complementing these solutions with well-structured relational databases like <strong>PostgreSQL/Mysql</strong>, and an ORM like <strong>Prisma/Sequelize</strong> to optimize the data flow.<br /> My <strong>English level is C1 <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificate)</a> </strong>, which allows me to communicate effectively with international teams.<br /> Beyond the technical, I am an analytical, creative and problem solving person. I enjoy challenges because each one is an opportunity to learn and grow, both professionally and personally.",
   "proyects": {
     "hydrotek": {
       "date": "Jul 2023 - Dic 2023",

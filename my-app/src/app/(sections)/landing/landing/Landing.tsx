@@ -6,10 +6,8 @@ import {
   RiArrowDownDoubleFill,
 } from "@remixicon/react";
 import Loader from "../../../ui/Loader";
-// import { useTranslation } from "next-i18next";
 
-export default function Landing({ title = "no llego" }) {
-  // const { t } = useTranslation("common");
+export default function Landing() {
   const [showBanner, setShowBanner] = useState(false);
 
   function manageBanner() {
@@ -23,9 +21,6 @@ export default function Landing({ title = "no llego" }) {
           <h1 className="text-[5.5rem] sm:text-[6rem] lg:text-[7.7rem] xl:text-[8.5rem]  leading-none font-sans">
             TOMAS <br /> PEREZ
           </h1>
-          <h2 className="text-[1.5rem] sm:text-2xl  px-2 text-[#cda3ff]">
-            {title}
-          </h2>
           <h2 className="text-[1.5rem] sm:text-2xl  px-2 text-[#cda3ff]">
             FULLSTACK DEVELOPER
           </h2>

@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTranslation } from "../i18n/client";
 
-export const navlinks = [
-  { label: "About me", id: "about-me" },
-  { label: "Proyects", id: "proyects" },
-  { label: "Contact", id: "contact" },
-];
+export default function NavBar({ lang }: { lang: string }) {
+  const { t } = useTranslation(lang, "common");
+  const navlinks = [
+    { label: t("nav.about-me"), id: "about-me" },
+    { label: t("nav.proyects"), id: "proyects" },
+    { label: t("nav.contact"), id: "contact" },
+  ];
 
-export default function NavBar() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {

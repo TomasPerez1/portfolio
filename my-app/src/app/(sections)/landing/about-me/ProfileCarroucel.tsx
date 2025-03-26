@@ -7,11 +7,13 @@ import ExternalLinks from "./ExternalLinks";
 import Image from "next/image";
 
 type Imgs = {
+  lang: string;
   name: string;
   src: string;
 };
 
 const ProfileCarroucel = ({
+  lang,
   imgs,
   autoplay = false,
 }: {
@@ -106,7 +108,7 @@ const ProfileCarroucel = ({
           <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
         </button>
       </section>
-      <ExternalLinks />
+      <ExternalLinks lang={lang} />
     </div>
   );
 };

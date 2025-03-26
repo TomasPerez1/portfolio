@@ -2,8 +2,10 @@ import React from "react";
 import { RiLinkedinBoxFill, RiFileDownloadLine } from "@remixicon/react";
 import Image from "next/image";
 import github_icon from "@public/skills/github-icon.svg";
+import { useTranslation } from "../../../i18n/client";
 
-export default function ExternalLinks() {
+export default function ExternalLinks({ lang }: { lang: string }) {
+  const { t } = useTranslation(lang, "common");
   return (
     <article className="flex gap-6 items-center justify-between pb-2 border-b-[1.5px] w-fit mx-auto mt-7">
       <a
@@ -30,7 +32,8 @@ export default function ExternalLinks() {
       </a>
       <a
         download
-        href="/cv/CV_TOMAS_PEREZ_esp.pdf"
+        href={t("CV")}
+        // href="/cv/CV_TOMAS_PEREZ_esp.pdf"
         className="w-fit text-center text-lg  px-1 py-0.5   border-[1px] hover:brightness-200 transition-colors bg-red-600 flex rounded-lg items-center"
       >
         <p className="text-xl">CV</p>
