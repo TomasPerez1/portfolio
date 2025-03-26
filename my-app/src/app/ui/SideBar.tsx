@@ -5,14 +5,21 @@ import {
   NavbarMenuToggle,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { RiLinkedinBoxFill } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
 import github_icon from "@public/skills/github-icon.svg";
-import { navlinks } from "./NavBar";
+import { useTranslation } from "../i18n/client";
 
-export default function App() {
+export default function Sidebar({ lang }: { lang: string }) {
+  const { t } = useTranslation(lang, "common");
+  const navlinks = [
+    { label: t("nav.about-me"), id: "about-me" },
+    { label: t("nav.proyects"), id: "proyects" },
+    { label: t("nav.contact"), id: "contact" },
+  ];
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 

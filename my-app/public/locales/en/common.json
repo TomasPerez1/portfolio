@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "about-me": "About me",
+    "proyects": "Proyects",
+    "contact": "Contact"
+  },
+  "CV": "/cv/FULLSTACK-TOMAS_PEREZ_en.pdf",
+  "spline": {
+    "rotate": "Rotate me!",
+    "rotate-mobile": "Rotate me with 2 fingers!"
+  },
+  "form": {
+    "name": "Name",
+    "name-input": "Enter your name",
+    "subject": "subject",
+    "subject-input": "Enter the subject",
+    "message": "Message",
+    "message-input": "Enter a message",
+    "send": "Send"
+
+  },
+  "about-me": "I'm Tomás, a <strong>Full-stack</strong> developer with a passion for technology, continuous learning, and creating innovative solutions. I specialize in designing and building robust and scalable web applications.<br /> My focus is not only on the code, but also on the impact the solutions can have. I combine my technical expertise with interpersonal skills that allow me to lead teams, communicate complex ideas effectively, and collaborate in agile environments using the <strong>SCRUM methodology</strong>.<br /> My technical skills on the frontend include developing intuitive and responsive interfaces with <strong> React, Next.js, Typescript and Tailwind CSS </strong> to deliver modern and functional results. On the backend, I focus on building solid and secure APIs with technologies like <strong>Node.js, Nest.js, and Express</strong>, always complementing these solutions with well-structured relational databases like <strong>PostgreSQL/Mysql</strong>, and an ORM like <strong>Prisma/Sequelize</strong> to optimize the data flow.<br /> My <strong>English level is C1 <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificate)</a> </strong>, which allows me to communicate effectively with international teams.<br /> Beyond the technical, I am an analytical, creative and problem solving person. I enjoy challenges because each one is an opportunity to learn and grow, both professionally and personally.",
+  "proyects": {
+    "hydrotek": {
+      "date": "Jul 2023 - Dic 2023",
+      "description": "With two developers, we created an ecommerce with product management users, discount coupons and integrated blog. Being our first project in production, we faced keychallenges, such as:<br/> . Optimized deployment for best practices in Argentina <br/> . I learned and implemented NestJS, TypeScript and Prisma ORM in less thantwo weeks <br/> . I integrated a billing system without documentation"
+    },
+    "myfotolibro": {
+      "date": "Oct 2023 - Dic 2023",
+      "description": "I developed an application for a photo bookclient, allowing the administrator to generatecustom links for users to upload their photos, combine them with others and choose the printorder. The administrator can also manage clients, monitor link status and download compressed photos.<br/> . I built an image compressor to optimize the format and weight of photos for printing<br/> . I adjusted the Cloudinary API requests to make the system work within the limitations of the free plan"
+    },
+    "spotsline": {
+      "date": "Jan 2024 - April 2024",
+      "description": "I developed an e-commerce for an argentinemetallurgical company with a high flow ofcustomers and stock management.<br/> . I integrated a local database (DBS) to thesystem, making a copy in SQL formathosted in SQL Server to ensure data accessibility and security <br/>. I learned and implemented animations with Framer Motion in less than a week, improving the visual experience and userinteraction <br/>. I optimized component functionalities andstate handling with the efficient use of useCallback and useDebounce"
+    },
+    
+    "property-scraper": {
+      "date": "Oct 2024 - Dic 2024",
+      "description": "I developed a web scraper capable of extractingproperties from Mercado Libre and Zonaprop, along with their associated data. The tool includes thefunctionality to manage properties by saving themin queries and generating PDF files with such information <br/>. I overcame Mercado Libre and Zonaprop'ssecurity measures to access data efficiently <br/>. I significantly optimized scraping responsetimes by effectively managing JavaScript asynchrony and Puppeteer limits <br/>. Implemented the download of PDF files with modifiable data directly from the backend, improving personalization and user experience"
+    }
+  }
+}

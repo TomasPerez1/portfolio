@@ -6,18 +6,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import ExternalLinks from "./ExternalLinks";
 import Image from "next/image";
 
-type Imgs = {
-  name: string;
-  src: string;
-};
+interface Props {
+  imgs: Array<{
+    name: string;
+    src: string;
+  }>;
+  lang: string;
+  autoplay: boolean;
+}
 
-const ProfileCarroucel = ({
-  imgs,
-  autoplay = false,
-}: {
-  imgs: Imgs[];
-  autoplay?: boolean;
-}) => {
+const ProfileCarroucel = ({ lang, imgs, autoplay = false }: Props) => {
   const [active, setActive] = useState(0);
   const [rotationValues] = useState(() =>
     imgs.map(() => Math.floor(Math.random() * 21) - 10),
@@ -106,7 +104,7 @@ const ProfileCarroucel = ({
           <RiArrowRightLine className="h-7 w-7 text-black dark:text-neutral-400 group-hover/button:text-white" />
         </button>
       </section>
-      <ExternalLinks />
+      <ExternalLinks lang={lang} />
     </div>
   );
 };

@@ -17,13 +17,13 @@ export default function Adress() {
           className="flex items-center gap-2 w-fit border-gray-500 border-b-[1px] p-1 pb-1.5"
         >
           <RiMapPinFill className="w-[30px] h-[30px] xs:w-10 xs:h-10 rounded-full border-[1.5px] p-1" />
-          <p>Bariloche, Argentina.</p>
+          <p>Buenos Aires, Argentina.</p>
         </a>
       </Tooltip>
       <Tooltip
         content={
           <p className="flex items-center gap-1">
-            <RiFileCopyLine /> Copiar
+            <RiFileCopyLine /> Copy
           </p>
         }
         className="text-blue-400 bg-blue-900"

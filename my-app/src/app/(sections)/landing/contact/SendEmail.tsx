@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Input, Button, Textarea } from "@nextui-org/react";
 import { toast } from "sonner";
+import { useTranslation } from "../../../i18n/client";
 
 // Definición del tipo para emailData
 export interface EmailData {
@@ -10,7 +11,8 @@ export interface EmailData {
   message: string;
 }
 
-export default function SendEmail() {
+export default function SendEmail({ lang }: { lang: string }) {
+  const { t } = useTranslation(lang, "common");
   const [emailData, setEmailData] = useState<EmailData>({
     name: "",
     subject: "",
@@ -76,7 +78,6 @@ export default function SendEmail() {
       <div className="flex flex-col gap-4 w-[90%]  ">
         <section className="flex gap-4">
           <Input
-            // className="caret-red-600"
             errorMessage={() => {
               if (errors["name"]) {
                 return errors["name"];
@@ -84,7 +85,7 @@ export default function SendEmail() {
             }}
             label={
               <p>
-                Nombre <strong className="text-red-500">*</strong>
+                {t("form.name")} <strong className="text-red-500">*</strong>
               </p>
             }
             value={emailData.name}
@@ -93,14 +94,14 @@ export default function SendEmail() {
             onValueChange={(value) => {
               setEmailData((prev) => ({ ...prev, name: value }));
             }}
-            placeholder="Enter your name"
+            placeholder={t("form.name-input")}
           />
 
           <Input
-            label="Asunto"
+            label={t("form.subject")}
             labelPlacement="outside"
             name="subject"
-            placeholder="Subject"
+            placeholder={t("form.subject-input")}
             type="text"
             value={emailData.subject}
             maxLength={50}
@@ -142,7 +143,7 @@ export default function SendEmail() {
           }}
           label={
             <p>
-              Mensaje <strong className="text-red-500">*</strong>
+              {t("form.message")} <strong className="text-red-500">*</strong>
             </p>
           }
           minRows={8}
@@ -154,7 +155,7 @@ export default function SendEmail() {
             setEmailData((prev) => ({ ...prev, message: value }));
             setErrors(checkErrors({ ...emailData, message: value }));
           }}
-          placeholder="Enter a message"
+          placeholder={t("form.message-input")}
         />
 
         <Button

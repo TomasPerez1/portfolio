@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "about-me": "Sobre mí",
+    "proyects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "CV": "/cv/FULLSTACK-TOMAS_PEREZ_es.pdf",
+  "spline": {
+    "rotate": "Rotame!",
+    "rotate-mobile": "Rotame con 2 dedos!"
+  },
+  "form": {
+    "name": "Nombre",
+    "name-input": "Ingrese su nombre",
+    "subject": "Asunto",
+    "subject-input": "Ingrese el asunto",
+    "message": "Mensaje",
+    "message-input": "Ingrese el mensaje",
+    "send": "Enviar"
+  },
+  "about-me": "Soy Tomás, un <strong>desarrollador Full Stack</strong> apasionado por la tecnología, el aprendizaje continuo y la creación de soluciones innovadoras. Me especializo en diseñar y construir aplicaciones web robustas y escalables.<br /> Mi enfoque no solo está en el código, sino también en el impacto que las soluciones pueden generar. Combino mi experiencia técnica con habilidades interpersonales que me permiten liderar equipos, comunicar ideas complejas de manera efectiva y colaborar en entornos ágiles bajo la <strong>metodología SCRUM</strong>.<br />  Entre mis habilidades técnicas en el frontend, desarrollo interfaces intuitivas y responsivas con <strong>React, Next.js, Typescript y Tailwind CSS</strong> para ofrecer resultados modernos y funcionales. En el backend, mi enfoque está en construir APIs sólidas y seguras con tecnologías como <strong>Node.js, Nest.js y Express</strong>, siempre complementando estas soluciones con bases de datos relacionales bien estructuradas como <strong>PostgreSQL/MySQL</strong>, y una ORM como <strong>Prisma/Sequelize</strong> para optimizar el flujo de datos.<br />  Mi <strong>nivel de inglés es C1 <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificado)</a></strong>, lo que me permite comunicarme de manera efectiva con equipos internacionales.<br />  Más allá de lo técnico, soy una persona analítica, creativa y orientada a la resolución de problemas. Disfruto de los desafíos, porque cada uno representa una oportunidad para aprender y crecer, tanto en el ámbito profesional como en el personal.",
+  "proyects": {
+    "hydrotek": {
+      "date": "Jul 2023 - Dic 2023",
+      "description": "Con dos desarrolladores, creamos unecommerce con gestión de productos, usuarios, cupones de descuento y blog integrado. Siendo nuestro primer proyecto en producción, enfrentamos desafíos clave, como:<br/> . El despliegue optimizado para las mejores prácticas en Argentina <br/> . Aprendí e implementé NestJS, Typescript y Prisma ORM en menos de dos semanas <br/> . Integré un sistema de facturación sin documentación"
+    },
+    "myfotolibro": {
+      "date": "Oct 2023 - Dic 2023",
+      "description": "Desarrollé una aplicación para un cliente de libros de fotos, permitiendo al administrador generar enlaces personalizados para que los usuarios carguen sus fotos, las combinen con las de otros y elijan el orden de impresión. El administrador también puede gestionar clientes, controlar el estado de los enlaces y descargar las fotos comprimidas.<br/>. Construí un compresor de imágenes para optimizar el formato y peso de las fotos para impresión <br/> .  Ajusté las solicitudes a la API de Cloudinary para que el sistema funcione dentro de las limitaciones del plan gratuito"
+    },
+    "spotsline": {
+      "date": "Ene 2024 - Abr 2024",
+      "description": "Desarrollé un e-commerce para una metalúrgica argentina con alto flujo de clientes y gestión de stock.Integré una base de datos local (DBS) al sistema, realizando una copia en formato SQL alojada en SQL Server para garantizar la accesibilidad y seguridad de los datos.<br/>. Aprendí e implementé animaciones con Framer Motion en menos de una semana, mejorando la experiencia visual y la interacción del usuario <br/>. Optimicé las funcionalidades de los componentes y manejos de estado con el uso eficiente de useCallback y useDebounce"
+    },
+    
+    "property-scraper": {
+      "date": "Oct 2024 - Dic 2024",
+      "description": "Desarrollé un web scraper capaz de extraer propiedades de Mercado Libre y Zonaprop, junto con sus datos asociados. La herramienta incluye la funcionalidad de gestionar las propiedades guardándolas en consultas y generando archivos PDF con dicha información. <br/>. Superé las medidas de seguridad de Mercado Libre y Zonaprop para acceder a los datos de manera eficiente <br/>. Optimizé significativamente los tiempos de respuesta del scraping mediante una gestión efectiva de la asincronía en JavaScript y los límites de Puppeteer <br/>. Implementé la descarga de archivos PDF con datos modificables directamente desde el backend, mejorando la personalización y la experiencia del usuario"
+    }
+  }
+}

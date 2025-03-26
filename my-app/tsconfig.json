@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/app/page.tsx",
+    "src/app/[lang]/page.tsx",
     "src/app/(sections)/landing/landing/Landing.tsx"
   ],
   "exclude": [
