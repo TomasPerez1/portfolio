@@ -23,7 +23,7 @@ export default function ProyectCard({ proyect, lang, index }) {
         {/* @ts-expect-error - NextUI type complexity */}
         <Accordion
           selectionMode="single"
-          defaultExpandedKeys={["1"]}
+          // defaultExpandedKeys={["1"]}
           variant="light"
           motionProps={{
             variants: {
