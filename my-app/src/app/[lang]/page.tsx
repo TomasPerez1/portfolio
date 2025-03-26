@@ -6,6 +6,5 @@ export async function generateStaticParams() {
 }
 
 export default function Page({ params }: { params: { lang: string } }) {
-  // Opcional: Si necesitas traducciones en el servidor
   return <ClientPage lang={params.lang} />;
 }

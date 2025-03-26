@@ -5,13 +5,15 @@ import Loader from "../../../ui/Loader";
 const ProfileCarroucel = React.lazy(() => import("./ProfileCarroucel"));
 import { useTranslation } from "../../../i18n/client";
 
+export type Imgs = {
+  name: string;
+  src: string;
+  lang?: string;
+};
+
 export default function AboutMe({ lang }: { lang: string }) {
   const { t } = useTranslation(lang, "common");
 
-  type Imgs = {
-    name: string;
-    src: string;
-  };
   const imgs: Imgs[] = [
     {
       name: "profile1",

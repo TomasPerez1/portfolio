@@ -10,7 +10,7 @@ import Image from "next/image";
 import github_icon from "@public/skills/github-icon.svg";
 import { useTranslation } from "../../../i18n/client";
 
-export default function ProyectCard({ proyect, lang }) {
+export default function ProyectCard({ proyect, lang, index }) {
   const { t } = useTranslation(lang, "common.proyects");
   const { id, name, description, github, imgs, skills } = proyect;
 
@@ -20,9 +20,10 @@ export default function ProyectCard({ proyect, lang }) {
         <Carousel imgs={imgs} />
       </CardHeader>
       <CardBody className="overflow-visible py-0 ">
-        <Accordion className="py-0 ">
+        <Accordion>
           <AccordionItem
-            key={id}
+            key={index}
+            // title={`accordion-${index}`}
             startContent={
               <a
                 target="_blank"

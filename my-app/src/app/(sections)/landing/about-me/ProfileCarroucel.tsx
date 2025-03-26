@@ -6,20 +6,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import ExternalLinks from "./ExternalLinks";
 import Image from "next/image";
 
-type Imgs = {
+interface Props {
+  imgs: Array<{
+    name: string;
+    src: string;
+  }>;
   lang: string;
-  name: string;
-  src: string;
-};
+  autoplay: boolean;
+}
 
-const ProfileCarroucel = ({
-  lang,
-  imgs,
-  autoplay = false,
-}: {
-  imgs: Imgs[];
-  autoplay?: boolean;
-}) => {
+const ProfileCarroucel = ({ lang, imgs, autoplay = false }: Props) => {
   const [active, setActive] = useState(0);
   const [rotationValues] = useState(() =>
     imgs.map(() => Math.floor(Math.random() * 21) - 10),
