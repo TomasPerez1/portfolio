@@ -13,8 +13,11 @@ import auth0 from "@public/skills/auth0-icon.svg";
 import redux from "@public/skills/redux.svg";
 import puppeteer from "@public/skills/puppeteer.svg";
 import nextjs from "@public/skills/nextjs-icon.svg"; // Todo crear una animacion para que parezca qeu volvi a abrir otra web pero qeu sea este mismo portfolio, utilizando next js
+import { useTranslation } from "../../../i18n/client";
 
-export default function Proyects() {
+export default function Proyects({ lang }: { lang: string }) {
+  const { t } = useTranslation(lang, "common");
+
   type Proyect = {
     id: number;
     name: string;
@@ -27,8 +30,7 @@ export default function Proyects() {
     {
       id: 1,
       name: "My fotolibro web",
-      description:
-        "Desarrollé una aplicación para un cliente especializado en la creación de libros de fotos para eventos. Laaplicación permite al administrador generar enlaces personalizados para los usuarios, quienes pueden cargar sus fotos desde la web, combinarlas con las de otros usuarios, y seleccionar el orden de impresión para la creación del libro. El administrador podra manejar sus clientes, el estado de los links y descargar las fotos comprimidas.",
+      description: t("proyects.myfotolibro.description"),
       github: "https://github.com/TomasPerez1/my-fotolibro",
       imgs: [
         "/proyects/myfotolibro/myfotolibro3.jpg",
@@ -43,8 +45,7 @@ export default function Proyects() {
     {
       id: 2,
       name: "Hydrotek Store",
-      description:
-        "Con dos devs, desarrollamos un e-commerce con blog integrado, siendo este el primer proyecto llevado a producción. Enfrentamos desafíos significativos, como la integración de un sistema de facturación sin documentación, la gestión de assets a través de un servicio web de terceros, y el despliegue del proyecto, considerando las mejores en Argentina. Durante este proceso, adquirí experiencia valiosa y aprendí Prisma ORM, Nest.js y TypeScript en menos de un mes.",
+      description: t("proyects.hydrotek.description"),
       github: "https://github.com/TomasPerez1/hydrotek-frontend",
       imgs: [
         "/proyects/hydrotek/hydrotek1.jpg",
@@ -70,11 +71,9 @@ export default function Proyects() {
     {
       id: 3,
       name: "Spotsline ecommerce",
-      description:
-        "E-commerce para metalurgica argentina con gran flujo de clientes y stock, integrando una base de datos con un sistema en un servidor local (SQL server)",
+      description: t("proyects.spotsline.description"),
       github: "https://github.com/TomasPerez1/spotsline-frontend",
       imgs: [
-        // "/proyects/spotsline/spot.jpg",
         "/proyects/spotsline/spot1.jpg",
         "/proyects/spotsline/spot2.jpg",
         "/proyects/spotsline/spot3.jpg",
@@ -108,8 +107,7 @@ export default function Proyects() {
     {
       id: 4,
       name: "Property Scraper",
-      description:
-        "Una aplicación que te permite scrapear propiedades con sus respectivos datos desde Mercado Libre y Zona Prop, guardar las consultas y permite descargar un PDF con las propiedades obtenidas.",
+      description: t("proyects.property-scraper.description"),
       github: "https://github.com/TomasPerez1/property-scraper",
       imgs: [
         "/proyects/scraper/scraper12.jpg",

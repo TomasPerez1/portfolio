@@ -8,8 +8,10 @@ import {
 import { Carousel } from "./Carousel";
 import Image from "next/image";
 import github_icon from "@public/skills/github-icon.svg";
+import { useTranslation } from "../../../i18n/client";
 
-export default function ProyectCard({ proyect }) {
+export default function ProyectCard({ proyect, lang }) {
+  const { t } = useTranslation(lang, "common.proyects");
   const { id, name, description, github, imgs, skills } = proyect;
 
   return (
@@ -44,7 +46,7 @@ export default function ProyectCard({ proyect }) {
               base: "m-0 p-0  ",
             }}
           >
-            {description}
+            <p dangerouslySetInnerHTML={{ __html: t(description) }}></p>
           </AccordionItem>
         </Accordion>
       </CardBody>

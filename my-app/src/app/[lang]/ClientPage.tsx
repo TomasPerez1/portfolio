@@ -6,13 +6,16 @@ import AboutMe from "../(sections)/landing/about-me/AboutMe";
 import Proyects from "../(sections)/landing/proyects/Proyects";
 import Contact from "../(sections)/landing/contact/Contact";
 import SideBar from "../ui/SideBar";
+import LangLoader from "../ui/LangLoader";
+import { useTranslation } from "../i18n/client";
 
 interface ClientPageProps {
-  lang?: string; // Recibe el idioma como prop
+  lang?: string;
 }
 
 function ClientPage({ lang = "en" }: ClientPageProps) {
-  return (
+  const { ready } = useTranslation(lang, "common");
+  return ready ? (
     <main className="bg-violet-950 min-h-screen flex overflow-hidden">
       <section className="sm:hidden relative p-0">
         <SideBar lang={lang} />
@@ -27,12 +30,14 @@ function ClientPage({ lang = "en" }: ClientPageProps) {
         className="w-full !max-w-full sm:ml-[20%] lg:ml-[15%] flex flex-col justify-between gap-8 bg-grid-small-white/[0.2]"
         id="content"
       >
-        <Landing />
+        <Landing lang={lang} />
         <AboutMe lang={lang} />
         <Proyects lang={lang} />
         <Contact lang={lang} />
       </section>
     </main>
+  ) : (
+    <LangLoader />
   );
 }
 

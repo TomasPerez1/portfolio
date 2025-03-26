@@ -80,13 +80,14 @@ export const Carousel = ({ imgs, initialScroll = 0 }: CarouselProps) => {
                 key={"card" + index}
                 className="rounded-3xl  max-w-[90%]"
               >
-                <div className=" w-[430px]">
+                <div className="w-[430px]">
                   <Image
                     alt="Proyect img"
                     className="rounded-xl mx-auto "
                     src={img}
                     width={430}
                     height={223}
+                    // style={{ width: "auto", height: "auto" }}
                   />
                 </div>
               </motion.div>

@@ -6,8 +6,10 @@ import {
   RiArrowDownDoubleFill,
 } from "@remixicon/react";
 import Loader from "../../../ui/Loader";
+import { useTranslation } from "../../../i18n/client";
 
-export default function Landing() {
+export default function Landing({ lang }: { lang: string }) {
+  const { t } = useTranslation(lang, "common");
   const [showBanner, setShowBanner] = useState(false);
 
   function manageBanner() {
@@ -17,7 +19,7 @@ export default function Landing() {
   return (
     <section className="h-screen w-full  relative flex flex-col gap-2 items-center justify-center lg:flex-row lg:gap-5  xl:gap-10">
       <div className="flex items-center flex-shrink-0 ">
-        <span className="w-fit text-center  mx-auto ">
+        <span className="w-fit text-center mx-auto ">
           <h1 className="text-[5.5rem] sm:text-[6rem] lg:text-[7.7rem] xl:text-[8.5rem]  leading-none font-sans">
             TOMAS <br /> PEREZ
           </h1>
@@ -37,15 +39,15 @@ export default function Landing() {
               className={`${showBanner ? "flex " : "hidden"} gap-2 p-1  items-center justify-center rounded-lg w-[140px]  h-[40px] bg-gray-900 text-center text-white absolute z-40 right-4 bottom-[15px] `}
             >
               <RiArrowGoForwardFill className="w-4" />
-              <p className="text-xs">Rotame con 2 dedos!</p>
+              <p className="text-xs">{t("spline.rotate-mobile")}!</p>
               <RiArrowGoBackFill className="w-4" />
             </span>
           </div>
           <div className="hidden lg:inline">
             <Spline scene="https://prod.spline.design/OoBR4Z3NWKxkJac9/scene.splinecode" />
-            <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[40px] bg-gray-900 text-white absolute z-40 right-4 bottom-[16px]">
+            <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[45px] bg-gray-900 text-white absolute z-40 right-4 bottom-[18px]">
               <RiArrowGoForwardFill className="w-4" />
-              <p>Rotame!</p>
+              <p>{t("spline.rotate")}</p>
               <RiArrowGoBackFill className="w-4" />
             </span>
           </div>
