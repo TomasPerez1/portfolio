@@ -4,6 +4,7 @@ import { Provider } from "./providers";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { cookies } from "next/headers";
+import { bricolage, geist, jetbrainsMono } from "./fonts";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -25,7 +26,11 @@ export default function RootLayout({
   const lang = cookies().get("NEXT_LOCALE")?.value || "en";
 
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html
+      lang={lang}
+      suppressHydrationWarning
+      className={`${bricolage.variable} ${geist.variable} ${jetbrainsMono.variable}`}
+    >
       <body className={poppins.className}>
         {/* @ts-expect-error - NextUI type complexity */}
         <Provider>

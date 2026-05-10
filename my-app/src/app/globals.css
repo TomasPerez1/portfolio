@@ -48,5 +48,70 @@ input, input[type="text"],input[type="password"], input[type="email"], input[typ
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4d4d4d; 
+  background: #4d4d4d;
+}
+
+/* ---------------------------------------------------------------------- *
+ * v2 design tokens — Phase 1 Foundation Migration
+ * Source: .claude_design/export/styles/globals.css
+ * Note: legacy --background / --foreground above are preserved until
+ * v1 components are removed (Phase 5/6 cleanup).
+ * Fonts handled via next/font (see src/app/fonts.ts) — D-12.
+ * ---------------------------------------------------------------------- */
+
+:root {
+  --c-bg:        #0a0a0a;
+  --c-fg:        #ededed;
+  --c-fg-soft:   rgba(237,237,237,.62);
+  --c-fg-faint:  rgba(237,237,237,.42);
+  --c-line:      rgba(237,237,237,.10);
+  --c-line-2:    rgba(237,237,237,.18);
+  --c-card:      #111111;
+  --c-card-2:    #161616;
+  --c-spark:     #b521ff;
+  --c-spark-2:   #d946ef;
+  /* Geist is shipped by `geist/font/sans` under --font-geist-sans.
+     Alias to --font-body so the Tailwind `font-body` utility works. */
+  --font-body:   var(--font-geist-sans);
+}
+
+:root.light, :root[data-theme="light"] {
+  --c-bg:        #ffffff;
+  --c-fg:        #171717;
+  --c-fg-soft:   rgba(23,23,23,.66);
+  --c-fg-faint:  rgba(23,23,23,.42);
+  --c-line:      rgba(23,23,23,.10);
+  --c-line-2:    rgba(23,23,23,.18);
+  --c-card:      #f7f7f7;
+  --c-card-2:    #efefef;
+}
+
+html { scroll-behavior: smooth; }
+::selection { background: var(--c-spark); color: white; }
+
+@layer components {
+  .display    { @apply font-display font-bold tracking-tightest leading-[.92]; }
+  .display-xl { font-size: clamp(64px, 13vw, 220px); }
+  .display-l  { font-size: clamp(44px, 7.5vw, 112px); }
+  .display-m  { font-size: clamp(32px, 4.5vw, 64px); }
+  .eyebrow    { @apply font-mono text-[11px] tracking-[.14em] uppercase text-fg-soft; }
+
+  .badge {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] tracking-[.1em] uppercase
+           px-2.5 py-1.5 rounded-full border border-line-2 text-fg-soft bg-white/[.02];
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[.05em]
+           px-2 py-1 rounded-md bg-card-2 text-fg-soft border border-line;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2.5 h-11 px-[18px] rounded-full
+           border border-line-2 bg-transparent font-medium text-sm
+           transition-[transform,background,border-color,color] duration-200
+           hover:bg-card-2 hover:-translate-y-px;
+  }
+  .btn-primary {
+    @apply bg-spark text-white border-transparent
+           shadow-[0_8px_28px_-8px_rgba(181,33,255,.55)] hover:bg-spark-2;
+  }
 }

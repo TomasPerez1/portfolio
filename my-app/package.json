@@ -17,6 +17,7 @@
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
+    "geist": "^1.7.0",
     "i18next": "^24.2.3",
     "i18next-resources-to-backend": "^1.2.1",
     "mini-svg-data-uri": "^1.4.4",
