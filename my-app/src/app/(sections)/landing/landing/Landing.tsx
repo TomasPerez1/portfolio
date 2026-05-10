@@ -1,12 +1,7 @@
-import React from "react";
 import { RiArrowDownDoubleFill } from "@remixicon/react";
-import { useTranslation } from "../../../i18n/client";
 import LangSwitcher from "../../../ui/LangSwitcher";
 
 export default function Landing({ lang }: { lang: string }) {
-  // i18n hook kept warm; phase 5 voxel will reuse it.
-  useTranslation(lang, "common");
-
   return (
     <div>
       <div className="w-fit right-3 z-50 top-3 fixed">
