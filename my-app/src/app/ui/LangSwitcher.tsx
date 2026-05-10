@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Switch } from "@nextui-org/react";
+import { Switch } from "@heroui/react";
 import { RiTranslateAi2 } from "@remixicon/react";
 
 export default function LangSwitcher({ lang }: { lang: string }) {

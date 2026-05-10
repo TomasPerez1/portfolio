@@ -4,7 +4,7 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
   NavbarMenuItem,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { useEffect, useState } from "react";
 import { RiLinkedinBoxFill } from "@remixicon/react";
 import Image from "next/image";

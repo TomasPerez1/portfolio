@@ -1,6 +1,6 @@
 import { RiMapPinFill, RiMailFill, RiWhatsappLine } from "@remixicon/react";
 import { copyToClipboard } from "../../../lib/utils";
-import { Tooltip } from "@nextui-org/react";
+import { Tooltip } from "@heroui/react";
 import { RiFileCopyLine } from "@remixicon/react";
 
 export default function Adress() {

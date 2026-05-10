@@ -1,21 +1,11 @@
-import React, { Suspense, useState } from "react";
-const Spline = React.lazy(() => import("@splinetool/react-spline"));
-import {
-  RiArrowGoForwardFill,
-  RiArrowGoBackFill,
-  RiArrowDownDoubleFill,
-} from "@remixicon/react";
-import Loader from "../../../ui/Loader";
+import React from "react";
+import { RiArrowDownDoubleFill } from "@remixicon/react";
 import { useTranslation } from "../../../i18n/client";
 import LangSwitcher from "../../../ui/LangSwitcher";
 
 export default function Landing({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, "common");
-  const [showBanner, setShowBanner] = useState(false);
-
-  function manageBanner() {
-    setShowBanner(true);
-  }
+  // i18n hook kept warm; phase 5 voxel will reuse it.
+  useTranslation(lang, "common");
 
   return (
     <div>
@@ -33,30 +23,12 @@ export default function Landing({ lang }: { lang: string }) {
             </h2>
           </span>
         </div>
-        <div className="relative z-4  w-[220px] h-[250px] lg:w-[320px] lg:h-[350px]">
-          <Suspense fallback={<Loader className="w-full h-full" />}>
-            <div className="lg:hidden">
-              <Spline
-                onLoad={manageBanner}
-                scene="https://prod.spline.design/C9mC3iFFASk9TjnB/scene.splinecode"
-              />
-              <span
-                className={`${showBanner ? "flex " : "hidden"} gap-2 p-1  items-center justify-center rounded-lg w-[140px]  h-[40px] bg-gray-900 text-center text-white absolute z-40 right-4 bottom-[15px] `}
-              >
-                <RiArrowGoForwardFill className="w-4" />
-                <p className="text-xs">{t("spline.rotate-mobile")}!</p>
-                <RiArrowGoBackFill className="w-4" />
-              </span>
-            </div>
-            <div className="hidden lg:inline">
-              <Spline scene="https://prod.spline.design/OoBR4Z3NWKxkJac9/scene.splinecode" />
-              <span className="flex gap-2 p-1  items-center justify-center rounded-lg w-[150px]  h-[45px] bg-gray-900 text-white absolute z-40 right-4 bottom-[18px]">
-                <RiArrowGoForwardFill className="w-4" />
-                <p>{t("spline.rotate")}</p>
-                <RiArrowGoBackFill className="w-4" />
-              </span>
-            </div>
-          </Suspense>
+        {/* TODO(phase-5): replace with voxel CSS 3D hero */}
+        <div
+          aria-hidden
+          className="relative z-4 w-[220px] h-[250px] lg:w-[320px] lg:h-[350px] flex items-center justify-center border border-line-2 rounded-2xl text-fg-faint font-mono text-[10px] uppercase tracking-[.14em]"
+        >
+          [hero placeholder · phase 5 voxel]
         </div>
 
         <div className="w-fit mx-auto bottom-1  animate-[bounce_2s_infinite] mt-auto absolute z-50">

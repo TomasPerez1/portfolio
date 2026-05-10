@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Input, Button, Textarea } from "@nextui-org/react";
+import { Form, Input, Button, Textarea } from "@heroui/react";
 import { toast } from "sonner";
 import { useTranslation } from "../../../i18n/client";
 

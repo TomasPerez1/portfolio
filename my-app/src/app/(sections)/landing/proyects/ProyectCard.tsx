@@ -4,7 +4,7 @@ import {
   CardBody,
   Accordion,
   AccordionItem,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Carousel } from "./Carousel";
 import Image from "next/image";
 import github_icon from "@public/skills/github-icon.svg";

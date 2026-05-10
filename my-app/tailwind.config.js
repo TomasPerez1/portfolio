@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { nextui } = require("@nextui-org/react");
+const { heroui } = require("@heroui/react");
 // const { keyframes } = require("framer-motion");
 const {
   default: flattenColorPalette,
@@ -14,7 +14,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./node_modules/flyonui/dist/js/*.js",
   ],
   theme: {
@@ -67,7 +67,7 @@ module.exports = {
     },
   },
   darkMode: "class",
-  plugins: [nextui(), function ({ matchUtilities, theme }) {
+  plugins: [heroui(), function ({ matchUtilities, theme }) {
       matchUtilities(
         {
           "bg-grid": (value) => ({
