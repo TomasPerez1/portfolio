@@ -20,7 +20,6 @@ export default function ProyectCard({ proyect, lang, index }) {
         <Carousel imgs={imgs} />
       </CardHeader>
       <CardBody className="overflow-visible py-0">
-        {/* @ts-expect-error - NextUI type complexity */}
         <Accordion
           selectionMode="single"
           // defaultExpandedKeys={["1"]}
@@ -39,7 +38,7 @@ export default function ProyectCard({ proyect, lang, index }) {
                     duration: 1,
                   },
                   opacity: {
-                    easings: "ease",
+                    ease: "easeInOut",
                     duration: 1,
                   },
                 },
@@ -50,11 +49,11 @@ export default function ProyectCard({ proyect, lang, index }) {
                 height: 0,
                 transition: {
                   height: {
-                    easings: "ease",
+                    ease: "easeInOut",
                     duration: 0.25,
                   },
                   opacity: {
-                    easings: "ease",
+                    ease: "easeInOut",
                     duration: 0.3,
                   },
                 },

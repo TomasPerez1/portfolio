@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   description: "My web developer portfolio, make some noise!",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const lang = cookies().get("NEXT_LOCALE")?.value || "en";
+  const lang = (await cookies()).get("NEXT_LOCALE")?.value || "en";
 
   return (
     <html
@@ -32,7 +32,6 @@ export default function RootLayout({
       className={`${bricolage.variable} ${geist.variable} ${jetbrainsMono.variable}`}
     >
       <body className={poppins.className}>
-        {/* @ts-expect-error - NextUI type complexity */}
         <Provider>
           <>
             {children}

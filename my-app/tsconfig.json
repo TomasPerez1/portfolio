@@ -13,12 +13,14 @@
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve", 
+    "jsx": "react-jsx",
     "paths": {
-      "@public/*": ["./public/*"]
+      "@public/*": [
+        "./public/*"
+      ]
     },
     "plugins": [
       {
@@ -32,7 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/[lang]/page.tsx",
-    "src/app/(sections)/landing/landing/Landing.tsx"
+    "src/app/(sections)/landing/landing/Landing.tsx",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
