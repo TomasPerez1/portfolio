@@ -10,7 +10,7 @@ export interface Identity {
   statusLine: string;
   tagline: string;
   longBio: readonly string[];
-  quickFacts: ReadonlyArray<readonly [string, string]>;
+  quickFacts: readonly (readonly string[])[];
 }
 
 export interface HeroCopy {
@@ -37,7 +37,7 @@ export interface FeaturedProject {
   role: string;
   stack: readonly string[];
   blurb: string;
-  metrics: ReadonlyArray<readonly [string, string]>;
+  metrics: readonly (readonly string[])[];
   image: string;
   link: string;
 }
@@ -51,7 +51,7 @@ export interface GridProject {
   year: string;
 }
 
-export type StackEntry = readonly [string, string];
+export type StackEntry = readonly string[];
 export type StackCategories = Readonly<Record<string, readonly StackEntry[]>>;
 
 export interface ExperienceEntry {
