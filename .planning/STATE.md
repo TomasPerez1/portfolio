@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-05-10)
 
 ## Current Position
 
-Phase: 1 of 9 (planned, not executed)
-Plan: 1 of 1 — `.planning/phases/01-foundation-migration/01-PLAN.md`
-Status: Ready to execute Phase 1
-Last activity: 2026-05-10 — Phase 1 CONTEXT.md + PLAN.md drafted manually (gsd-sdk unavailable)
+Phase: 2 of 9 (executed; user-task MCP installs still pending from Phase 1)
+Plan: Phase 2 PLAN.md complete; expanded mid-execution to include framework upgrade
+Status: Phase 2 done. Next: Phase 3 (i18n refactor)
+Last activity: 2026-05-10 — Phase 2 megafase: Next 14→16 + React 18→19 + framer-motion 11→12 + NextUI→HeroUI 2.8 + Spline removed
 
 Progress: [░░░░░░░░░░] 0%
 

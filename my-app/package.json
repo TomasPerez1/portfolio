@@ -11,9 +11,7 @@
   "dependencies": {
     "@heroui/react": "^2.8.10",
     "@next/eslint-plugin-next": "^14.2.16",
-    "@nextui-org/react": "^2.4.8",
     "@remixicon/react": "^4.5.0",
-    "@splinetool/react-spline": "^4.0.0",
     "@types/react-dom": "^19.2.3",
     "@vercel/speed-insights": "^1.1.0",
     "axios": "^1.7.9",
