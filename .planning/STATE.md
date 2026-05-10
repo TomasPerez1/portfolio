@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-05-10)
 
 ## Current Position
 
-Phase: 2 of 9 (executed; user-task MCP installs still pending from Phase 1)
-Plan: Phase 2 PLAN.md complete; expanded mid-execution to include framework upgrade
-Status: Phase 2 done. Next: Phase 3 (i18n refactor)
-Last activity: 2026-05-10 — Phase 2 megafase: Next 14→16 + React 18→19 + framer-motion 11→12 + NextUI→HeroUI 2.8 + Spline removed
+Phase: 3 of 9 (executed; user-task MCP installs still pending from Phase 1)
+Plan: Phase 3 PLAN.md complete (6 tasks); executed end-to-end with smoke-test verification
+Status: Phase 3 done. Next: Phase 4 (Component Conversion — JSX → TSX)
+Last activity: 2026-05-10 — Phase 3: PortfolioData TS shape + 10 i18n namespaces (EN+ES) + usePortfolioData hook + __assert.ts drift guard
 
 Progress: [░░░░░░░░░░] 0%
 
