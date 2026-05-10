@@ -1,3 +1,4 @@
+// Status: KEEP (Phase 4 audit) — re-evaluate when redesign Nav/Hero land in Phase 5+
 import { Skeleton } from "@heroui/react";
 
 export default function Loader({ className }: { className: string }) {
