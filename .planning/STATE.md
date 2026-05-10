@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-05-10)
 
 ## Current Position
 
-Phase: 3 of 9 (executed; user-task MCP installs still pending from Phase 1)
-Plan: Phase 3 PLAN.md complete (6 tasks); executed end-to-end with smoke-test verification
-Status: Phase 3 done. Next: Phase 4 (Component Conversion — JSX → TSX)
-Last activity: 2026-05-10 — Phase 3: PortfolioData TS shape + 10 i18n namespaces (EN+ES) + usePortfolioData hook + __assert.ts drift guard
+Phase: 4 of 9 (executed; user-task MCP installs still pending from Phase 1)
+Plan: Phase 4 PLAN.md complete (7 tasks); executed end-to-end with tsc + npm run build verification
+Status: Phase 4 done. Next: Phase 5 (Hero + Nav wire-up — voxel implementation + floating Nav + theme toggle + LangSwitcher)
+Last activity: 2026-05-10 — Phase 4: 9 redesign components converted JSX→TSX with PortfolioData prop interfaces; flat components/redesign/ layout locked (D-13); Loader/LangLoader audit KEEP
 
 Progress: [░░░░░░░░░░] 0%
 
