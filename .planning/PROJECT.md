@@ -108,6 +108,7 @@ Visual redesign v2.0.0 merging the Claude Design system into the existing Next.j
 | D-10 | Keep Nodemailer + Calendly + Sonner — no rebuild | locked | Working pipeline; Phase 7 only reskins the UI |
 | D-11 | Adopt `data-theme="light"` toggle from design (replaces NextUI theme) | locked | Cleaner than NextUI's theme system; state persisted to `localStorage` |
 | D-12 | Fonts: Bricolage Grotesque + Geist + JetBrains Mono via `next/font` (self-hosted) | locked | Avoid Google Fonts CDN cost on prod; better LCP |
+| D-13 | Phase 4 redesign components live in flat `my-app/src/app/components/redesign/*.tsx` (resolves OQ-1) | locked | Clear v1/v2 separation during transition; 1:1 map to source files in `.claude_design/export/components/`; legacy `(sections)/landing/*` stays until later phases wire redesign into the page |
 
 </decisions>
 
