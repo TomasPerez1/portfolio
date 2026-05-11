@@ -26,8 +26,12 @@ export default function Hero({ data, hero, showStatus = true }: HeroProps) {
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
+    // RC-03: reduced-motion + 30fps throttle
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
     let raf = 0;
     let t = 0;
+    let frame = 0;
     let autoOn = true;
     const onMove = (e: MouseEvent) => {
       autoOn = false;
@@ -37,7 +41,8 @@ export default function Hero({ data, hero, showStatus = true }: HeroProps) {
       setTilt({ x: -22 - dy * 14, y: 28 + dx * 30 });
     };
     const tick = () => {
-      if (autoOn) {
+      frame++;
+      if (autoOn && frame % 2 === 0) {
         t += 0.005;
         setTilt({ x: -22 + Math.sin(t) * 4, y: 28 + Math.cos(t * 0.7) * 8 });
       }
