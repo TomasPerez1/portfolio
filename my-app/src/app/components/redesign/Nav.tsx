@@ -7,6 +7,7 @@ export interface NavProps {
   theme?: NavTheme;
   onToggleTheme?: () => void;
   links?: ReadonlyArray<readonly [string, string]>;
+  langSwitch?: React.ReactNode;
 }
 
 const DEFAULT_LINKS: ReadonlyArray<readonly [string, string]> = [
@@ -17,7 +18,7 @@ const DEFAULT_LINKS: ReadonlyArray<readonly [string, string]> = [
   ["Contact", "#contact"],
 ];
 
-export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LINKS }: NavProps) {
+export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LINKS, langSwitch }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 24);
@@ -56,6 +57,7 @@ export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LIN
         >
           {theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
+        {langSwitch}
       </nav>
     </header>
   );
