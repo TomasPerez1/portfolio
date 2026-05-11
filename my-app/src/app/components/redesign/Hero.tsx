@@ -48,12 +48,14 @@ export default function Hero({ data, hero, showStatus = true }: HeroProps) {
       }
       raf = requestAnimationFrame(tick);
     };
-    window.addEventListener("mousemove", onMove);
-    el.addEventListener("mouseleave", () => (autoOn = true));
+    const onLeave = () => { autoOn = true; };
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("mouseleave", onLeave);
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseleave", onLeave);
     };
   }, []);
 
