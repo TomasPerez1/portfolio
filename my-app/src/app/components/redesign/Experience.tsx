@@ -25,17 +25,23 @@ function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
         </div>
         <div className="mt-1.5 text-[13px] font-mono text-fg-faint">{e.where}</div>
 
-        <ul
-          className="m-0 p-0 list-none flex flex-col gap-2 overflow-hidden transition-all duration-500"
-          style={{ maxHeight: open ? 400 : 0, opacity: open ? 1 : 0, marginTop: open ? 16 : 0 }}
+        <div
+          className="grid transition-[grid-template-rows,opacity,margin-top] duration-[400ms] ease-[cubic-bezier(.4,0,.2,1)]"
+          style={{
+            gridTemplateRows: open ? "1fr" : "0fr",
+            opacity: open ? 1 : 0,
+            marginTop: open ? 16 : 0,
+          }}
         >
-          {e.bullets.map((b, i) => (
-            <li key={i} className="flex gap-2.5 text-fg-soft text-sm">
-              <span className="text-spark mt-0.5">→</span>
-              <span>{b}</span>
-            </li>
-          ))}
-        </ul>
+          <ul className="m-0 p-0 list-none flex flex-col gap-2 overflow-hidden min-h-0">
+            {e.bullets.map((b, i) => (
+              <li key={i} className="flex gap-2.5 text-fg-soft text-sm">
+                <span className="text-spark mt-0.5">→</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="mt-2 font-mono text-[11px] text-fg-faint tracking-[.08em] uppercase">
           {open ? "" : `Hover to expand · ${e.bullets.length} highlight${e.bullets.length > 1 ? "s" : ""}`}
