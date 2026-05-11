@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-05-10)
 
 ## Current Position
 
-Phase: 4 of 9 (executed; user-task MCP installs still pending from Phase 1)
-Plan: Phase 4 PLAN.md complete (7 tasks); executed end-to-end with tsc + npm run build verification
-Status: Phase 4 done. Next: Phase 5 (Hero + Nav wire-up — voxel implementation + floating Nav + theme toggle + LangSwitcher)
-Last activity: 2026-05-10 — Phase 4: 9 redesign components converted JSX→TSX with PortfolioData prop interfaces; flat components/redesign/ layout locked (D-13); Loader/LangLoader audit KEEP
+Phase: 5 of 9 (executed; user-task MCP installs still pending from Phase 1)
+Plan: Phase 5 PLAN.md complete (10 tasks); executed end-to-end with tsc + build + manual smoke test (5/5 verifications passed)
+Status: Phase 5 done. Next: Phase 6 (Content Sections — FeaturedWork, ProjectsGrid, StackSection, Experience, About, Footer)
+Last activity: 2026-05-10 — Phase 5: ThemeProvider + FART-fix script + LangSwitch + Hero throttle/reduced-motion + Hero/Nav wrappers + ClientPage swap (D-14 locked)
 
 Progress: [░░░░░░░░░░] 0%
 
