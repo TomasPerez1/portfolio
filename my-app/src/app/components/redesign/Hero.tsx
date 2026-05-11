@@ -154,9 +154,10 @@ function GridBackdrop() {
       className="absolute inset-0 pointer-events-none opacity-50"
       style={{
         backgroundImage:
-          "linear-gradient(to right, rgba(237,237,237,.10) 1px, transparent 1px),linear-gradient(to bottom, rgba(237,237,237,.10) 1px, transparent 1px)",
+          "linear-gradient(to right, var(--c-grid) 1px, transparent 1px),linear-gradient(to bottom, var(--c-grid) 1px, transparent 1px)",
         backgroundSize: "56px 56px",
         maskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%)",
+        WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%)",
       }}
     />
   );
