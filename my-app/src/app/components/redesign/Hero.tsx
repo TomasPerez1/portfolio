@@ -80,12 +80,14 @@ export default function Hero({ data, hero, cvLink, showStatus = true }: HeroProp
 
       <div className="relative z-[2]">
         {showStatus && (
-          <div className="flex flex-wrap items-center gap-3 mb-10">
-            <span className="badge">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)]" />
-              {data.statusLine}
+          <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px]">
+            <span className="badge flex-1 min-w-[260px] max-w-[420px] !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)] shrink-0" />
+              <span className="flex-1">{data.statusLine}</span>
             </span>
-            <span className="badge font-mono">{data.location} · {ar} {data.timezone}</span>
+            <span className="badge font-mono flex-1 min-w-[260px] max-w-[420px] py-2 justify-center text-center">
+              {data.location} · {ar} {data.timezone}
+            </span>
           </div>
         )}
 
