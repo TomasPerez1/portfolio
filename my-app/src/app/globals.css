@@ -2,37 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--c-fg);
+  background: var(--c-bg);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-input, input[type="text"],input[type="password"], input[type="email"], input[type="number"],textarea {
-  caret-color: #000000;
+input, input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea {
+  caret-color: var(--c-fg);
 }
-
-#content {
-  background-color: #22014d;
-} 
-
-
-#navigation {
-  background-image: url("../../public/background/bg_vertical_dark_xl.JPG");
-}
-
 
 ::-webkit-scrollbar {
   width: 6px; 
@@ -54,8 +32,7 @@ input, input[type="text"],input[type="password"], input[type="email"], input[typ
 /* ---------------------------------------------------------------------- *
  * v2 design tokens — Phase 1 Foundation Migration
  * Source: .claude_design/export/styles/globals.css
- * Note: legacy --background / --foreground above are preserved until
- * v1 components are removed (Phase 5/6 cleanup).
+ * Theme switch driven by [data-theme] attribute (D-14, Phase 5).
  * Fonts handled via next/font (see src/app/fonts.ts) — D-12.
  * ---------------------------------------------------------------------- */
 
@@ -98,7 +75,7 @@ html { scroll-behavior: smooth; }
 
   .badge {
     @apply inline-flex items-center gap-2 font-mono text-[11px] tracking-[.1em] uppercase
-           px-2.5 py-1.5 rounded-full border border-line-2 text-fg-soft bg-white/[.02];
+           px-2.5 py-1.5 rounded-full border border-line-2 text-fg-soft bg-card-2;
   }
   .chip {
     @apply inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[.05em]
