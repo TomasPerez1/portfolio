@@ -1,8 +1,23 @@
 "use client";
 
-const FOOTER_LINKS = ["GitHub", "LinkedIn", "Email", "CV"] as const;
+export interface FooterLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
 
-export default function Footer() {
+export interface FooterProps {
+  links?: readonly FooterLink[];
+}
+
+const DEFAULT_LINKS: readonly FooterLink[] = [
+  { label: "GitHub", href: "#" },
+  { label: "LinkedIn", href: "#" },
+  { label: "Email", href: "#" },
+  { label: "CV", href: "#" },
+];
+
+export default function Footer({ links = DEFAULT_LINKS }: FooterProps) {
   return (
     <footer className="px-[clamp(20px,5vw,96px)] py-14 border-t border-line flex flex-col gap-8">
       <div className="flex flex-wrap justify-between items-end gap-6">
@@ -10,9 +25,15 @@ export default function Footer() {
           tomas<span className="text-spark">.</span>dev
         </div>
         <div className="flex flex-wrap gap-2.5">
-          {FOOTER_LINKS.map((label) => (
-            <a key={label} href="#" className="btn h-[38px] px-3.5 text-[13px] bg-transparent">
-              {label}
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
+              className="btn h-[38px] px-3.5 text-[13px] bg-transparent"
+            >
+              {link.label}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M7 7h10v10" /></svg>
             </a>
           ))}

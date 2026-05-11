@@ -10,10 +10,11 @@ interface Tilt {
 export interface HeroProps {
   data: Pick<Identity, "statusLine" | "location" | "timezone" | "tagline">;
   hero: HeroCopy;
+  cvLink?: string;
   showStatus?: boolean;
 }
 
-export default function Hero({ data, hero, showStatus = true }: HeroProps) {
+export default function Hero({ data, hero, cvLink, showStatus = true }: HeroProps) {
   const [tilt, setTilt] = useState<Tilt>({ x: -22, y: 28 });
   const [time, setTime] = useState<Date>(() => new Date());
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -65,6 +66,7 @@ export default function Hero({ data, hero, showStatus = true }: HeroProps) {
 
   return (
     <section
+      id="top"
       data-screen-label="01 Hero"
       className="relative min-h-screen overflow-hidden flex flex-col justify-center
                  px-[clamp(20px,5vw,96px)] pt-[clamp(72px,10vw,140px)]"
@@ -114,7 +116,13 @@ export default function Hero({ data, hero, showStatus = true }: HeroProps) {
                 <Arrow />
               </a>
               <a href="#contact" className="btn">{hero.ctaSecondary}</a>
-              <a href="#" className="btn bg-transparent">
+              <a
+                href={cvLink ?? "#"}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn bg-transparent"
+              >
                 <DownloadIcon />
                 {hero.ctaTertiary}
               </a>

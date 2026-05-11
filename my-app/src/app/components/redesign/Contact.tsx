@@ -169,6 +169,7 @@ export default function Contact({ identity }: ContactProps) {
             </p>
           </div>
           <CalendarPreview />
+          {/* TODO(phase-7): wire to Calendly embed/URL */}
           <a className="btn btn-primary self-start" href="#">Open scheduler</a>
         </div>
       </div>

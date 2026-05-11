@@ -5,8 +5,7 @@ import type { GridProject } from "../../i18n/portfolio.types";
 function SmallCard({ p }: { p: GridProject }) {
   const [hover, setHover] = useState(false);
   return (
-    <a
-      href="#"
+    <div
       onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       className={`relative flex flex-col gap-3.5 p-5 pb-[22px] border rounded-[18px]
                   transition-colors duration-200
@@ -32,7 +31,7 @@ function SmallCard({ p }: { p: GridProject }) {
       <div className="flex flex-wrap gap-1.5 mt-auto">
         {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
       </div>
-    </a>
+    </div>
   );
 }
 
