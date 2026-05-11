@@ -115,3 +115,10 @@ html { scroll-behavior: smooth; }
            shadow-[0_8px_28px_-8px_rgba(181,33,255,.55)] hover:bg-spark-2;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker,
+  .animate-scroll-line,
+  .animate-spin-slow {
+    animation: none;
+  }
+}
