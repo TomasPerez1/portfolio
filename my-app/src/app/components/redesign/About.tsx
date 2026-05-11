@@ -24,11 +24,8 @@ export default function About({ identity }: AboutProps) {
     >
       <SectionHeader index="§ 05" kicker="About" title="The person behind the code." />
 
-      <div
-        className="grid gap-[clamp(16px,1.4vw,24px)]"
-        style={{ gridTemplateColumns: "repeat(12, 1fr)", gridAutoRows: "minmax(140px, auto)" }}
-      >
-        <div className="col-span-7 row-span-2 p-8 rounded-[18px] bg-bg border border-line flex flex-col justify-between gap-6">
+      <div className="grid gap-[clamp(16px,1.4vw,24px)] grid-cols-1 md:grid-cols-12 md:[grid-auto-rows:minmax(140px,auto)]">
+        <div className="md:col-span-7 md:row-span-2 p-8 rounded-[18px] bg-bg border border-line flex flex-col justify-between gap-6">
           <p className="display m-0 text-[clamp(22px,2.6vw,32px)] tracking-tightish2 leading-snug font-medium">
             &quot;Creating software that solves <span className="text-spark">real problems</span> — not just the technical ones.&quot;
           </p>
@@ -43,7 +40,7 @@ export default function About({ identity }: AboutProps) {
           </div>
         </div>
 
-        <div className="col-span-5 p-7 rounded-[18px] bg-bg border border-line flex flex-col gap-3.5">
+        <div className="md:col-span-5 p-7 rounded-[18px] bg-bg border border-line flex flex-col gap-3.5">
           <div className="eyebrow">Quick facts</div>
           {identity.quickFacts.map(([k, v]) => (
             <div key={k} className="flex justify-between items-baseline gap-2 pb-2.5 border-b border-dashed border-line">
@@ -54,7 +51,7 @@ export default function About({ identity }: AboutProps) {
         </div>
 
         <div
-          className="col-span-5 p-6 rounded-[18px] border border-line flex flex-col justify-between gap-4 min-h-[180px]"
+          className="md:col-span-5 p-6 rounded-[18px] border border-line flex flex-col justify-between gap-4 min-h-[180px]"
           style={{ background: "linear-gradient(135deg, rgba(181,33,255,.13), transparent 70%), var(--c-bg)" }}
         >
           <div className="eyebrow">Currently</div>
@@ -73,7 +70,7 @@ export default function About({ identity }: AboutProps) {
           </div>
         </div>
 
-        <div className="col-span-4 p-6 rounded-[18px] bg-bg border border-line">
+        <div className="md:col-span-4 p-6 rounded-[18px] bg-bg border border-line">
           <div className="eyebrow mb-3.5">By the numbers</div>
           <div className="grid grid-cols-2 gap-4">
             <Stat n="3+" l="years dev" />
@@ -83,7 +80,7 @@ export default function About({ identity }: AboutProps) {
           </div>
         </div>
 
-        <div className="col-span-3 p-6 rounded-[18px] flex flex-col justify-between gap-4 min-h-[180px] bg-fg text-bg">
+        <div className="md:col-span-3 p-6 rounded-[18px] flex flex-col justify-between gap-4 min-h-[180px] bg-fg text-bg">
           <div className="font-mono text-[11px] tracking-[.12em] uppercase opacity-60">CV</div>
           <div className="font-display text-[20px] font-semibold leading-tight tracking-tightish2">
             Download the full résumé →

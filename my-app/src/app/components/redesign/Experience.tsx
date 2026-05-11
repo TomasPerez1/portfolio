@@ -8,13 +8,12 @@ function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
   return (
     <div
       onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}
-      className={`grid items-start gap-6 py-7 border-t border-line ${last ? "border-b" : ""}`}
-      style={{ gridTemplateColumns: "180px 24px 1fr" }}
+      className={`grid items-start gap-3 md:gap-6 py-7 border-t border-line grid-cols-1 md:[grid-template-columns:180px_24px_1fr] ${last ? "border-b" : ""}`}
     >
-      <div className="font-mono text-[13px] text-fg-soft pt-1">
+      <div className="font-mono text-[13px] text-fg-soft md:pt-1">
         {e.from} <span className="text-fg-faint">—</span> {e.to}
       </div>
-      <div className="pt-2 relative flex justify-center">
+      <div className="hidden md:flex pt-2 relative justify-center">
         <span className="w-2 h-2 rounded-full bg-spark mt-1" />
         {!last && <span className="absolute top-4 -bottom-7 w-px bg-line-2" />}
       </div>

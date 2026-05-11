@@ -38,7 +38,7 @@ export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LIN
           <Logo />
           <span className="font-mono text-xs font-semibold">tomas.dev</span>
         </a>
-        <div className="flex gap-0.5">
+        <div className="hidden md:flex gap-0.5">
           {links.map(([label, href]) => (
             <a
               key={href}

@@ -89,10 +89,7 @@ export default function Hero({ data, hero, cvLink, showStatus = true }: HeroProp
           </div>
         )}
 
-        <div
-          className="grid items-center gap-[clamp(24px,4vw,64px)]"
-          style={{ gridTemplateColumns: "minmax(0, 1fr) minmax(0, 360px)" }}
-        >
+        <div className="grid items-center gap-[clamp(24px,4vw,64px)] grid-cols-1 md:[grid-template-columns:minmax(0,1fr)_minmax(0,360px)]">
           <div>
             <div className="eyebrow mb-[18px]">Portfolio · 2026</div>
             <h1 className="display display-xl m-0">
@@ -129,7 +126,7 @@ export default function Hero({ data, hero, cvLink, showStatus = true }: HeroProp
             </div>
           </div>
 
-          <div ref={wrapRef} className="relative aspect-square" style={{ perspective: "1100px" }}>
+          <div ref={wrapRef} className="relative aspect-square max-w-[360px] mx-auto md:mx-0 w-full" style={{ perspective: "1100px" }}>
             <VoxelArt tilt={tilt} />
             <div
               className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-1.5

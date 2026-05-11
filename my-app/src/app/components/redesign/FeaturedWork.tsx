@@ -55,8 +55,8 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
       onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       className={`relative grid gap-[clamp(20px,3vw,56px)] p-[clamp(20px,2.4vw,32px)]
                   bg-card rounded-[28px] overflow-hidden transition-all
+                  grid-cols-1 md:[grid-template-columns:minmax(0,1.05fr)_minmax(0,.95fr)]
                   ${hover ? "border-line-2 -translate-y-0.5" : "border-line"} border`}
-      style={{ gridTemplateColumns: "minmax(0,1.05fr) minmax(0,.95fr)" }}
     >
       <div className="relative aspect-[16/11] rounded-[18px] overflow-hidden bg-card-2 border border-line">
         <div

@@ -132,7 +132,7 @@ export default function Contact({ identity }: ContactProps) {
     <section id="contact" data-screen-label="07 Contact" className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]">
       <SectionHeader index="§ 06" kicker="Contact" title="Let's build something." />
 
-      <div className="grid gap-[clamp(20px,2.5vw,32px)]" style={{ gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)" }}>
+      <div className="grid gap-[clamp(20px,2.5vw,32px)] grid-cols-1 lg:grid-cols-2">
         <form onSubmit={onSubmit} className="p-8 rounded-[28px] bg-card border border-line flex flex-col gap-[18px]">
           <div className="flex flex-wrap justify-between items-center gap-2.5">
             <div className="eyebrow">Send a message</div>
