@@ -53,14 +53,14 @@ input, input[type="text"], input[type="password"], input[type="email"], input[ty
 }
 
 :root.light, :root[data-theme="light"] {
-  --c-bg:        #ffffff;
+  --c-bg:        #fafafa;
   --c-fg:        #171717;
   --c-fg-soft:   rgba(23,23,23,.66);
   --c-fg-faint:  rgba(23,23,23,.42);
   --c-line:      rgba(23,23,23,.10);
   --c-line-2:    rgba(23,23,23,.18);
-  --c-card:      #f7f7f7;
-  --c-card-2:    #efefef;
+  --c-card:      #ededed;
+  --c-card-2:    #e0e0e0;
 }
 
 html { scroll-behavior: smooth; }

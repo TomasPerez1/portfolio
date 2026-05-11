@@ -30,11 +30,11 @@ export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LIN
     <header className="fixed top-3.5 inset-x-3.5 z-50 flex justify-center pointer-events-none">
       <nav
         className={`pointer-events-auto flex items-center gap-1.5 py-2 pr-2 pl-[18px]
-          rounded-full border border-line-2 backdrop-blur-xl backdrop-saturate-150
-          transition-all duration-300 max-w-[calc(100vw-28px)]
-          ${scrolled ? "bg-black/70 shadow-[0_8px_24px_rgba(0,0,0,.35)]" : "bg-black/35"}`}
+          rounded-full border border-white/15 backdrop-blur-xl backdrop-saturate-150
+          transition-all duration-300 max-w-[calc(100vw-28px)] text-zinc-200
+          ${scrolled ? "bg-black/85 shadow-[0_8px_24px_rgba(0,0,0,.35)]" : "bg-black/60"}`}
       >
-        <a href="#top" className="flex items-center gap-2 pr-2.5 border-r border-line-2">
+        <a href="#top" className="flex items-center gap-2 pr-2.5 border-r border-white/15 text-white">
           <Logo />
           <span className="font-mono text-xs font-semibold">tomas.dev</span>
         </a>
@@ -43,8 +43,8 @@ export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LIN
             <a
               key={href}
               href={href}
-              className="px-3 py-2 text-[13px] font-medium text-fg-soft rounded-full
-                         transition-colors hover:text-fg hover:bg-white/[.06]"
+              className="px-3 py-2 text-[13px] font-medium text-zinc-300 rounded-full
+                         transition-colors hover:text-white hover:bg-white/[.08]"
             >
               {label}
             </a>
@@ -53,7 +53,7 @@ export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LIN
         <button
           onClick={onToggleTheme}
           aria-label="Toggle theme"
-          className="ml-1 w-9 h-9 rounded-full border border-line-2 grid place-items-center"
+          className="ml-1 w-9 h-9 rounded-full border border-white/15 grid place-items-center text-zinc-200 hover:text-white hover:bg-white/[.08] transition-colors"
         >
           {theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
