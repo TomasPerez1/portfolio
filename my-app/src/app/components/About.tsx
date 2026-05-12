@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { SectionHeader } from "./FeaturedWork";
 import { noMotion, sectionReveal } from "./_animations";
@@ -44,8 +45,15 @@ function AboutSection({ identity }: AboutSectionProps) {
             &quot;Creating software that solves <span className="text-spark">real problems</span> — not just the technical ones.&quot;
           </p>
           <div className="flex items-center gap-3.5">
-            <div className="w-14 h-14 rounded-full bg-card overflow-hidden border border-line-2">
-              <img src="/assets/about-current.jpg" alt="Tomás Pérez" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
+            <div className="relative w-14 h-14 rounded-full bg-card overflow-hidden border border-line-2">
+              <Image
+                src="/profile/cvprofile.jpg"
+                alt="Tomás Pérez"
+                fill
+                sizes="56px"
+                className="object-cover"
+                style={{ objectPosition: "center 30%" }}
+              />
             </div>
             <div>
               <div className="font-medium">{identity.name}</div>
