@@ -303,9 +303,14 @@ function Voxel({ x, y, z, size, isYellow, transition }: VoxelProps) {
       transition={transition}
       className="absolute"
       style={{
-        width: size, height: size, transformStyle: "preserve-3d",
-        transform: `translate3d(${tx}px, ${ty}px, ${tz}px)`,
-        left: -size / 2, top: -size / 2,
+        width: size,
+        height: size,
+        transformStyle: "preserve-3d",
+        x: tx,
+        y: ty,
+        z: tz,
+        left: -size / 2,
+        top: -size / 2,
       }}
     >
       {faces.map(([t, b], i) => (
