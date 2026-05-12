@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { Identity, HeroCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 import { useTranslation } from "../i18n/client";
@@ -226,6 +227,7 @@ interface VoxelData {
 function VoxelArt({ tilt, stateIndex }: { tilt: Tilt; stateIndex: number }) {
   const SIZE = 4;
   const V = 36;
+  const reduceMotion = useReducedMotion();
   const state = VOXEL_STATES[stateIndex] ?? VOXEL_STATES[0];
   const { yellow, removed } = state;
   const voxels: VoxelData[] = [];
@@ -239,6 +241,10 @@ function VoxelArt({ tilt, stateIndex }: { tilt: Tilt; stateIndex: number }) {
         voxels.push({ x, y, z, isYellow: yellow.has(k), key: k });
       }
 
+  const shuffleTransition: { duration: number; ease?: [number, number, number, number] } = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.5, ease: [0.2, 0.8, 0.2, 1] };
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div
@@ -249,7 +255,19 @@ function VoxelArt({ tilt, stateIndex }: { tilt: Tilt; stateIndex: number }) {
           transition: "transform .35s cubic-bezier(.2,.8,.2,1)",
         }}
       >
-        {voxels.map((v) => <Voxel key={v.key} x={v.x} y={v.y} z={v.z} isYellow={v.isYellow} size={V} />)}
+        <AnimatePresence mode="popLayout">
+          {voxels.map((v) => (
+            <Voxel
+              key={v.key}
+              x={v.x}
+              y={v.y}
+              z={v.z}
+              isYellow={v.isYellow}
+              size={V}
+              transition={shuffleTransition}
+            />
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -261,9 +279,10 @@ interface VoxelProps {
   z: number;
   size: number;
   isYellow: boolean;
+  transition: { duration: number; ease?: [number, number, number, number] };
 }
 
-function Voxel({ x, y, z, size, isYellow }: VoxelProps) {
+function Voxel({ x, y, z, size, isYellow, transition }: VoxelProps) {
   const base = isYellow ? "#fbbf24" : "var(--c-spark)";
   const tx = (x - 1.5) * size;
   const ty = -((y - 1.5) * size);
@@ -277,7 +296,11 @@ function Voxel({ x, y, z, size, isYellow }: VoxelProps) {
     [`rotateX(-90deg) translateZ(${size / 2}px)`, "brightness(.42)"],
   ];
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.4 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.4 }}
+      transition={transition}
       className="absolute"
       style={{
         width: size, height: size, transformStyle: "preserve-3d",
@@ -292,7 +315,7 @@ function Voxel({ x, y, z, size, isYellow }: VoxelProps) {
           style={{ background: base, transform: t, filter: b }}
         />
       ))}
-    </div>
+    </motion.div>
   );
 }
 
