@@ -3,6 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import type { Identity, HeroCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 import { useTranslation } from "../i18n/client";
+import { VOXEL_STATES } from "./voxel-states";
+
+const SHUFFLE_DURATION_MS = 600;
 
 interface Tilt {
   x: number;
@@ -34,7 +37,22 @@ export default function Hero({ lang, showStatus = true }: { lang: string; showSt
 function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps) {
   const [tilt, setTilt] = useState<Tilt>({ x: -22, y: 28 });
   const [time, setTime] = useState<Date>(() => new Date());
+  const [voxelStateIndex, setVoxelStateIndex] = useState<number>(0);
+  const [shuffling, setShuffling] = useState<boolean>(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+
+  const onShuffle = () => {
+    if (shuffling) return;
+    setShuffling(true);
+    setVoxelStateIndex((i) => (i + 1) % VOXEL_STATES.length);
+    setTimeout(() => setShuffling(false), SHUFFLE_DURATION_MS);
+  };
+  const onShuffleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onShuffle();
+    }
+  };
 
   useEffect(() => {
     const i = setInterval(() => setTime(new Date()), 60_000);
@@ -145,14 +163,24 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
             </div>
           </div>
 
-          <div ref={wrapRef} className="relative aspect-square max-w-[360px] mx-auto md:mx-0 w-full" style={{ perspective: "1100px" }}>
-            <VoxelArt tilt={tilt} />
+          <div
+            ref={wrapRef}
+            role="button"
+            tabIndex={0}
+            aria-label="Shuffle voxel cube"
+            onClick={onShuffle}
+            onKeyDown={onShuffleKey}
+            className={`relative aspect-square max-w-[360px] mx-auto md:mx-0 w-full cursor-pointer select-none transition-transform duration-100
+                       ${shuffling ? "scale-[.97]" : ""}`}
+            style={{ perspective: "1100px" }}
+          >
+            <VoxelArt tilt={tilt} stateIndex={voxelStateIndex} />
             <div
               className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-1.5
                          px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-line-2
-                         font-mono text-[11px] text-fg-soft"
+                         font-mono text-[11px] text-fg-soft pointer-events-none"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-spark" /> Voxel · drag to rotate
+              <span className="w-1.5 h-1.5 rounded-full bg-spark" /> Voxel · click to shuffle
             </div>
           </div>
         </div>
@@ -195,11 +223,11 @@ interface VoxelData {
   key: string;
 }
 
-function VoxelArt({ tilt }: { tilt: Tilt }) {
+function VoxelArt({ tilt, stateIndex }: { tilt: Tilt; stateIndex: number }) {
   const SIZE = 4;
   const V = 36;
-  const yellow = new Set<string>(["1,3,1", "2,3,1", "3,3,1", "2,2,1", "2,1,1", "2,0,1", "1,3,2", "2,3,2", "3,3,2", "2,2,2", "2,1,2", "2,0,2"]);
-  const removed = new Set<string>(["0,0,0", "0,1,0", "0,2,3", "3,0,3", "3,3,0", "0,3,3", "3,2,0", "1,0,3", "2,3,3", "0,2,0", "3,1,3"]);
+  const state = VOXEL_STATES[stateIndex] ?? VOXEL_STATES[0];
+  const { yellow, removed } = state;
   const voxels: VoxelData[] = [];
   for (let x = 0; x < SIZE; x++)
     for (let y = 0; y < SIZE; y++)
