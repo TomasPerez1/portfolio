@@ -1,4 +1,6 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
+import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
 import type { FeaturedProject } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
@@ -122,8 +124,17 @@ interface FeaturedWorkSectionProps {
 }
 
 function FeaturedWorkSection({ items }: FeaturedWorkSectionProps) {
+  const reduce = useReducedMotion();
   return (
-    <section id="work" data-screen-label="02 Selected Work" className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]">
+    <motion.section
+      id="work"
+      data-screen-label="02 Selected Work"
+      className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
+      variants={reduce ? noMotion : sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <SectionHeader
         index="§ 02"
         kicker="Selected Work"
@@ -133,6 +144,6 @@ function FeaturedWorkSection({ items }: FeaturedWorkSectionProps) {
       <div className="flex flex-col gap-[clamp(18px,2.5vw,28px)]">
         {items.map((p) => <FeaturedCard key={p.id} p={p} />)}
       </div>
-    </section>
+    </motion.section>
   );
 }

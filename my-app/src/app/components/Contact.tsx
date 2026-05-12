@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
 import { SectionHeader } from "./FeaturedWork";
+import { noMotion, sectionReveal } from "./_animations";
 import CalendarWidget from "../ui/CalendarWidget";
 import BookingModal from "../ui/BookingModal";
 import type { Identity } from "../i18n/portfolio.types";
@@ -85,6 +87,7 @@ interface ContactSectionProps {
 }
 
 function ContactSection({ identity }: ContactSectionProps) {
+  const reduce = useReducedMotion();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -128,7 +131,15 @@ function ContactSection({ identity }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" data-screen-label="07 Contact" className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]">
+    <motion.section
+      id="contact"
+      data-screen-label="07 Contact"
+      className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
+      variants={reduce ? noMotion : sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <SectionHeader index="§ 06" kicker="Contact" title="Let's build something." />
 
       <div className="grid gap-[clamp(20px,2.5vw,32px)] grid-cols-1 lg:grid-cols-2">
@@ -186,6 +197,6 @@ function ContactSection({ identity }: ContactSectionProps) {
           }}
         />
       )}
-    </section>
+    </motion.section>
   );
 }

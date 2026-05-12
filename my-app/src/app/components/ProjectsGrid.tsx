@@ -1,4 +1,6 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
+import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
 import type { GridProject } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
@@ -47,8 +49,16 @@ interface ProjectsGridSectionProps {
 }
 
 function ProjectsGridSection({ items }: ProjectsGridSectionProps) {
+  const reduce = useReducedMotion();
   return (
-    <section data-screen-label="03 More projects" className="px-[clamp(20px,5vw,96px)] pb-[clamp(72px,10vw,140px)]">
+    <motion.section
+      data-screen-label="03 More projects"
+      className="px-[clamp(20px,5vw,96px)] pb-[clamp(72px,10vw,140px)]"
+      variants={reduce ? noMotion : sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <div className="flex flex-wrap items-baseline justify-between gap-3 mb-9">
         <h3 className="display display-m m-0">+ More projects</h3>
         <span className="eyebrow">{items.length} more · 2022 → 2026</span>
@@ -56,6 +66,6 @@ function ProjectsGridSection({ items }: ProjectsGridSectionProps) {
       <div className="grid gap-[clamp(16px,1.4vw,24px)]" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
         {items.map((p) => <SmallCard key={p.id} p={p} />)}
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
 import { SectionHeader } from "./FeaturedWork";
+import { noMotion, sectionReveal } from "./_animations";
 import type { Identity } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 
@@ -23,11 +25,16 @@ interface AboutSectionProps {
 }
 
 function AboutSection({ identity }: AboutSectionProps) {
+  const reduce = useReducedMotion();
   return (
-    <section
+    <motion.section
       id="about"
       data-screen-label="06 About"
       className="bg-card border-t border-line px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
+      variants={reduce ? noMotion : sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
     >
       <SectionHeader index="§ 05" kicker="About" title="The person behind the code." />
 
@@ -95,6 +102,6 @@ function AboutSection({ identity }: AboutSectionProps) {
           <div className="text-xs opacity-65">PDF · 2 pages · updated May 2026</div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

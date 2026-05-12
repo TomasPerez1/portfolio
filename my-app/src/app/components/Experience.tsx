@@ -1,4 +1,6 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
+import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
 import { SectionHeader } from "./FeaturedWork";
 import type { ExperienceEntry } from "../i18n/portfolio.types";
@@ -62,8 +64,17 @@ interface ExperienceSectionProps {
 }
 
 function ExperienceSection({ items }: ExperienceSectionProps) {
+  const reduce = useReducedMotion();
   return (
-    <section id="experience" data-screen-label="05 Experience" className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]">
+    <motion.section
+      id="experience"
+      data-screen-label="05 Experience"
+      className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
+      variants={reduce ? noMotion : sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <SectionHeader
         index="§ 04"
         kicker="Experience"
@@ -73,6 +84,6 @@ function ExperienceSection({ items }: ExperienceSectionProps) {
       <div className="flex flex-col">
         {items.map((e, i) => <ExpRow key={i} e={e} last={i === items.length - 1} />)}
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,4 +1,6 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
+import { noMotion, sectionReveal } from "./_animations";
 import { SectionHeader } from "./FeaturedWork";
 import type { StackCategories } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
@@ -14,11 +16,16 @@ interface StackSectionInnerProps {
 }
 
 function StackSectionInner({ stack }: StackSectionInnerProps) {
+  const reduce = useReducedMotion();
   return (
-    <section
+    <motion.section
       id="stack"
       data-screen-label="04 Stack"
       className="bg-card border-y border-line px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
+      variants={reduce ? noMotion : sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
     >
       <SectionHeader
         index="§ 03"
@@ -44,6 +51,6 @@ function StackSectionInner({ stack }: StackSectionInnerProps) {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
