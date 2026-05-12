@@ -61,6 +61,8 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
   return (
     <a
       href={p.link}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       className={`relative grid gap-[clamp(20px,3vw,56px)] p-[clamp(20px,2.4vw,32px)]
                   bg-card rounded-[28px] overflow-hidden transition-all
@@ -95,7 +97,10 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
           {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
         </div>
 
-        <div className="mt-auto pt-[18px] border-t border-line grid grid-cols-3 gap-4">
+        <div
+          className="mt-auto pt-[18px] border-t border-line grid gap-4"
+          style={{ gridTemplateColumns: `repeat(${Math.max(p.metrics.length, 1)}, minmax(0, 1fr))` }}
+        >
           {p.metrics.map(([k, v]) => (
             <div key={k} className="flex flex-col gap-1">
               <span className="eyebrow">{k}</span>
