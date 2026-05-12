@@ -1,13 +1,16 @@
 import nodemailer from "nodemailer";
-import type { EmailData } from "../../(sections)/landing/contact/SendEmail";
-const { EMAIL_PASSWORD, EMAIL_USER } = process.env;
+import type { EmailData } from "./types";
+
+const { EMAIL_PASSWORD, EMAIL_USER, OWNER_EMAIL } = process.env;
 
 export async function POST(request: Request) {
   try {
-    // const isValidEmail = (string: string) => {
-    //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    //   return emailRegex.test(string);
-    // };
+    const body: EmailData = await request.json();
+    const { name, email, subject, message } = body;
+
+    if (!name || !email || !subject || !message) {
+      return Response.json({ error: "Missing required fields" }, { status: 400 });
+    }
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -18,23 +21,24 @@ export async function POST(request: Request) {
         pass: EMAIL_PASSWORD,
       },
     });
-    const body: EmailData = await request.json();
-    const { name, subject, message } = body;
 
     const info = await transporter.sendMail({
-      from: `"🎉 RRHH" <${EMAIL_USER}>`,
-      to: "tomas.perez.developer@gmail.com",
-      subject: subject,
-      text: message,
+      from: `"Portfolio · ${name}" <${EMAIL_USER}>`,
+      to: OWNER_EMAIL ?? "tomas.perez.developer@gmail.com",
+      replyTo: email,
+      subject,
+      text: `${message}\n\n— ${name} <${email}>`,
       html: `
-      <h1>${name.toUpperCase()}</h1>
-      <hr/>
-      <h2>${message}</h2>
+        <h2>${name}</h2>
+        <p><a href="mailto:${email}">${email}</a></p>
+        <hr/>
+        <p style="white-space:pre-wrap">${message}</p>
       `,
     });
 
-    return Response.json(info);
+    return Response.json({ ok: true, id: info.messageId });
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return Response.json({ error: message }, { status: 500 });
   }
 }
