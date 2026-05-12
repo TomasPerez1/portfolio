@@ -14,7 +14,7 @@ interface Tilt {
 }
 
 interface HeroSectionProps {
-  data: Pick<Identity, "statusLine" | "location" | "timezone" | "tagline">;
+  data: Pick<Identity, "statusLine" | "location" | "timezone" | "tagline" | "tagHighlight" | "tagTrailing">;
   hero: HeroCopy;
   cvLink?: string;
   showStatus?: boolean;
@@ -24,10 +24,10 @@ export default function Hero({ lang, showStatus = true }: { lang: string; showSt
   const { data, ready } = usePortfolioData(lang);
   const { t } = useTranslation(lang, "common");
   if (!ready || !data) return null;
-  const { statusLine, location, timezone, tagline } = data.identity;
+  const { statusLine, location, timezone, tagline, tagHighlight, tagTrailing } = data.identity;
   return (
     <HeroSection
-      data={{ statusLine, location, timezone, tagline }}
+      data={{ statusLine, location, timezone, tagline, tagHighlight, tagTrailing }}
       hero={data.hero}
       cvLink={t("CV")}
       showStatus={showStatus}
@@ -139,10 +139,8 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
             </h1>
             <p className="max-w-[540px] mt-7 mb-8 text-[clamp(16px,1.4vw,19px)] text-fg-soft">
               {data.tagline}{" "}
-              <span className="text-fg">
-                3+ years building with Node.js, React, Next.js, NestJS and TypeScript
-              </span>{" "}
-              — currently shipping enterprise platforms at Zurich/Santander and a SoundCloud-partnered SaaS.
+              <span className="text-fg">{data.tagHighlight}</span>{" "}
+              {data.tagTrailing}
             </p>
 
             <div className="flex flex-wrap gap-3">

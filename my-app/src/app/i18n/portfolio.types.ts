@@ -9,6 +9,8 @@ export interface Identity {
   site: string;
   statusLine: string;
   tagline: string;
+  tagHighlight: string;
+  tagTrailing: string;
   longBio: readonly string[];
   quickFacts: readonly (readonly string[])[];
 }

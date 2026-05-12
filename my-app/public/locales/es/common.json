@@ -43,7 +43,9 @@
     "linkedin": "linkedin.com/in/tomas-perez-developer",
     "site": "tomasperezdev.space",
     "statusLine": "Disponible para roles orientados a producto, freelance y colaboraciones con propósito.",
-    "tagline": "Creando software que resuelve problemas reales — no solo técnicos.",
+    "tagline": "Creando software que resuelve problemas reales, no solo técnicos.",
+    "tagHighlight": "Más de 3 años construyendo con Node.js, React, Next.js, NestJS y TypeScript",
+    "tagTrailing": "— actualmente desarrollando plataformas enterprise en Zurich/Santander y un SaaS con partnership de SoundCloud.",
     "longBio": [
       "Más de 3 años construyendo y desplegando apps web con Node.js, React, Next.js y TypeScript. Ownership end-to-end — desde la arquitectura y la comunicación con el cliente hasta el deploy y la entrega final.",
       "Actualmente desarrollando plataformas enterprise para el sector seguros en Zurich/Santander, sin dejar la práctica freelance — incluyendo un SaaS con partnership oficial de SoundCloud.",
