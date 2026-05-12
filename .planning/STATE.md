@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-05-10)
 
 ## Current Position
 
-Phase: 5 of 9 (executed; user-task MCP installs still pending from Phase 1)
-Plan: Phase 5 PLAN.md complete (10 tasks); executed end-to-end with tsc + build + manual smoke test (5/5 verifications passed)
-Status: Phase 5 done. Next: Phase 6 (Content Sections — FeaturedWork, ProjectsGrid, StackSection, Experience, About, Footer)
-Last activity: 2026-05-10 — Phase 5: ThemeProvider + FART-fix script + LangSwitch + Hero throttle/reduced-motion + Hero/Nav wrappers + ClientPage swap (D-14 locked)
+Phase: 8 of 9 (Phase 7 implementation complete; user Google Cloud + email env setup still pending for E2E verification)
+Plan: Phase 8 PLAN.md executed end-to-end (voxel Rubik + scroll animations); Phase 7 smoke test deferred until user completes service-account setup
+Status: Phase 8 done. Next: Phase 9 (QA, Performance & Deploy — Lighthouse, bundle analysis, cross-browser, Vercel production)
+Last activity: 2026-05-11 — Phase 8: 5 voxel states + framer shuffle animation + scroll-fade entrance on 7 sections; voxel position fix via motion-value style props; Phase 6 cleanup (theme tokens, badge balance, CSS contrast); Phase 7 refactor (wrappers folded, components flattened, ui/ consolidated)
 
 Progress: [░░░░░░░░░░] 0%
 
