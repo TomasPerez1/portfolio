@@ -1,31 +1,38 @@
 "use client";
 import { useState } from "react";
+import { toast } from "sonner";
 import { SectionHeader } from "./FeaturedWork";
+import CalendarWidget from "./CalendarWidget";
+import BookingModal from "./BookingModal";
 import type { Identity } from "../../i18n/portfolio.types";
+import type { Slot } from "../../api/calendar/_lib/types";
 
 interface FieldProps {
   label: string;
   v: string;
   setV: (next: string) => void;
   placeholder?: string;
+  type?: string;
   multiline?: boolean;
+  required?: boolean;
 }
 
-function Field({ label, v, setV, placeholder, multiline }: FieldProps) {
+function Field({ label, v, setV, placeholder, type = "text", multiline, required }: FieldProps) {
   const sharedProps = {
     value: v,
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setV(e.target.value),
     placeholder,
+    required,
     className: `w-full bg-bg text-fg border border-line rounded-[10px] font-body text-sm
                 outline-none transition-colors focus:border-spark
                 ${multiline ? "p-3.5 min-h-[110px] resize-y" : "h-11 px-3.5"}`,
   };
   return (
     <label className="flex flex-col gap-2">
-      <span className="eyebrow">{label}</span>
+      <span className="eyebrow">{label}{required && <span className="text-spark"> *</span>}</span>
       {multiline
         ? <textarea {...sharedProps} rows={4} />
-        : <input {...sharedProps} />}
+        : <input type={type} {...sharedProps} />}
     </label>
   );
 }
@@ -58,50 +65,10 @@ function ContactRow({ icon, label, action, onAction }: ContactRowProps) {
       {action && (
         <button onClick={onAction} type="button"
                 className="font-mono text-[11px] tracking-[.08em] uppercase px-2.5 py-1
-                           rounded-md border border-line-2 bg-transparent text-fg-soft">
+                           rounded-md border border-line-2 bg-transparent text-fg-soft hover:text-fg transition-colors">
           {action}
         </button>
       )}
-    </div>
-  );
-}
-
-interface CalendarCell {
-  d: number;
-  isAvailable: boolean;
-  isHL: boolean;
-}
-
-function CalendarPreview() {
-  const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"] as const;
-  const cells: CalendarCell[] = Array.from({ length: 28 }, (_, i) => {
-    const d = i + 1;
-    return { d, isAvailable: [3, 4, 5, 8, 9, 10, 11, 16, 17, 22, 23, 24].includes(d), isHL: d === 9 };
-  });
-  return (
-    <div className="rounded-[18px] border border-line bg-bg p-5">
-      <div className="flex justify-between items-center mb-3.5">
-        <span className="display text-lg font-semibold">May 2026</span>
-        <div className="flex gap-2">
-          <span className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft">‹</span>
-          <span className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-spark">›</span>
-        </div>
-      </div>
-      <div className="grid grid-cols-7 gap-1.5">
-        {days.map((d) => <div key={d} className="text-center font-mono text-[10px] text-fg-faint tracking-[.1em]">{d}</div>)}
-        {cells.map((c) => (
-          <div
-            key={c.d}
-            className={`aspect-square rounded-lg grid place-items-center font-mono text-xs border
-                        ${c.isHL ? "bg-spark text-white border-transparent font-semibold"
-                                 : c.isAvailable ? "bg-card-2 text-fg border-line-2"
-                                 : "bg-transparent text-fg-faint border-transparent"}`}
-          >
-            {c.d}
-          </div>
-        ))}
-      </div>
-      <div className="mt-3.5 font-mono text-[11px] text-fg-soft">12 slots available · 30 min each</div>
     </div>
   );
 }
@@ -112,16 +79,41 @@ export interface ContactProps {
 
 export default function Contact({ identity }: ContactProps) {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [pickedSlot, setPickedSlot] = useState<Slot | null>(null);
+  const [calendarRefresh, setCalendarRefresh] = useState(0);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => { setSent(false); setName(""); setSubject(""); setMessage(""); }, 2400);
+    if (!name || !email || !subject || !message) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({ error: "Unknown" }));
+        toast.error(data.error ?? "Send failed");
+        return;
+      }
+      toast.success("Message sent — I'll get back to you soon.");
+      setName(""); setEmail(""); setSubject(""); setMessage("");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Network error");
+    } finally {
+      setSubmitting(false);
+    }
   };
+
   const copyEmail = () => {
     navigator.clipboard?.writeText(identity.email);
     setCopied(true);
@@ -138,14 +130,15 @@ export default function Contact({ identity }: ContactProps) {
             <div className="eyebrow">Send a message</div>
             <span className="badge"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Replies within 24h</span>
           </div>
-          <div className="grid grid-cols-2 gap-3.5">
-            <Field label="Name" v={name} setV={setName} placeholder="Your name" />
-            <Field label="Subject" v={subject} setV={setSubject} placeholder="Quick line" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <Field label="Name" v={name} setV={setName} placeholder="Your name" required />
+            <Field label="Email" v={email} setV={setEmail} placeholder="you@example.com" type="email" required />
           </div>
-          <Field label="Message" v={message} setV={setMessage} placeholder="What's on your mind?" multiline />
+          <Field label="Subject" v={subject} setV={setSubject} placeholder="Quick line" required />
+          <Field label="Message" v={message} setV={setMessage} placeholder="What's on your mind?" multiline required />
 
-          <button type="submit" className="btn btn-primary self-start mt-1.5">
-            {sent ? "Sent ✓" : "Send message"}
+          <button type="submit" disabled={submitting} className="btn btn-primary self-start mt-1.5 disabled:opacity-60 disabled:cursor-not-allowed">
+            {submitting ? "Sending…" : "Send message"}
           </button>
 
           <div className="mt-1.5 pt-[18px] border-t border-line flex flex-col gap-3">
@@ -156,7 +149,7 @@ export default function Contact({ identity }: ContactProps) {
         </form>
 
         <div
-          className="p-8 rounded-[28px] border border-line flex flex-col justify-between gap-6"
+          className="p-8 rounded-[28px] border border-line flex flex-col gap-6"
           style={{ background: "radial-gradient(circle at 80% 0%, rgba(181,33,255,.12), transparent 60%), var(--c-card)" }}
         >
           <div>
@@ -165,14 +158,27 @@ export default function Contact({ identity }: ContactProps) {
               30 minutes — let&apos;s see if we click.
             </h3>
             <p className="mt-3.5 text-fg-soft max-w-[44ch]">
-              For recruiters, founders or fellow devs. Pick a slot — meeting link arrives instantly.
+              For recruiters, founders or fellow devs. Pick a slot — calendar invite arrives instantly.
             </p>
           </div>
-          <CalendarPreview />
-          {/* TODO(phase-7): wire to Calendly embed/URL */}
-          <a className="btn btn-primary self-start" href="#">Open scheduler</a>
+          <CalendarWidget
+            refreshKey={calendarRefresh}
+            onSlotClick={(slot) => setPickedSlot(slot)}
+          />
         </div>
       </div>
+
+      {pickedSlot && (
+        <BookingModal
+          slot={pickedSlot}
+          timezone={identity.timezone}
+          onClose={() => setPickedSlot(null)}
+          onBooked={() => {
+            setPickedSlot(null);
+            setCalendarRefresh((k) => k + 1);
+          }}
+        />
+      )}
     </section>
   );
 }
