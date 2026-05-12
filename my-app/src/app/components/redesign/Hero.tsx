@@ -1,20 +1,37 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { Identity, HeroCopy } from "../../i18n/portfolio.types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+import { useTranslation } from "../../i18n/client";
 
 interface Tilt {
   x: number;
   y: number;
 }
 
-export interface HeroProps {
+interface HeroSectionProps {
   data: Pick<Identity, "statusLine" | "location" | "timezone" | "tagline">;
   hero: HeroCopy;
   cvLink?: string;
   showStatus?: boolean;
 }
 
-export default function Hero({ data, hero, cvLink, showStatus = true }: HeroProps) {
+export default function Hero({ lang, showStatus = true }: { lang: string; showStatus?: boolean }) {
+  const { data, ready } = usePortfolioData(lang);
+  const { t } = useTranslation(lang, "common");
+  if (!ready || !data) return null;
+  const { statusLine, location, timezone, tagline } = data.identity;
+  return (
+    <HeroSection
+      data={{ statusLine, location, timezone, tagline }}
+      hero={data.hero}
+      cvLink={t("CV")}
+      showStatus={showStatus}
+    />
+  );
+}
+
+function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps) {
   const [tilt, setTilt] = useState<Tilt>({ x: -22, y: 28 });
   const [time, setTime] = useState<Date>(() => new Date());
   const wrapRef = useRef<HTMLDivElement>(null);

@@ -1,23 +1,33 @@
 "use client";
 
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+import { useTranslation } from "../../i18n/client";
+
 export interface FooterLink {
   label: string;
   href: string;
   external?: boolean;
 }
 
-export interface FooterProps {
-  links?: readonly FooterLink[];
-}
-
-const DEFAULT_LINKS: readonly FooterLink[] = [
+const GITHUB_URL = "https://github.com/Pelucheado";
+const FALLBACK_LINKS: readonly FooterLink[] = [
   { label: "GitHub", href: "#" },
   { label: "LinkedIn", href: "#" },
   { label: "Email", href: "#" },
   { label: "CV", href: "#" },
 ];
 
-export default function Footer({ links = DEFAULT_LINKS }: FooterProps) {
+export default function Footer({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  const { t } = useTranslation(lang, "common");
+  const links: readonly FooterLink[] = !ready || !data
+    ? FALLBACK_LINKS
+    : [
+        { label: "GitHub", href: GITHUB_URL, external: true },
+        { label: "LinkedIn", href: `https://${data.identity.linkedin}`, external: true },
+        { label: "Email", href: `mailto:${data.identity.email}` },
+        { label: "CV", href: t("CV"), external: true },
+      ];
   return (
     <footer className="px-[clamp(20px,5vw,96px)] py-14 border-t border-line flex flex-col gap-8">
       <div className="flex flex-wrap justify-between items-end gap-6">

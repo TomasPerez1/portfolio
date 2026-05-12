@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTheme } from "../../theme/useTheme";
+import LangSwitch from "./LangSwitch";
 
 export type NavTheme = "dark" | "light";
 
-export interface NavProps {
-  theme?: NavTheme;
-  onToggleTheme?: () => void;
+interface NavChromeProps {
+  theme: NavTheme;
+  onToggleTheme: () => void;
   links?: ReadonlyArray<readonly [string, string]>;
   langSwitch?: React.ReactNode;
 }
@@ -18,7 +20,18 @@ const DEFAULT_LINKS: ReadonlyArray<readonly [string, string]> = [
   ["Contact", "#contact"],
 ];
 
-export default function Nav({ theme = "dark", onToggleTheme, links = DEFAULT_LINKS, langSwitch }: NavProps) {
+export default function Nav({ lang }: { lang: string }) {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <NavChrome
+      theme={theme}
+      onToggleTheme={toggleTheme}
+      langSwitch={<LangSwitch lang={lang} />}
+    />
+  );
+}
+
+function NavChrome({ theme, onToggleTheme, links = DEFAULT_LINKS, langSwitch }: NavChromeProps) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 24);

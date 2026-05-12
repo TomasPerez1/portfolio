@@ -2,6 +2,13 @@
 import { useState } from "react";
 import { SectionHeader } from "./FeaturedWork";
 import type { ExperienceEntry } from "../../i18n/portfolio.types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+
+export default function Experience({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  if (!ready || !data) return null;
+  return <ExperienceSection items={data.experience} />;
+}
 
 function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
   const [open, setOpen] = useState(false);
@@ -50,11 +57,11 @@ function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
   );
 }
 
-export interface ExperienceProps {
+interface ExperienceSectionProps {
   items: readonly ExperienceEntry[];
 }
 
-export default function Experience({ items }: ExperienceProps) {
+function ExperienceSection({ items }: ExperienceSectionProps) {
   return (
     <section id="experience" data-screen-label="05 Experience" className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]">
       <SectionHeader

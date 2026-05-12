@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
 import type { FeaturedProject } from "../../i18n/portfolio.types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+
+export default function FeaturedWork({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  if (!ready || !data) return null;
+  return <FeaturedWorkSection items={data.featured} />;
+}
 
 const TICKER_ITEMS = [
   "React", "Next.js", "TypeScript", "Tailwind", "Node.js", "NestJS", "Express",
@@ -110,11 +117,11 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
   );
 }
 
-export interface FeaturedWorkProps {
+interface FeaturedWorkSectionProps {
   items: readonly FeaturedProject[];
 }
 
-export default function FeaturedWork({ items }: FeaturedWorkProps) {
+function FeaturedWorkSection({ items }: FeaturedWorkSectionProps) {
   return (
     <section id="work" data-screen-label="02 Selected Work" className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]">
       <SectionHeader

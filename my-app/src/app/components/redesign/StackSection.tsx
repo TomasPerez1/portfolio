@@ -1,12 +1,19 @@
 "use client";
 import { SectionHeader } from "./FeaturedWork";
 import type { StackCategories } from "../../i18n/portfolio.types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
 
-export interface StackSectionProps {
+export default function StackSection({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  if (!ready || !data) return null;
+  return <StackSectionInner stack={data.stack} />;
+}
+
+interface StackSectionInnerProps {
   stack: StackCategories;
 }
 
-export default function StackSection({ stack }: StackSectionProps) {
+function StackSectionInner({ stack }: StackSectionInnerProps) {
   return (
     <section
       id="stack"

@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
 import type { GridProject } from "../../i18n/portfolio.types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+
+export default function ProjectsGrid({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  if (!ready || !data) return null;
+  return <ProjectsGridSection items={data.projects} />;
+}
 
 function SmallCard({ p }: { p: GridProject }) {
   const [hover, setHover] = useState(false);
@@ -35,11 +42,11 @@ function SmallCard({ p }: { p: GridProject }) {
   );
 }
 
-export interface ProjectsGridProps {
+interface ProjectsGridSectionProps {
   items: readonly GridProject[];
 }
 
-export default function ProjectsGrid({ items }: ProjectsGridProps) {
+function ProjectsGridSection({ items }: ProjectsGridSectionProps) {
   return (
     <section data-screen-label="03 More projects" className="px-[clamp(20px,5vw,96px)] pb-[clamp(72px,10vw,140px)]">
       <div className="flex flex-wrap items-baseline justify-between gap-3 mb-9">

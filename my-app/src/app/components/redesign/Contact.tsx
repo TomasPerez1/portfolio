@@ -6,6 +6,13 @@ import CalendarWidget from "./CalendarWidget";
 import BookingModal from "./BookingModal";
 import type { Identity } from "../../i18n/portfolio.types";
 import type { Slot } from "../../api/calendar/_lib/types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+
+export default function Contact({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  if (!ready || !data) return null;
+  return <ContactSection identity={data.identity} />;
+}
 
 interface FieldProps {
   label: string;
@@ -73,11 +80,11 @@ function ContactRow({ icon, label, action, onAction }: ContactRowProps) {
   );
 }
 
-export interface ContactProps {
+interface ContactSectionProps {
   identity: Pick<Identity, "email" | "phone" | "location" | "timezone">;
 }
 
-export default function Contact({ identity }: ContactProps) {
+function ContactSection({ identity }: ContactSectionProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");

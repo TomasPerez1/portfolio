@@ -1,6 +1,13 @@
 "use client";
 import { SectionHeader } from "./FeaturedWork";
 import type { Identity } from "../../i18n/portfolio.types";
+import { usePortfolioData } from "../../i18n/usePortfolioData";
+
+export default function About({ lang }: { lang: string }) {
+  const { data, ready } = usePortfolioData(lang);
+  if (!ready || !data) return null;
+  return <AboutSection identity={data.identity} />;
+}
 
 function Stat({ n, l }: { n: string; l: string }) {
   return (
@@ -11,11 +18,11 @@ function Stat({ n, l }: { n: string; l: string }) {
   );
 }
 
-export interface AboutProps {
+interface AboutSectionProps {
   identity: Identity;
 }
 
-export default function About({ identity }: AboutProps) {
+function AboutSection({ identity }: AboutSectionProps) {
   return (
     <section
       id="about"
