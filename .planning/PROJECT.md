@@ -112,6 +112,7 @@ Visual redesign v2.0.0 merging the Claude Design system into the existing Next.j
 | D-14 | Theme persistence: localStorage override + `prefers-color-scheme` as first-visit default. Inline `<script>` in `<head>` resolves before hydration (FART fix). Resolves OQ-2. | locked | Respects OS preference on first visit; explicit user toggle overrides and persists. Avoids theme flash via pre-hydration script. |
 | D-15 | Calendar = real Google Calendar via service account (NOT Calendly embed, NOT static slots). Server-only credentials; visitor flow: pick slot → book → Google sends invite to both parties. | locked | "Homemade Calendly" — full design control, real availability sync, real event creation in owner's calendar. |
 | D-16 | Timezone `America/Argentina/Buenos_Aires`. Working hours Mon-Fri 10:00-18:00. Slot duration 30min, buffer 15min between meetings. All env-configurable. | locked | Reflects owner's reality; env vars allow future change (relocation, schedule shift) without code edits. |
+| D-17 | Playwright E2E suite deferred to post-v2.0.0 (resolves OQ-5). | locked | Testing calendar flow requires test credentials in CI or Google API mocks — disproportionate ops cost for single-developer portfolio. Manual smoke tests sufficient through v2.0.0. Revisit in v2.1. |
 
 </decisions>
 
