@@ -14,8 +14,33 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Tomas Perez Portfolio",
-  description: "My web developer portfolio, make some noise!",
+  title: "Tomás Pérez — Full-stack Developer",
+  description:
+    "3+ years building enterprise platforms with Node.js, React, Next.js and TypeScript. Backend-oriented full-stack developer based in Buenos Aires, Argentina.",
+  keywords: [
+    "full-stack developer",
+    "node.js",
+    "react",
+    "nextjs",
+    "typescript",
+    "nestjs",
+    "backend",
+    "argentina",
+    "buenos aires",
+  ],
+  authors: [{ name: "Tomás Pérez" }],
+  openGraph: {
+    title: "Tomás Pérez — Full-stack Developer",
+    description: "Portfolio · Full-stack engineer · Buenos Aires, Argentina",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["es_AR"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tomás Pérez — Full-stack Developer",
+    description: "Portfolio · Full-stack engineer · Buenos Aires, Argentina",
+  },
 };
 
 export default async function RootLayout({
