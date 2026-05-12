@@ -123,6 +123,7 @@ export interface PortfolioData {
   hero: HeroCopy;
   sections: SectionLabels;
   sectionHeaders: SectionHeaders;
+  featuredViewLabel: string;
   featured: readonly FeaturedProject[];
   projects: readonly GridProject[];
   stack: StackCategories;

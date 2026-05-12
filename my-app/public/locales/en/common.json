@@ -86,10 +86,11 @@
     "featured": {
       "index": "§ 02",
       "kicker": "Selected Work",
-      "title": "Things I've shipped recently.",
-      "hint": "Three featured projects with the impact, role and stack laid out — pick any to see the case study."
+      "title": "Things I've built recently.",
+      "hint": "Three featured projects with the impact, role and stack laid out."
     }
   },
+  "featuredViewLabel": "Go to site",
   "featured": [
     {
       "id": "zurich-santander",
@@ -98,12 +99,11 @@
       "kicker": "Enterprise insurance platforms",
       "year": "2025 — Present",
       "role": "Full-stack (Backend-oriented)",
-      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL", "Gluon"],
-      "blurb": "Building and modernising internal enterprise platforms for the insurance sector — focused on legacy modernisation, performance and shipping business-critical features.",
+      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL", "React", "Jest"],
+      "blurb": "Building and modernising internal enterprise platforms for the insurance sector, focused on legacy modernisation, performance and shipping business-critical features.",
       "metrics": [
-        ["Vulnerabilities fixed", "44 in 3 days"],
-        ["PDF reports speed-up", "−50%"],
-        ["Hours saved vs. quote", "700+"]
+        ["Vulnerabilities fixed", "44 in 2 days"],
+        ["PDF reports speed-up", "−50%"]
       ],
       "image": "assets/projects-current.jpg",
       "link": "#"
@@ -114,8 +114,8 @@
       "title": "DJ Presskit",
       "kicker": "SaaS · Official SoundCloud Partner",
       "year": "2025 — Present",
-      "role": "Co-founder · Full-stack",
-      "stack": ["Next.js", "React", "TypeScript", "Tailwind", "Multitenant", "SoundCloud API"],
+      "role": "Co-developer · Full-stack",
+      "stack": ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Supabase", "NestJS", "Multitenant", "SoundCloud API"],
       "blurb": "SaaS that generates professional digital press-kit sites for DJs and music producers. Custom subdomains, real-time dashboard, exclusive design \"capsules\" limited to 25 DJs per edition.",
       "metrics": [
         ["Active artists", "60+"],
@@ -133,7 +133,7 @@
       "year": "2025",
       "role": "Frontend Developer",
       "stack": ["Next.js", "Framer Motion", "Tailwind", "Cloudflare", "WhatsApp API"],
-      "blurb": "Landing for an Apple retailer in Bariloche, AR — animated hero video, product showcases, infinite logo carousels and CTAs wired to WhatsApp. Optimised for SEO and mobile.",
+      "blurb": "Landing for an Apple retailer in Bariloche, AR. Animated Hero section video, product showcases, infinite logo carousels and CTAs wired to WhatsApp. Optimised for SEO and mobile.",
       "metrics": [
         ["Views in 90 days", "13K+"],
         ["Delivery", "< 4 weeks"],
@@ -149,7 +149,7 @@
       "n": "04",
       "title": "Tienda Lo Quiero Acá",
       "kicker": "Backend · Hexagonal architecture",
-      "stack": ["NestJS", "TypeScript", "Redis", "Hexagonal", "SOLID"],
+      "stack": ["NestJS", "TypeScript", "Redis", "MySQL", "AWS", "Hexagonal", "Kubernetes", "SOLID"],
       "year": "2026 — Present"
     },
     {
@@ -157,7 +157,7 @@
       "n": "05",
       "title": "Property Scraper",
       "kicker": "Real-estate data extraction",
-      "stack": ["Node.js", "Puppeteer", "PDF gen"],
+      "stack": ["Node.js", "Python", "PDF Generation", "Puppeteer", "React"],
       "year": "2024"
     },
     {
@@ -165,7 +165,7 @@
       "n": "06",
       "title": "Hydrotek Store",
       "kicker": "E-commerce · First production deploy",
-      "stack": ["NestJS", "TypeScript", "Prisma"],
+      "stack": ["React", "Tailwind", "NestJS", "TypeScript", "Prisma"],
       "year": "2024"
     },
     {

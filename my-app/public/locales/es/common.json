@@ -86,10 +86,11 @@
     "featured": {
       "index": "§ 02",
       "kicker": "Trabajos destacados",
-      "title": "Cosas que entregué recientemente.",
-      "hint": "Tres proyectos destacados con el impacto, rol y stack — elegí cualquiera para ver el case study."
+      "title": "Cosas que construí recientemente.",
+      "hint": "Tres proyectos destacados con el impacto, rol y stack."
     }
   },
+  "featuredViewLabel": "Ir al sitio",
   "featured": [
     {
       "id": "zurich-santander",
@@ -98,15 +99,14 @@
       "kicker": "Plataformas enterprise de seguros",
       "year": "2025 — Presente",
       "role": "Full-stack (orientado a Backend)",
-      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL"],
-      "blurb": "Construyendo y modernizando plataformas enterprise internas para el sector seguros — foco en modernización de legacy, performance y entrega de features críticas para el negocio.",
+      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL", "React", "Jest"],
+      "blurb": "Construyendo y modernizando plataformas enterprise internas para el sector seguros, foco en modernización de legacy, performance y entrega de features críticas para el negocio.",
       "metrics": [
-        ["Vulnerabilidades corregidas", "44 en 3 días"],
-        ["Mejora en reportes PDF", "−50%"],
-        ["Horas ahorradas vs. cotización", "700+"]
+        ["Vulnerabilidades corregidas", "44 en 2 días"],
+        ["Mejora en reportes PDF", "−50%"]
       ],
       "image": "assets/projects-current.jpg",
-      "link": "#"
+      "link": "https://www.zurich-santander.com.ar/zurich/nosotros"
     },
     {
       "id": "dj-presskit",
@@ -114,8 +114,8 @@
       "title": "DJ Presskit",
       "kicker": "SaaS · Partner Oficial de SoundCloud",
       "year": "2025 — Presente",
-      "role": "Co-fundador · Full-stack",
-      "stack": ["Next.js", "React", "TypeScript", "Tailwind", "Multitenant", "SoundCloud API"],
+      "role": "Co-desarrollador · Full-stack",
+      "stack": ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Supabase", "NestJS", "Multitenant", "SoundCloud API"],
       "blurb": "SaaS que genera sitios profesionales de press-kit digital para DJs y productores musicales. Subdominios personalizados, dashboard en tiempo real y \"cápsulas\" de diseño exclusivas limitadas a 25 DJs por edición.",
       "metrics": [
         ["Artistas activos", "60+"],
@@ -133,7 +133,7 @@
       "year": "2025",
       "role": "Frontend Developer",
       "stack": ["Next.js", "Framer Motion", "Tailwind", "Cloudflare", "WhatsApp API"],
-      "blurb": "Landing para un retailer de Apple en Bariloche, AR — hero con video animado, showcases de productos, carruseles infinitos de logos y CTAs conectados a WhatsApp. Optimizado para SEO y mobile.",
+      "blurb": "Landing para un retailer de Apple en Bariloche, AR. Hero section con video animado, showcases de productos, carruseles infinitos de logos y CTAs conectados a WhatsApp. Optimizado para SEO y mobile.",
       "metrics": [
         ["Vistas en 90 días", "13K+"],
         ["Entrega", "< 4 semanas"],
@@ -149,31 +149,31 @@
       "n": "04",
       "title": "Tienda Lo Quiero Acá",
       "kicker": "Backend · Arquitectura hexagonal",
-      "stack": ["NestJS", "TypeScript", "Redis", "Hexagonal", "SOLID"],
+      "stack": ["NestJS", "TypeScript", "Redis", "MySQL", "AWS", "Hexagonal", "Kubernetes", "SOLID"],
       "year": "2026 — Presente"
     },
     {
       "id": "property-scraper",
       "n": "05",
       "title": "Property Scraper",
-      "kicker": "Extracción de datos inmobiliarios",
-      "stack": ["Node.js", "Puppeteer", "PDF gen"],
+      "kicker": "Scraping de datos inmobiliarios",
+      "stack": ["Node.js", "Python", "PDF Generation", "Puppeteer", "React"],
       "year": "2024"
     },
     {
       "id": "hydrotek",
       "n": "06",
       "title": "Hydrotek Store",
-      "kicker": "E-commerce · Primer deploy en producción",
-      "stack": ["NestJS", "TypeScript", "Prisma"],
+      "kicker": "E-commerce",
+      "stack": ["React", "Tailwind", "NestJS", "TypeScript", "Prisma"],
       "year": "2024"
     },
     {
       "id": "spotsline",
       "n": "07",
       "title": "Spotsline Web",
-      "kicker": "E-commerce industrial + stock",
-      "stack": ["React", "Framer Motion", "SQL Server"],
+      "kicker": "E-commerce industrial + gestión de stock",
+      "stack": ["React", "NestJS", "Framer Motion", "SQL Server"],
       "year": "2023 — 2024"
     },
     {
@@ -181,14 +181,14 @@
       "n": "08",
       "title": "Myfotolibro Web",
       "kicker": "Subida y compresión de fotolibros",
-      "stack": ["Node.js", "Cloudinary"],
+      "stack": ["Express.js", "React", "Cloudinary"],
       "year": "2023"
     },
     {
       "id": "properties-you",
       "n": "09",
       "title": "Properties && You",
-      "kicker": "Marketplace inmobiliario · Bootcamp",
+      "kicker": "Marketplace inmobiliario · Proyecto Bootcamp",
       "stack": ["PERN", "Tailwind", "Firebase", "Mercado Pago"],
       "year": "2022"
     }

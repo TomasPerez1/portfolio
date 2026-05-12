@@ -8,7 +8,7 @@ import { usePortfolioData } from "../i18n/usePortfolioData";
 export default function FeaturedWork({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);
   if (!ready || !data) return null;
-  return <FeaturedWorkSection items={data.featured} header={data.sectionHeaders.featured} />;
+  return <FeaturedWorkSection items={data.featured} header={data.sectionHeaders.featured} viewLabel={data.featuredViewLabel} />;
 }
 
 const TICKER_ITEMS = [
@@ -56,7 +56,7 @@ export function SectionHeader({ index, kicker, title, hint }: SectionHeaderProps
   );
 }
 
-export function FeaturedCard({ p }: { p: FeaturedProject }) {
+export function FeaturedCard({ p, viewLabel = "View case study" }: { p: FeaturedProject; viewLabel?: string }) {
   const [hover, setHover] = useState(false);
   return (
     <a
@@ -112,7 +112,7 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
         <div className="flex items-center justify-between mt-1.5">
           <span className="font-mono text-xs text-fg-soft">{p.role}</span>
           <span className={`inline-flex items-center gap-2 font-mono text-xs transition-colors ${hover ? "text-spark" : "text-fg"}`}>
-            View case study
+            {viewLabel}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
                  className={`transition-transform duration-200 ${hover ? "translate-x-[3px] -translate-y-[3px]" : ""}`}>
               <path d="M7 17L17 7M7 7h10v10" />
@@ -127,9 +127,10 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
 interface FeaturedWorkSectionProps {
   items: readonly FeaturedProject[];
   header: SectionHeaderCopy;
+  viewLabel: string;
 }
 
-function FeaturedWorkSection({ items, header }: FeaturedWorkSectionProps) {
+function FeaturedWorkSection({ items, header, viewLabel }: FeaturedWorkSectionProps) {
   const reduce = useReducedMotion();
   return (
     <motion.section
@@ -148,7 +149,7 @@ function FeaturedWorkSection({ items, header }: FeaturedWorkSectionProps) {
         hint={header.hint}
       />
       <div className="flex flex-col gap-[clamp(18px,2.5vw,28px)]">
-        {items.map((p) => <FeaturedCard key={p.id} p={p} />)}
+        {items.map((p) => <FeaturedCard key={p.id} p={p} viewLabel={viewLabel} />)}
       </div>
     </motion.section>
   );
