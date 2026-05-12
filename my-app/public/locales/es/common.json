@@ -82,6 +82,14 @@
     "about": "Sobre mí",
     "contact": "Contacto"
   },
+  "sectionHeaders": {
+    "featured": {
+      "index": "§ 02",
+      "kicker": "Trabajos destacados",
+      "title": "Cosas que entregué recientemente.",
+      "hint": "Tres proyectos destacados con el impacto, rol y stack — elegí cualquiera para ver el case study."
+    }
+  },
   "featured": [
     {
       "id": "zurich-santander",
@@ -90,7 +98,7 @@
       "kicker": "Plataformas enterprise de seguros",
       "year": "2025 — Presente",
       "role": "Full-stack (orientado a Backend)",
-      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL", "Gluon"],
+      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL"],
       "blurb": "Construyendo y modernizando plataformas enterprise internas para el sector seguros — foco en modernización de legacy, performance y entrega de features críticas para el negocio.",
       "metrics": [
         ["Vulnerabilidades corregidas", "44 en 3 días"],

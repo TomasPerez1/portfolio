@@ -82,6 +82,14 @@
     "about": "About",
     "contact": "Contact"
   },
+  "sectionHeaders": {
+    "featured": {
+      "index": "§ 02",
+      "kicker": "Selected Work",
+      "title": "Things I've shipped recently.",
+      "hint": "Three featured projects with the impact, role and stack laid out — pick any to see the case study."
+    }
+  },
   "featured": [
     {
       "id": "zurich-santander",

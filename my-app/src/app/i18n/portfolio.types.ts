@@ -47,6 +47,17 @@ export interface SectionLabels {
   contact: string;
 }
 
+export interface SectionHeaderCopy {
+  index: string;
+  kicker: string;
+  title: string;
+  hint?: string;
+}
+
+export interface SectionHeaders {
+  featured: SectionHeaderCopy;
+}
+
 export interface FeaturedProject {
   id: string;
   n: string;
@@ -111,6 +122,7 @@ export interface PortfolioData {
   identity: Identity;
   hero: HeroCopy;
   sections: SectionLabels;
+  sectionHeaders: SectionHeaders;
   featured: readonly FeaturedProject[];
   projects: readonly GridProject[];
   stack: StackCategories;

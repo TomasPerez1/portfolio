@@ -2,19 +2,19 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
-import type { FeaturedProject } from "../i18n/portfolio.types";
+import type { FeaturedProject, SectionHeaderCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function FeaturedWork({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);
   if (!ready || !data) return null;
-  return <FeaturedWorkSection items={data.featured} />;
+  return <FeaturedWorkSection items={data.featured} header={data.sectionHeaders.featured} />;
 }
 
 const TICKER_ITEMS = [
-  "React", "Next.js", "TypeScript", "Tailwind", "Node.js", "NestJS", "Express",
-  "PostgreSQL", "MySQL", "Prisma", "Sequelize", "Docker", "GitHub Actions",
-  "Auth0", "Three.js", "Redis",
+  "React", "Next.js", "Node.js", "NestJS", "TypeScript", "Tailwind CSS", "Express",
+  "PostgreSQL", "MySQL", "Prisma", "Sequelize", "Docker", "GitHub Actions", "AWS", "Prisma",
+  "Auth0", "Redis", "Claude Code", "OpenShift", "Oracle SQL"
 ];
 
 export function StackTicker() {
@@ -121,9 +121,10 @@ export function FeaturedCard({ p }: { p: FeaturedProject }) {
 
 interface FeaturedWorkSectionProps {
   items: readonly FeaturedProject[];
+  header: SectionHeaderCopy;
 }
 
-function FeaturedWorkSection({ items }: FeaturedWorkSectionProps) {
+function FeaturedWorkSection({ items, header }: FeaturedWorkSectionProps) {
   const reduce = useReducedMotion();
   return (
     <motion.section
@@ -136,10 +137,10 @@ function FeaturedWorkSection({ items }: FeaturedWorkSectionProps) {
       viewport={{ once: true, amount: 0.15 }}
     >
       <SectionHeader
-        index="§ 02"
-        kicker="Selected Work"
-        title="Things I've shipped recently."
-        hint="Three featured projects with the impact, role and stack laid out — pick any to see the case study."
+        index={header.index}
+        kicker={header.kicker}
+        title={header.title}
+        hint={header.hint}
       />
       <div className="flex flex-col gap-[clamp(18px,2.5vw,28px)]">
         {items.map((p) => <FeaturedCard key={p.id} p={p} />)}
