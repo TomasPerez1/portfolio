@@ -1,7 +1,7 @@
 "use client";
 
-import { usePortfolioData } from "../../i18n/usePortfolioData";
-import { useTranslation } from "../../i18n/client";
+import { usePortfolioData } from "../i18n/usePortfolioData";
+import { useTranslation } from "../i18n/client";
 
 export interface FooterLink {
   label: string;

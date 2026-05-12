@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import type { GridProject } from "../../i18n/portfolio.types";
-import { usePortfolioData } from "../../i18n/usePortfolioData";
+import type { GridProject } from "../i18n/portfolio.types";
+import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function ProjectsGrid({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);

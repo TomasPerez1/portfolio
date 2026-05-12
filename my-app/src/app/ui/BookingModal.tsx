@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import type { Slot } from "../../api/calendar/_lib/types";
+import type { Slot } from "../api/calendar/_lib/types";
 
 export interface BookingModalProps {
   slot: Slot;

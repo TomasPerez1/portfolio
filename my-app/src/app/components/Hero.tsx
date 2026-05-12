@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { Identity, HeroCopy } from "../../i18n/portfolio.types";
-import { usePortfolioData } from "../../i18n/usePortfolioData";
-import { useTranslation } from "../../i18n/client";
+import type { Identity, HeroCopy } from "../i18n/portfolio.types";
+import { usePortfolioData } from "../i18n/usePortfolioData";
+import { useTranslation } from "../i18n/client";
 
 interface Tilt {
   x: number;

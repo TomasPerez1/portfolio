@@ -1,7 +1,7 @@
 "use client";
 import { SectionHeader } from "./FeaturedWork";
-import type { Identity } from "../../i18n/portfolio.types";
-import { usePortfolioData } from "../../i18n/usePortfolioData";
+import type { Identity } from "../i18n/portfolio.types";
+import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function About({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);

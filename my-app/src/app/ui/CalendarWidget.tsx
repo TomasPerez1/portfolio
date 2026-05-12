@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { Slot } from "../../api/calendar/_lib/types";
+import type { Slot } from "../api/calendar/_lib/types";
 
 export interface CalendarWidgetProps {
   onSlotClick: (slot: Slot) => void;

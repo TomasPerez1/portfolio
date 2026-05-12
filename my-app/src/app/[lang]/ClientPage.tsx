@@ -2,15 +2,15 @@
 
 import LangLoader from "../ui/LangLoader";
 import { useTranslation } from "../i18n/client";
-import Nav from "../components/redesign/Nav";
-import Hero from "../components/redesign/Hero";
-import FeaturedWork, { StackTicker } from "../components/redesign/FeaturedWork";
-import ProjectsGrid from "../components/redesign/ProjectsGrid";
-import StackSection from "../components/redesign/StackSection";
-import Experience from "../components/redesign/Experience";
-import About from "../components/redesign/About";
-import Contact from "../components/redesign/Contact";
-import Footer from "../components/redesign/Footer";
+import Nav from "../components/Nav";
+import Hero from "../components/Hero";
+import FeaturedWork, { StackTicker } from "../components/FeaturedWork";
+import ProjectsGrid from "../components/ProjectsGrid";
+import StackSection from "../components/StackSection";
+import Experience from "../components/Experience";
+import About from "../components/About";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 
 interface ClientPageProps {
   lang?: string;

@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { SectionHeader } from "./FeaturedWork";
-import CalendarWidget from "./CalendarWidget";
-import BookingModal from "./BookingModal";
-import type { Identity } from "../../i18n/portfolio.types";
-import type { Slot } from "../../api/calendar/_lib/types";
-import { usePortfolioData } from "../../i18n/usePortfolioData";
+import CalendarWidget from "../ui/CalendarWidget";
+import BookingModal from "../ui/BookingModal";
+import type { Identity } from "../i18n/portfolio.types";
+import type { Slot } from "../api/calendar/_lib/types";
+import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function Contact({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);

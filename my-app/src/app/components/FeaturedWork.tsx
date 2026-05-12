@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import type { FeaturedProject } from "../../i18n/portfolio.types";
-import { usePortfolioData } from "../../i18n/usePortfolioData";
+import type { FeaturedProject } from "../i18n/portfolio.types";
+import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function FeaturedWork({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);

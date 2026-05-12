@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useTheme } from "../../theme/useTheme";
-import LangSwitch from "./LangSwitch";
+import { useTheme } from "../theme/useTheme";
+import LangSwitch from "../ui/LangSwitch";
 
 export type NavTheme = "dark" | "light";
 
