@@ -110,6 +110,8 @@ Visual redesign v2.0.0 merging the Claude Design system into the existing Next.j
 | D-12 | Fonts: Bricolage Grotesque + Geist + JetBrains Mono via `next/font` (self-hosted) | locked | Avoid Google Fonts CDN cost on prod; better LCP |
 | D-13 | Phase 4 redesign components live in flat `my-app/src/app/components/redesign/*.tsx` (resolves OQ-1) | locked | Clear v1/v2 separation during transition; 1:1 map to source files in `.claude_design/export/components/`; legacy `(sections)/landing/*` stays until later phases wire redesign into the page |
 | D-14 | Theme persistence: localStorage override + `prefers-color-scheme` as first-visit default. Inline `<script>` in `<head>` resolves before hydration (FART fix). Resolves OQ-2. | locked | Respects OS preference on first visit; explicit user toggle overrides and persists. Avoids theme flash via pre-hydration script. |
+| D-15 | Calendar = real Google Calendar via service account (NOT Calendly embed, NOT static slots). Server-only credentials; visitor flow: pick slot → book → Google sends invite to both parties. | locked | "Homemade Calendly" — full design control, real availability sync, real event creation in owner's calendar. |
+| D-16 | Timezone `America/Argentina/Buenos_Aires`. Working hours Mon-Fri 10:00-18:00. Slot duration 30min, buffer 15min between meetings. All env-configurable. | locked | Reflects owner's reality; env vars allow future change (relocation, schedule shift) without code edits. |
 
 </decisions>
 
