@@ -13,26 +13,19 @@
   "dependencies": {
     "@heroui/react": "^2.8.10",
     "@next/eslint-plugin-next": "^14.2.16",
-    "@remixicon/react": "^4.5.0",
     "@types/react-dom": "^19.2.3",
     "@vercel/speed-insights": "^1.1.0",
-    "axios": "^1.7.9",
-    "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "geist": "^1.7.0",
     "googleapis": "^171.4.0",
     "i18next": "^24.2.3",
     "i18next-resources-to-backend": "^1.2.1",
-    "mini-svg-data-uri": "^1.4.4",
     "next": "^16.2.6",
-    "next-i18next": "^15.4.2",
     "nodemailer": "^6.9.16",
     "react": "^19.2.6",
-    "react-calendly": "^4.3.1",
     "react-dom": "^19.2.6",
     "react-i18next": "^15.4.1",
-    "sonner": "^1.7.1",
-    "tailwind-merge": "^2.5.5"
+    "sonner": "^1.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
