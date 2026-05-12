@@ -44,8 +44,8 @@
     "site": "tomasperezdev.space",
     "statusLine": "Disponible para roles orientados a producto, freelance y colaboraciones con propósito.",
     "tagline": "Creando software que resuelve problemas reales, no solo técnicos.",
-    "tagHighlight": "Más de 3 años construyendo con Node.js, React, Next.js, Tailwind CSS, NestJS, TypeScript y SQL como stack",
-    "tagTrailing": "Actualmente desarrollando plataformas enterprise en Zurich/Santander y un SaaS con partnership de SoundCloud.",
+    "tagHighlight": "Más de 3 años construyendo con Node.js, React, Next.js, Tailwind CSS, NestJS, TypeScript y SQL como stack.",
+    "tagTrailing": "Actualmente desarrollando plataformas enterprise en Zurich/Santander y proyectos freelance incluyendo un SaaS de DJS con partnership oficial de SoundCloud.",
     "longBio": [
       "Más de 3 años construyendo y desplegando apps web con Node.js, React, Next.js y TypeScript. Ownership end-to-end — desde la arquitectura y la comunicación con el cliente hasta el deploy y la entrega final.",
       "Actualmente desarrollando plataformas enterprise para el sector seguros en Zurich/Santander, sin dejar la práctica freelance — incluyendo un SaaS con partnership oficial de SoundCloud.",
@@ -62,7 +62,17 @@
   "hero": {
     "ctaPrimary": "Ver trabajos destacados",
     "ctaSecondary": "Contactame",
-    "ctaTertiary": "Descargar CV"
+    "ctaTertiary": "Descargar CV",
+    "facts": {
+      "role": { "label": "Rol", "value": "Desarrollador Full-stack" },
+      "based": { "label": "Ubicación", "value": "CABA, Buenos Aires" },
+      "english": {
+        "label": "Inglés",
+        "value": "B2 — Upper Intermediate",
+        "certificateUrl": "https://cert.efset.org/frCgKc",
+        "certificateLabel": "Certificado"
+      }
+    }
   },
   "sections": {
     "featured": "Trabajos destacados",

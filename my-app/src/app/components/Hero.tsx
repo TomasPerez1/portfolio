@@ -116,14 +116,14 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
 
       <div className="relative z-[2]">
         {showStatus && (
-          <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px]">
-            <span className="badge flex-1 min-w-[260px] max-w-[420px] !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)] shrink-0" />
+          <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px] border-2">
+            <span className="badge flex-1 min-w-[260px] max-w-full !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
+              <span className="animate-pulse w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)] shrink-0" />
               <span className="flex-1">{data.statusLine}</span>
             </span>
-            <span className="badge font-mono flex-1 min-w-[260px] max-w-[420px] py-2 justify-center text-center">
+            {/* <span className="badge text-[13.5px] font-mono flex-1 min-w-[260px] max-w-[420px] py-2 justify-center text-center">
               {data.location} · {ar} {data.timezone}
-            </span>
+            </span> */}
           </div>
         )}
 
@@ -187,10 +187,27 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
         <div className="mt-[clamp(56px,8vw,110px)] flex flex-wrap gap-8 items-end justify-between
                         pb-7 border-b border-line">
           <div className="flex flex-wrap gap-7">
-            <KV k="Role" v="Full-stack Developer" />
-            <KV k="Available" v="Apr 2026" />
-            <KV k="Based" v="CABA, Buenos Aires" />
-            <KV k="English" v="B2 — Upper Intermediate" />
+            <KV k={hero.facts.role.label} v={hero.facts.role.value} />
+            <KV k={hero.facts.based.label} v={hero.facts.based.value} />
+            <a
+              href={hero.facts.english.certificateUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${hero.facts.english.label} — ${hero.facts.english.certificateLabel}`}
+              className="group inline-flex flex-col gap-1 rounded-md px-2 -mx-2 py-1 -my-1
+                         transition-colors hover:bg-card-2 focus-visible:bg-card-2 outline-none"
+            >
+              <span className="eyebrow flex items-center gap-1.5 transition-colors group-hover:text-spark">
+                {hero.facts.english.label}
+                <ExternalIcon />
+              </span>
+              <span className="text-sm transition-colors group-hover:text-spark">
+                {hero.facts.english.value}
+                <span className="ml-1.5 text-[10px] font-mono uppercase tracking-[.1em] text-fg-faint group-hover:text-spark">
+                  · {hero.facts.english.certificateLabel}
+                </span>
+              </span>
+            </a>
           </div>
           <ScrollCue />
         </div>
@@ -344,6 +361,23 @@ function Arrow() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
       <path d="M5 12h14M13 5l7 7-7 7" />
+    </svg>
+  );
+}
+
+function ExternalIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="10"
+      height="10"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      className="transition-transform duration-200 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
+    >
+      <path d="M7 17L17 7M9 7h8v8" />
     </svg>
   );
 }

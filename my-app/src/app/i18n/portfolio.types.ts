@@ -15,10 +15,27 @@ export interface Identity {
   quickFacts: readonly (readonly string[])[];
 }
 
+export interface HeroFact {
+  label: string;
+  value: string;
+}
+
+export interface HeroEnglishFact extends HeroFact {
+  certificateUrl: string;
+  certificateLabel: string;
+}
+
+export interface HeroFacts {
+  role: HeroFact;
+  based: HeroFact;
+  english: HeroEnglishFact;
+}
+
 export interface HeroCopy {
   ctaPrimary: string;
   ctaSecondary: string;
   ctaTertiary: string;
+  facts: HeroFacts;
 }
 
 export interface SectionLabels {

@@ -62,7 +62,17 @@
   "hero": {
     "ctaPrimary": "See selected work",
     "ctaSecondary": "Get in touch",
-    "ctaTertiary": "Download CV"
+    "ctaTertiary": "Download CV",
+    "facts": {
+      "role": { "label": "Role", "value": "Full-stack Developer" },
+      "based": { "label": "Based", "value": "CABA, Buenos Aires" },
+      "english": {
+        "label": "English",
+        "value": "B2 — Upper Intermediate",
+        "certificateUrl": "https://cert.efset.org/frCgKc",
+        "certificateLabel": "Certificate"
+      }
+    }
   },
   "sections": {
     "featured": "Featured work",
