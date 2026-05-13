@@ -80,7 +80,7 @@ export function FeaturedCard({ p, viewLabel = "View case study" }: { p: Featured
         />
         <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur
                         font-mono text-[11px] tracking-[.08em] border border-white/20 text-white">
-          {p.n} · {p.year}
+          {p.year}
         </div>
         <div
           className="absolute inset-0 pointer-events-none transition-[background] duration-300"
