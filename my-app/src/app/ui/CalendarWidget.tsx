@@ -50,7 +50,6 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
 
   const cells: DayCell[] = useMemo(() => buildMonthCells(cursor, slots ?? []), [cursor, slots]);
   const monthLabel = `${MONTH_LABELS[cursor.getMonth()]} ${cursor.getFullYear()}`;
-  const totalAvailable = (slots ?? []).length;
 
   const loading = slots === null;
 
