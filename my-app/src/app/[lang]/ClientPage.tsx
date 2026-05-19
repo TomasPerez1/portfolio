@@ -24,11 +24,11 @@ function ClientPage({ lang = "en" }: ClientPageProps) {
       <Nav lang={lang} />
       <Hero lang={lang} />
       <StackTicker />
+      <About lang={lang} />
       <FeaturedWork lang={lang} />
-      <ProjectsGrid lang={lang} />
+      {/* <ProjectsGrid lang={lang} /> */}
       <StackSection lang={lang} />
       <Experience lang={lang} />
-      <About lang={lang} />
       <Contact lang={lang} />
       <Footer lang={lang} />
     </main>

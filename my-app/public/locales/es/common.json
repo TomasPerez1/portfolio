@@ -48,15 +48,15 @@
     "tagTrailing": "Actualmente desarrollando plataformas enterprise en Zurich/Santander y proyectos freelance incluyendo un SaaS de DJS con partnership oficial de SoundCloud.",
     "longBio": [
       "Más de 3 años construyendo y desplegando apps web con Node.js, React, Next.js y TypeScript. Ownership end-to-end — desde la arquitectura y la comunicación con el cliente hasta el deploy y la entrega final.",
-      "Actualmente desarrollando plataformas enterprise para el sector seguros en Zurich/Santander, sin dejar la práctica freelance — incluyendo un SaaS con partnership oficial de SoundCloud.",
+      "Actualmente desarrollando plataformas enterprise para el sector seguros en Zurich/Santander, sin dejar la práctica freelance, incluyendo un SaaS con partnership oficial de SoundCloud.",
       "Me destaco por traducir desafíos técnicos complejos en comunicación clara para stakeholders no técnicos, resolver conflictos de timeline y entregar código production-ready bajo plazos ajustados.",
       "Busco un rol orientado a producto donde pueda tomar decisiones clave y crecer técnica y profesionalmente."
     ],
     "quickFacts": [
       ["Ubicación", "CABA, Buenos Aires"],
       ["Inglés", "B2 — Upper Intermediate"],
-      ["Español", "Nativo"],
-      ["Abierto a", "Remoto · Híbrido · Relocación"]
+      ["Actualmente aprendiendo", "Spect Driven Development con AI, AWS"],
+      ["Abierto a", "Remoto · Híbrido · Freelance"]
     ]
   },
   "hero": {
@@ -88,6 +88,39 @@
       "kicker": "Trabajos destacados",
       "title": "Cosas que construí recientemente.",
       "hint": "Tres proyectos destacados con el impacto, rol y stack."
+    },
+    "projectsGrid": {
+      "screenLabel": "03 Más proyectos",
+      "title": "+ Más proyectos",
+      "metaSuffix": "más · 2022 → 2026"
+    },
+    "stack": {
+      "screenLabel": "04 Stack",
+      "index": "§ 03",
+      "kicker": "Stack",
+      "title": "Lo que uso de verdad.",
+      "hint": "Cada fila muestra qué tan profundo fui con cada tecnología."
+    },
+    "about": {
+      "index": "§ 05",
+      "kicker": "Sobre mí",
+      "title": "La persona detrás del código."
+    },
+    "experience": {
+      "screenLabel": "05 Experiencia",
+      "index": "§ 04",
+      "kicker": "Experiencia",
+      "title": "3+ años entregando.",
+      "hint": "Una línea de tiempo condensada. Roles, empresas y lo que realmente entregué.",
+      "hoverPrefix": "Pasá el mouse para expandir",
+      "highlightSingular": "destacado",
+      "highlightPlural": "destacados"
+    },
+    "contact": {
+      "screenLabel": "07 Contacto",
+      "index": "§ 06",
+      "kicker": "Contacto",
+      "title": "Construyamos algo juntos."
     }
   },
   "featuredViewLabel": "Ir al sitio",
@@ -105,7 +138,7 @@
         ["Vulnerabilidades corregidas", "44 en 2 días"],
         ["Mejora en reportes PDF", "−50%"]
       ],
-      "image": "assets/projects-current.jpg",
+      "image": "../../proyects/ZS/zs.JPG",
       "link": "https://www.zurich-santander.com.ar/zurich/nosotros"
     },
     {
@@ -122,7 +155,7 @@
         ["Cupo por edición", "25 DJs"],
         ["Partnership", "SoundCloud"]
       ],
-      "image": "assets/projects-current.jpg",
+      "image": "../../proyects/dj-presskit/dj-presskit.png",
       "link": "https://dj-presskit.com"
     },
     {
@@ -139,7 +172,7 @@
         ["Entrega", "< 4 semanas"],
         ["Mobile-first", "Sí"]
       ],
-      "image": "assets/projects-current.jpg",
+      "image": "../../proyects/iphone-brc/iphone-brc.png",
       "link": "https://ibrc.com.ar"
     }
   ],
@@ -150,7 +183,8 @@
       "title": "Tienda Lo Quiero Acá",
       "kicker": "Backend · Arquitectura hexagonal",
       "stack": ["NestJS", "TypeScript", "Redis", "MySQL", "AWS", "Hexagonal", "Kubernetes", "SOLID"],
-      "year": "2026 — Presente"
+      "year": "2026 — Presente",
+      "link": "https://www.loquieroaca.com/"
     },
     {
       "id": "property-scraper",
@@ -158,7 +192,8 @@
       "title": "Property Scraper",
       "kicker": "Scraping de datos inmobiliarios",
       "stack": ["Node.js", "Python", "PDF Generation", "Puppeteer", "React"],
-      "year": "2024"
+      "year": "2024",
+      "link": "#"
     },
     {
       "id": "hydrotek",
@@ -166,7 +201,8 @@
       "title": "Hydrotek Store",
       "kicker": "E-commerce",
       "stack": ["React", "Tailwind", "NestJS", "TypeScript", "Prisma"],
-      "year": "2024"
+      "year": "2024",
+      "link": "https://www.hydrotek.store/"
     },
     {
       "id": "spotsline",
@@ -174,7 +210,8 @@
       "title": "Spotsline Web",
       "kicker": "E-commerce industrial + gestión de stock",
       "stack": ["React", "NestJS", "Framer Motion", "SQL Server"],
-      "year": "2023 — 2024"
+      "year": "2023 — 2024",
+      "link": "https://www.spotsline.com.ar/"
     },
     {
       "id": "myfotolibro",
@@ -182,7 +219,8 @@
       "title": "Myfotolibro Web",
       "kicker": "Subida y compresión de fotolibros",
       "stack": ["Express.js", "React", "Cloudinary"],
-      "year": "2023"
+      "year": "2023",
+      "link": "https://github.com/TomasPerez1/my-fotolibro"
     },
     {
       "id": "properties-you",
@@ -190,38 +228,46 @@
       "title": "Properties && You",
       "kicker": "Marketplace inmobiliario · Proyecto Bootcamp",
       "stack": ["PERN", "Tailwind", "Firebase", "Mercado Pago"],
-      "year": "2022"
+      "year": "2022",
+      "link": "#"
     }
   ],
   "stack": {
     "Lenguajes": [
-      ["JavaScript", "Producción · 3a"],
-      ["TypeScript", "Producción · 3a"],
-      ["Python", "Conocimiento operativo"]
+      ["JavaScript", "3a"],
+      ["TypeScript", "3a"],
+      ["Python", "Side projects"]
     ],
     "Frontend": [
-      ["React", "Producción · 3a"],
-      ["Next.js", "Producción · 3a"],
-      ["Tailwind CSS", "Producción · 3a"],
-      ["Framer Motion", "Producción · 2a"],
-      ["Redux", "Producción · 2a"],
+      ["React", "3a"],
+      ["Next.js", "3a"],
+      ["Tailwind CSS", "3a"],
+      ["Framer Motion", "2a"],
+      ["Redux", "2a"],
       ["Figma", "Diario"]
     ],
     "Backend": [
-      ["Node.js", "Producción · 3a"],
-      ["NestJS", "Producción · 2a · Hexagonal · SOLID"],
-      ["Express", "Producción · 3a"],
-      ["REST APIs", "Producción · 3a"]
+      ["Node.js", "3a"],
+      ["NestJS", "2a"],
+      ["Express", "3a"],
+      ["REST APIs", "3a"]
+    ],
+    "Arquitectura y Prácticas": [
+      ["Arquitectura Hexagonal"],
+      ["Clean Architecture"],
+      ["Principios SOLID"],
+      ["Monorepo"],
+      ["Multitenant"]
     ],
     "Datos e Infra": [
-      ["PostgreSQL", "Producción · 3a"],
-      ["MySQL", "Producción · 2a"],
-      ["Oracle SQL", "Producción · 1a"],
-      ["Redis", "Producción · 1a"],
-      ["Docker", "Producción · 2a"],
-      ["OpenShift", "Producción · 1a"],
-      ["Git · GitHub · GitLab", "Diario"],
-      ["Vercel", "Producción · 2a"]
+      ["PostgreSQL", "3a"],
+      ["MySQL", "2a"],
+      ["Oracle SQL", "1a"],
+      ["Redis", "1a"],
+      ["Docker", "2a"],
+      ["OpenShift", "1a"],
+      ["Git · GitHub", "Diario"],
+      ["Vercel", "2a"]
     ],
     "Herramientas IA": [
       ["Claude Code", "Diario"],
@@ -239,7 +285,7 @@
       "where": "Remoto · NestJS · Arquitectura Hexagonal",
       "bullets": [
         "Desarrollo y mantenimiento de APIs backend sobre un codebase grande de NestJS / TypeScript estructurado con arquitectura hexagonal y principios de Clean Architecture.",
-        "Aplicación consistente de SOLID — inyección de dependencias por interface, repositorios desacoplados del ORM, servicios con responsabilidad única.",
+        "Aplicación consistente de SOLID, inyección de dependencias por interface, repositorios desacoplados del ORM, servicios con responsabilidad única.",
         "Implementación de cache Redis en endpoints de alto tráfico, reduciendo la carga sobre la base de datos primaria.",
         "Navegación y aporte efectivo en un codebase preexistente de gran escala, adaptándome rápido a las convenciones del equipo."
       ]
@@ -251,7 +297,7 @@
       "company": "Zurich / Santander",
       "where": "Plataformas de Seguros · Híbrido",
       "bullets": [
-        "Resolución de 44 vulnerabilidades de seguridad en dos front-ends de React en 3 días para habilitar la migración a Gluon (herramienta DevOps de Santander) — originalmente estimado en 700+ horas.",
+        "Resolución de 44 vulnerabilidades de seguridad en dos front-ends de React en 3 días para habilitar la migración a Gluon (herramienta DevOps de Santander) originalmente estimado en 700+ horas.",
         "Reducción del 50% en los tiempos de respuesta de generación de reportes PDF en una API Node.js mediante optimización de queries y estrategias de cache.",
         "Liderazgo en la modernización de sistemas legacy y APIs internas en múltiples plataformas.",
         "Puente entre stakeholders técnicos y de negocio en un ambiente ágil multidisciplinario."
@@ -260,12 +306,12 @@
     {
       "from": "Mar 2025",
       "to": "Presente",
-      "role": "Co-fundador & Full-stack",
+      "role": "Co-desarrollador & Full-stack",
       "company": "DJ Presskit",
       "where": "Freelance · SaaS · Partner Oficial de SoundCloud",
       "bullets": [
-        "Construcción del sistema de dashboard donde los artistas gestionan bio, calendario de eventos, releases, galería multimedia y tech rider — actualizaciones en tiempo real reflejadas en su sitio.",
-        "Desarrollo de generación dinámica de sitios press-kit en Next.js — secciones hero personalizadas, embeds de SoundCloud / YouTube, calendarios sincronizados y galerías optimizadas.",
+        "Construcción del sistema de dashboard donde los artistas gestionan bio, calendario de eventos, releases, galería multimedia y tech rider con actualizaciones en tiempo real reflejadas en su sitio.",
+        "Desarrollo de generación dinámica de sitios press-kit en Next.js. Secciones hero personalizadas, embeds de SoundCloud / YouTube, calendarios sincronizados y galerías optimizadas.",
         "Implementación del sistema de diseño \"cápsulas\": temas visuales (colores, texturas, layouts) limitados por edición para diferenciación de marca.",
         "Integración con la API de SoundCloud para playback y gestión de releases.",
         "Aporte en la arquitectura full-stack multitenant, setup de dominios personalizados y entrega de contenido escalable."
@@ -278,7 +324,7 @@
       "company": "iPhone BRC (vía Real Labs)",
       "where": "Freelance · Bariloche, AR",
       "bullets": [
-        "Construcción de una landing en Next.js totalmente responsive — hero con video animado, showcases de productos, CTAs integrados con WhatsApp.",
+        "Construcción de una landing en Next.js totalmente responsive con hero con video animado, showcases de productos, CTAs integrados con WhatsApp.",
         "Implementación de animaciones de scroll suaves, carruseles infinitos de logos y cards dinámicas de productos con optimización de imágenes de Cloudflare.",
         "Entrega de un sitio optimizado para SEO y performance mobile en un plazo ajustado, coordinando con los equipos de diseño y branding de Real Labs."
       ]
@@ -290,11 +336,11 @@
       "company": "Múltiples clientes",
       "where": "Hydrotek · Spotsline · Property Scraper · Myfotolibro · Properties&&You",
       "bullets": [
-        "Hydrotek (2024): co-desarrollo de un e-commerce con productos, usuarios, cupones y blog integrado. Aprendí y entregué NestJS + TypeScript + Prisma en menos de dos semanas; hice reverse-engineering de un sistema de facturación sin documentación.",
-        "Property Scraper (2024): sistema full-stack de scraping para un cliente inmobiliario — Mercado Libre + Zonaprop. Ownership de comunicación con el cliente, arquitectura, desarrollo y deploy. Bypasseé la seguridad de las plataformas y afiné la asincronía de JS + Puppeteer; construí la generación de reportes PDF en el backend.",
+        "Hydrotek (2024): co-desarrollo de un e-commerce con productos, usuarios, cupones y blog integrado. Aprendí y entregué NestJS, TypeScript y Prisma en menos de dos semanas. Hice reverse-engineering de un sistema de facturación sin documentación.",
+        "Property Scraper (2024): sistema full-stack de scraping para un cliente inmobiliario para Mercado Libre y Zonaprop. Ownership de comunicación con el cliente, arquitectura, desarrollo y deploy. Bypasseé la seguridad de las plataformas y afiné la asincronía de JS con Puppeteer; construí la generación de reportes PDF en el backend.",
         "Spotsline (2023–2024): e-commerce para una empresa industrial. Integré la base de datos local DBS con réplica en SQL Server. Aprendí Framer Motion en <1 semana; optimicé React con useCallback / useDebounce.",
-        "Myfotolibro (2023): plataforma de fotolibros — links de subida personalizados, compresión de imágenes a estándares de impresión, integración con Cloudinary dentro del plan gratuito.",
-        "Properties && You (2022): marketplace inmobiliario PERN en Henry Bootcamp — lideré un equipo de 6, aprendí Tailwind + Mercado Pago + Firebase en una semana."
+        "Myfotolibro (2023): plataforma de fotolibros con links de subida personalizados, compresión de imágenes a estándares de impresión, integración con Cloudinary dentro del plan gratuito.",
+        "Properties && You (2022): marketplace inmobiliario PERN en Henry Bootcamp, en este proyecto lideré un equipo de 6, aprendí Tailwind + Mercado Pago + Firebase en una semana."
       ]
     },
     {
@@ -312,23 +358,78 @@
   "about": {
     "heading": "Sobre mí",
     "paragraphs": [
-      "Más de 3 años construyendo y desplegando apps web con Node.js, React, Next.js y TypeScript. Ownership end-to-end — desde la arquitectura y la comunicación con el cliente hasta el deploy y la entrega final.",
-      "Actualmente desarrollando plataformas enterprise para el sector seguros en Zurich/Santander, sin dejar la práctica freelance — incluyendo un SaaS con partnership oficial de SoundCloud.",
-      "Me destaco por traducir desafíos técnicos complejos en comunicación clara para stakeholders no técnicos, resolver conflictos de timeline y entregar código production-ready bajo plazos ajustados.",
-      "Busco un rol orientado a producto donde pueda tomar decisiones clave y crecer técnica y profesionalmente."
+      "Soy Tomás, desarrollador Full Stack de Buenos Aires. Empecé en esto de forma autodidacta porque genuinamente me gustaba construir cosas que la gente pudiera usar y eso no cambió.",
+      "Me gusta tener ownership completo de lo que construyo, entender el negocio, tomar decisiones de arquitectura, hablar con el cliente y hacer el deploy. Eso me llevó a trabajar en plataformas empresariales de seguros, colaborar con agencias y lanzar proyectos propios como DJ Presskit.",
+      "Lo técnico lo aprendo rápido. Lo que no se aprende rápido es escuchar bien, comunicar claro, sostener la responsabilidad y eso es lo que más me importa."
+    ],
+    "currently": [
+      {
+        "eyebrow": "Actualmente trabajando en",
+        "title": "Backend en un codebase hexagonal de NestJS",
+        "description": "Desarrollo y mantenimiento de APIs backend sobre un codebase de gran escala en NestJS con TypeScript, estructurado bajo arquitectura hexagonal y principios Clean Architecture.",
+        "chips": ["NestJS", "TypeScript", "API REST", "Hexagonal", "Redis"],
+        "theme": "purple"
+      },
+      {
+        "eyebrow": "Actualmente trabajando en",
+        "title": "DJ Presskit — SaaS con partnership de SoundCloud",
+        "description": "Co-desarrollador en DJ Presskit, un SaaS para DJs con partnership oficial de SoundCloud. Ownership end-to-end: decisiones de producto, arquitectura, deploy y contacto directo con la base de usuarios.",
+        "chips": ["Next.js", "NestJS", "TypeScript", "SaaS", "SoundCloud API"],
+        "theme": "aqua"
+      }
     ]
   },
   "contact": {
     "heading": "Construyamos algo juntos",
     "lead": "Abierto a roles orientados a producto, trabajos freelance y colaboraciones con propósito. La forma más rápida de contactarme está abajo.",
+    "formEyebrow": "Mandame un mensaje",
+    "repliesBadge": "Respondo en menos de 24h",
     "formLabels": {
       "name": "Nombre",
+      "email": "Email",
       "subject": "Asunto",
       "message": "Mensaje"
     },
+    "formPlaceholders": {
+      "name": "Tu nombre",
+      "email": "vos@ejemplo.com",
+      "subject": "Una línea rápida",
+      "message": "¿Qué tenés en mente?"
+    },
     "submitLabel": "Enviar mensaje",
+    "submittingLabel": "Enviando…",
+    "cooldownLabel": "Esperá {seconds}s",
+    "copyLabel": "Copiar",
+    "copiedLabel": "Copiado ✓",
     "successMsg": "Mensaje enviado — te contesto a la brevedad.",
-    "errorMsg": "Algo salió mal. Probá de nuevo o escribime directo al mail."
+    "errorMsg": "Algo salió mal. Probá de nuevo o escribime directo al mail.",
+    "toast": {
+      "success": "Email enviado con éxito",
+      "error": "No se envió el email"
+    },
+    "booking": {
+      "eyebrow": "Agendá una llamada",
+      "title": "30 minutos — a ver si conectamos.",
+      "lead": "Para recruiters, founders o devs como vos. Elegí un horario — la invitación al calendario llega al toque."
+    },
+    "bookingModal": {
+      "eyebrow": "Reservar una reunión",
+      "localTimePrefix": "Tu hora local",
+      "timePickerLabel": "Elegí un horario",
+      "nameLabel": "Nombre",
+      "emailLabel": "Email",
+      "messageLabel": "Mensaje (opcional)",
+      "privacyNote": "Tu email se comparte con Google Calendar para enviarte la invitación.",
+      "confirmLabel": "Confirmar reserva",
+      "confirmingLabel": "Reservando…",
+      "closeLabel": "Cerrar",
+      "validationError": "Nombre y email son obligatorios",
+      "slotTakenError": "Alguien acaba de reservar ese horario. Elegí otro.",
+      "fallbackError": "Falló la reserva",
+      "successMsg": "Reunión reservada. Revisá tu inbox para la invitación de calendario.",
+      "networkError": "Error de red"
+    },
+    "mapsUrl": "https://www.google.com/maps/place/CABA,+Buenos+Aires,+Argentina"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",

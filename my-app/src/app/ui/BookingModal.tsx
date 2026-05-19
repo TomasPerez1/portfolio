@@ -3,15 +3,18 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import type { Slot } from "../api/calendar/_lib/types";
+import type { BookingModalCopy } from "../i18n/portfolio.types";
 
 export interface BookingModalProps {
-  slot: Slot;
-  timezone?: string;
+  daySlots: Slot[];
+  copy: BookingModalCopy;
+  lang: string;
   onClose: () => void;
   onBooked: () => void;
 }
 
-export default function BookingModal({ slot, timezone, onClose, onBooked }: BookingModalProps) {
+export default function BookingModal({ daySlots, copy, lang, onClose, onBooked }: BookingModalProps) {
+  const [selectedSlot, setSelectedSlot] = useState<Slot>(daySlots[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -23,12 +26,19 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  const slotLabel = formatSlot(slot, timezone);
+  const localeTag = lang === "es" ? "es-AR" : "en-US";
+  const dateLabel = formatDate(selectedSlot.start, localeTag);
+  const timeLabel = formatTime(selectedSlot.start, localeTag);
+  const localTzHint = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const hasMultipleSlots = daySlots.length > 1;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name || !email) {
-      toast.error("Name and email required");
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+    if (!trimmedName || !trimmedEmail) {
+      toast.error(copy.validationError);
       return;
     }
     setSubmitting(true);
@@ -37,27 +47,27 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          slotStart: slot.start,
-          slotEnd: slot.end,
-          name,
-          email,
-          message: message || undefined,
+          slotStart: selectedSlot.start,
+          slotEnd: selectedSlot.end,
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage || undefined,
         }),
       });
       if (res.status === 409) {
-        toast.error("Slot just got booked. Pick another.");
+        toast.error(copy.slotTakenError);
         onBooked();
         return;
       }
       if (!res.ok) {
-        const data = await res.json().catch(() => ({ error: "Unknown error" }));
-        toast.error(data.error ?? "Booking failed");
+        const data = await res.json().catch(() => ({ error: copy.fallbackError }));
+        toast.error(data.error ?? copy.fallbackError);
         return;
       }
-      toast.success("Meeting booked. Check your inbox for the calendar invite.");
+      toast.success(copy.successMsg);
       onBooked();
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Network error");
+    } catch {
+      toast.error(copy.networkError);
     } finally {
       setSubmitting(false);
     }
@@ -67,32 +77,61 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Book a meeting"
+      aria-label={copy.eyebrow}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-[20px] bg-card border border-line p-6 sm:p-7 flex flex-col gap-4"
+        className="w-full max-w-md rounded-[20px] bg-card border border-line p-6 sm:p-7 flex flex-col gap-4 max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="eyebrow">Book a meeting</div>
-            <div className="mt-1 display text-[22px] leading-tight tracking-tightish2">{slotLabel}</div>
+            <div className="eyebrow">{copy.eyebrow}</div>
+            <div className="mt-1 display text-[22px] leading-tight tracking-tightish2">
+              {dateLabel} · {timeLabel}
+            </div>
+            <div className="font-mono text-[11px] text-fg-faint mt-1">
+              {copy.localTimePrefix} · {localTzHint}
+            </div>
           </div>
           <button
             type="button"
-            aria-label="Close"
+            aria-label={copy.closeLabel}
             onClick={onClose}
-            className="w-8 h-8 rounded-full border border-line-2 text-fg-soft hover:text-fg transition-colors grid place-items-center text-lg leading-none"
+            className="w-8 h-8 rounded-full border border-line-2 text-fg-soft hover:text-fg transition-colors grid place-items-center text-lg leading-none shrink-0"
           >
             ×
           </button>
         </div>
 
+        {hasMultipleSlots && (
+          <div className="flex flex-col gap-2">
+            <span className="eyebrow">{copy.timePickerLabel}</span>
+            <div className="flex flex-wrap gap-1.5">
+              {daySlots.map((slot) => {
+                const isSelected = slot.start === selectedSlot.start;
+                return (
+                  <button
+                    key={slot.start}
+                    type="button"
+                    onClick={() => setSelectedSlot(slot)}
+                    className={`px-3 py-1.5 rounded-lg font-mono text-xs border transition-colors
+                      ${isSelected
+                        ? "bg-spark text-white border-transparent"
+                        : "bg-card-2 text-fg border-line-2 hover:border-spark"}`}
+                  >
+                    {formatTime(slot.start, localeTag)}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         <form onSubmit={onSubmit} className="flex flex-col gap-3.5">
           <label className="flex flex-col gap-1.5">
-            <span className="eyebrow">Name</span>
+            <span className="eyebrow">{copy.nameLabel}</span>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -101,7 +140,7 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
             />
           </label>
           <label className="flex flex-col gap-1.5">
-            <span className="eyebrow">Email</span>
+            <span className="eyebrow">{copy.emailLabel}</span>
             <input
               type="email"
               value={email}
@@ -111,7 +150,7 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
             />
           </label>
           <label className="flex flex-col gap-1.5">
-            <span className="eyebrow">Message (optional)</span>
+            <span className="eyebrow">{copy.messageLabel}</span>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -119,15 +158,13 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
               className="p-3.5 bg-bg text-fg border border-line rounded-[10px] text-sm outline-none focus:border-spark transition-colors min-h-[80px] resize-y"
             />
           </label>
-          <p className="font-mono text-[11px] text-fg-faint">
-            Your email is shared with Google Calendar to send the invite.
-          </p>
+          <p className="font-mono text-[11px] text-fg-faint">{copy.privacyNote}</p>
           <button
             type="submit"
             disabled={submitting}
             className="btn btn-primary self-start disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {submitting ? "Booking…" : "Confirm booking"}
+            {submitting ? copy.confirmingLabel : copy.confirmLabel}
           </button>
         </form>
       </div>
@@ -135,13 +172,16 @@ export default function BookingModal({ slot, timezone, onClose, onBooked }: Book
   );
 }
 
-function formatSlot(slot: Slot, timezone?: string): string {
-  const start = new Date(slot.start);
-  return start.toLocaleString("en-US", {
-    timeZone: timezone || undefined,
+function formatDate(iso: string, locale: string): string {
+  return new Date(iso).toLocaleDateString(locale, {
     weekday: "short",
     month: "short",
     day: "numeric",
+  });
+}
+
+function formatTime(iso: string, locale: string): string {
+  return new Date(iso).toLocaleTimeString(locale, {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,

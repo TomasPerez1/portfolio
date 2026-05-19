@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Slot } from "../api/calendar/_lib/types";
 
 export interface CalendarWidgetProps {
-  onSlotClick: (slot: Slot) => void;
+  onDayClick: (slots: Slot[]) => void;
   refreshKey?: number;
 }
 
@@ -18,7 +18,7 @@ interface DayCell {
 const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"] as const;
 const MONTH_LABELS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-export default function CalendarWidget({ onSlotClick, refreshKey = 0 }: CalendarWidgetProps) {
+export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarWidgetProps) {
   const [slots, setSlots] = useState<Slot[] | null>(null);
   const [timezone, setTimezone] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
@@ -98,7 +98,7 @@ export default function CalendarWidget({ onSlotClick, refreshKey = 0 }: Calendar
               key={i}
               type="button"
               disabled={disabled}
-              onClick={() => hasSlots && openDayPicker(cell.slots, onSlotClick)}
+              onClick={() => hasSlots && onDayClick(cell.slots)}
               className={`aspect-square rounded-lg grid place-items-center font-mono text-xs border transition-colors
                 ${!cell.inMonth ? "bg-transparent text-transparent border-transparent" : ""}
                 ${cell.inMonth && cell.isPast ? "bg-transparent text-fg-faint border-transparent" : ""}
@@ -164,9 +164,3 @@ function isSameMonth(a: Date, b: Date): boolean {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
 }
 
-function openDayPicker(daySlots: Slot[], onSlotClick: (slot: Slot) => void) {
-  // For now, pick the first slot of the day. A future enhancement could
-  // open a per-day time picker. The booking modal shows the full datetime,
-  // so users still see exactly what they're booking.
-  if (daySlots[0]) onSlotClick(daySlots[0]);
-}

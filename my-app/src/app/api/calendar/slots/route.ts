@@ -2,6 +2,9 @@ import { getCalendarClient, getCalendarId, getScheduleConfig } from "../_lib/goo
 import { filterAvailable, generateSlots } from "../_lib/slots";
 import type { BusyRange, SlotsResponse } from "../_lib/types";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const HORIZON_DAYS = 30;
 
 export async function GET() {

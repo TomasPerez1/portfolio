@@ -116,7 +116,7 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
 
       <div className="relative z-[2]">
         {showStatus && (
-          <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px] border-2">
+          <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px]">
             <span className="badge flex-1 min-w-[260px] max-w-full !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
               <span className="animate-pulse w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)] shrink-0" />
               <span className="flex-1">{data.statusLine}</span>

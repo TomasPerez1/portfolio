@@ -54,8 +54,29 @@ export interface SectionHeaderCopy {
   hint?: string;
 }
 
+export interface ProjectsGridHeaderCopy {
+  screenLabel: string;
+  title: string;
+  metaSuffix: string;
+}
+
+export interface StackHeaderCopy extends SectionHeaderCopy {
+  screenLabel: string;
+}
+
+export interface ExperienceHeaderCopy extends StackHeaderCopy {
+  hoverPrefix: string;
+  highlightSingular: string;
+  highlightPlural: string;
+}
+
 export interface SectionHeaders {
   featured: SectionHeaderCopy;
+  projectsGrid: ProjectsGridHeaderCopy;
+  stack: StackHeaderCopy;
+  about: SectionHeaderCopy;
+  experience: ExperienceHeaderCopy;
+  contact: StackHeaderCopy;
 }
 
 export interface FeaturedProject {
@@ -79,6 +100,7 @@ export interface GridProject {
   kicker: string;
   stack: readonly string[];
   year: string;
+  link?: string;
 }
 
 export type StackEntry = readonly string[];
@@ -93,24 +115,83 @@ export interface ExperienceEntry {
   bullets: readonly string[];
 }
 
+export type AboutCurrentlyTheme = "purple" | "aqua";
+
+export interface AboutCurrentlyCopy {
+  eyebrow: string;
+  title: string;
+  description: string;
+  chips: readonly string[];
+  theme: AboutCurrentlyTheme;
+}
+
 export interface AboutCopy {
   heading: string;
   paragraphs: readonly string[];
+  currently: readonly AboutCurrentlyCopy[];
 }
 
 export interface ContactFormLabels {
   name: string;
+  email: string;
   subject: string;
   message: string;
+}
+
+export interface ContactFormPlaceholders {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+export interface ContactToastCopy {
+  success: string;
+  error: string;
+}
+
+export interface ContactBookingCopy {
+  eyebrow: string;
+  title: string;
+  lead: string;
+}
+
+export interface BookingModalCopy {
+  eyebrow: string;
+  localTimePrefix: string;
+  timePickerLabel: string;
+  nameLabel: string;
+  emailLabel: string;
+  messageLabel: string;
+  privacyNote: string;
+  confirmLabel: string;
+  confirmingLabel: string;
+  closeLabel: string;
+  validationError: string;
+  slotTakenError: string;
+  fallbackError: string;
+  successMsg: string;
+  networkError: string;
 }
 
 export interface ContactCopy {
   heading: string;
   lead: string;
+  formEyebrow: string;
+  repliesBadge: string;
   formLabels: ContactFormLabels;
+  formPlaceholders: ContactFormPlaceholders;
   submitLabel: string;
+  submittingLabel: string;
+  cooldownLabel: string;
+  copyLabel: string;
+  copiedLabel: string;
   successMsg: string;
   errorMsg: string;
+  toast: ContactToastCopy;
+  booking: ContactBookingCopy;
+  bookingModal: BookingModalCopy;
+  mapsUrl: string;
 }
 
 export interface FooterCopy {

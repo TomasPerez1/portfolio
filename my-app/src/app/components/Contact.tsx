@@ -1,19 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
+
+const COOLDOWN_MS = 90_000;
+const COOLDOWN_STORAGE_KEY = "contact_last_send_at";
+
+function formatErrorToast(code: string | number, errorMsg: string): string {
+  return `Err (${code}): ${errorMsg}`;
+}
 import { SectionHeader } from "./FeaturedWork";
 import { noMotion, sectionReveal } from "./_animations";
 import CalendarWidget from "../ui/CalendarWidget";
 import BookingModal from "../ui/BookingModal";
-import type { Identity } from "../i18n/portfolio.types";
+import type { ContactCopy, Identity, StackHeaderCopy } from "../i18n/portfolio.types";
 import type { Slot } from "../api/calendar/_lib/types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function Contact({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);
   if (!ready || !data) return null;
-  return <ContactSection identity={data.identity} />;
+  return (
+    <ContactSection
+      identity={data.identity}
+      copy={data.contact}
+      header={data.sectionHeaders.contact}
+      lang={lang}
+    />
+  );
 }
 
 interface FieldProps {
@@ -24,16 +38,19 @@ interface FieldProps {
   type?: string;
   multiline?: boolean;
   required?: boolean;
+  disabled?: boolean;
 }
 
-function Field({ label, v, setV, placeholder, type = "text", multiline, required }: FieldProps) {
+function Field({ label, v, setV, placeholder, type = "text", multiline, required, disabled }: FieldProps) {
   const sharedProps = {
     value: v,
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setV(e.target.value),
     placeholder,
     required,
+    disabled,
     className: `w-full bg-bg text-fg border border-line rounded-[10px] font-body text-sm
                 outline-none transition-colors focus:border-spark
+                disabled:opacity-60 disabled:cursor-not-allowed
                 ${multiline ? "p-3.5 min-h-[110px] resize-y" : "h-11 px-3.5"}`,
   };
   return (
@@ -58,19 +75,38 @@ function Icon({ name }: { name: IconName }) {
 interface ContactRowProps {
   icon: IconName;
   label: string;
+  href?: string;
+  external?: boolean;
+  ariaLabel?: string;
   action?: string;
   onAction?: () => void;
 }
 
-function ContactRow({ icon, label, action, onAction }: ContactRowProps) {
+function ContactRow({ icon, label, href, external, ariaLabel, action, onAction }: ContactRowProps) {
+  const content = (
+    <>
+      <span className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft shrink-0 group-hover:text-spark group-hover:border-spark transition-colors">
+        <Icon name={icon} />
+      </span>
+      <span className="font-mono text-[13px] truncate group-hover:text-fg transition-colors">{label}</span>
+    </>
+  );
+
   return (
     <div className="flex items-center gap-3 justify-between">
-      <div className="flex items-center gap-3 min-w-0">
-        <span className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft shrink-0">
-          <Icon name={icon} />
-        </span>
-        <span className="font-mono text-[13px] truncate">{label}</span>
-      </div>
+      {href ? (
+        <a
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          aria-label={ariaLabel}
+          className="group flex items-center gap-3 min-w-0 outline-none focus-visible:ring-2 focus-visible:ring-spark rounded-md"
+        >
+          {content}
+        </a>
+      ) : (
+        <div className="group flex items-center gap-3 min-w-0">{content}</div>
+      )}
       {action && (
         <button onClick={onAction} type="button"
                 className="font-mono text-[11px] tracking-[.08em] uppercase px-2.5 py-1
@@ -84,23 +120,56 @@ function ContactRow({ icon, label, action, onAction }: ContactRowProps) {
 
 interface ContactSectionProps {
   identity: Pick<Identity, "email" | "phone" | "location" | "timezone">;
+  copy: ContactCopy;
+  header: StackHeaderCopy;
+  lang: string;
 }
 
-function ContactSection({ identity }: ContactSectionProps) {
+function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
   const reduce = useReducedMotion();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [pickedSlot, setPickedSlot] = useState<Slot | null>(null);
+  const [pickedDaySlots, setPickedDaySlots] = useState<Slot[] | null>(null);
   const [calendarRefresh, setCalendarRefresh] = useState(0);
+  const [remainingMs, setRemainingMs] = useState(0);
+
+  useEffect(() => {
+    const tick = () => {
+      const raw = typeof window !== "undefined" ? window.localStorage.getItem(COOLDOWN_STORAGE_KEY) : null;
+      const last = raw ? Number(raw) : 0;
+      const remaining = Math.max(0, COOLDOWN_MS - (Date.now() - last));
+      setRemainingMs(remaining);
+    };
+    tick();
+    const id = window.setInterval(tick, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const cooldownActive = remainingMs > 0;
+  const remainingSec = Math.ceil(remainingMs / 1000);
+  const disabled = submitting || cooldownActive;
+
+  const mailtoHref = `mailto:${identity.email}`;
+  const whatsappHref = `https://wa.me/${identity.phone.replace(/[^0-9]/g, "")}`;
+  const mapsHref = copy.mapsUrl;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name || !email || !subject || !message) {
-      toast.error("Please fill in all fields");
+    if (cooldownActive) {
+      toast.error(formatErrorToast("COOLDOWN", copy.toast.error));
+      return;
+    }
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedSubject = subject.trim();
+    const trimmedMessage = message.trim();
+    if (!trimmedName || !trimmedEmail || !trimmedSubject || !trimmedMessage) {
+      toast.error(formatErrorToast("VALIDATION", copy.toast.error));
       return;
     }
     setSubmitting(true);
@@ -108,17 +177,24 @@ function ContactSection({ identity }: ContactSectionProps) {
       const res = await fetch("/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message }),
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          subject: trimmedSubject,
+          message: trimmedMessage,
+          website,
+        }),
       });
       if (!res.ok) {
-        const data = await res.json().catch(() => ({ error: "Unknown" }));
-        toast.error(data.error ?? "Send failed");
+        toast.error(formatErrorToast(res.status, copy.toast.error));
         return;
       }
-      toast.success("Message sent — I'll get back to you soon.");
-      setName(""); setEmail(""); setSubject(""); setMessage("");
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Network error");
+      toast.success(copy.toast.success);
+      setName(""); setEmail(""); setSubject(""); setMessage(""); setWebsite("");
+      window.localStorage.setItem(COOLDOWN_STORAGE_KEY, String(Date.now()));
+      setRemainingMs(COOLDOWN_MS);
+    } catch {
+      toast.error(formatErrorToast("NETWORK", copy.toast.error));
     } finally {
       setSubmitting(false);
     }
@@ -133,36 +209,72 @@ function ContactSection({ identity }: ContactSectionProps) {
   return (
     <motion.section
       id="contact"
-      data-screen-label="07 Contact"
+      data-screen-label={header.screenLabel}
       className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
       variants={reduce ? noMotion : sectionReveal}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
     >
-      <SectionHeader index="§ 06" kicker="Contact" title="Let's build something." />
+      <SectionHeader index={header.index} kicker={header.kicker} title={header.title} />
 
       <div className="grid gap-[clamp(20px,2.5vw,32px)] grid-cols-1 lg:grid-cols-2">
         <form onSubmit={onSubmit} className="p-8 rounded-[28px] bg-card border border-line flex flex-col gap-[18px]">
           <div className="flex flex-wrap justify-between items-center gap-2.5">
-            <div className="eyebrow">Send a message</div>
-            <span className="badge"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Replies within 24h</span>
+            <div className="eyebrow">{copy.formEyebrow}</div>
+            <span className="badge"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> {copy.repliesBadge}</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <Field label="Name" v={name} setV={setName} placeholder="Your name" required />
-            <Field label="Email" v={email} setV={setEmail} placeholder="you@example.com" type="email" required />
+            <Field label={copy.formLabels.name} v={name} setV={setName} placeholder={copy.formPlaceholders.name} required disabled={disabled} />
+            <Field label={copy.formLabels.email} v={email} setV={setEmail} placeholder={copy.formPlaceholders.email} type="email" required disabled={disabled} />
           </div>
-          <Field label="Subject" v={subject} setV={setSubject} placeholder="Quick line" required />
-          <Field label="Message" v={message} setV={setMessage} placeholder="What's on your mind?" multiline required />
+          <Field label={copy.formLabels.subject} v={subject} setV={setSubject} placeholder={copy.formPlaceholders.subject} required disabled={disabled} />
+          <Field label={copy.formLabels.message} v={message} setV={setMessage} placeholder={copy.formPlaceholders.message} multiline required disabled={disabled} />
 
-          <button type="submit" disabled={submitting} className="btn btn-primary self-start mt-1.5 disabled:opacity-60 disabled:cursor-not-allowed">
-            {submitting ? "Sending…" : "Send message"}
+          <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+            <label>
+              Website
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+              />
+            </label>
+          </div>
+
+          <button type="submit" disabled={disabled} className="btn btn-primary self-start mt-1.5 disabled:opacity-60 disabled:cursor-not-allowed">
+            {submitting
+              ? copy.submittingLabel
+              : cooldownActive
+                ? copy.cooldownLabel.replace("{seconds}", String(remainingSec))
+                : copy.submitLabel}
           </button>
 
           <div className="mt-1.5 pt-[18px] border-t border-line flex flex-col gap-3">
-            <ContactRow icon="mail" label={identity.email} action={copied ? "Copied ✓" : "Copy"} onAction={copyEmail} />
-            <ContactRow icon="phone" label={identity.phone} />
-            <ContactRow icon="pin" label={`${identity.location} · ${identity.timezone}`} />
+            <ContactRow
+              icon="mail"
+              label={identity.email}
+              href={mailtoHref}
+              ariaLabel={`Email ${identity.email}`}
+              action={copied ? copy.copiedLabel : copy.copyLabel}
+              onAction={copyEmail}
+            />
+            <ContactRow
+              icon="phone"
+              label={identity.phone}
+              href={whatsappHref}
+              external
+              ariaLabel={`WhatsApp ${identity.phone}`}
+            />
+            <ContactRow
+              icon="pin"
+              label={`${identity.location} · ${identity.timezone}`}
+              href={mapsHref}
+              external
+              ariaLabel={`Google Maps · ${identity.location}`}
+            />
           </div>
         </form>
 
@@ -171,28 +283,29 @@ function ContactSection({ identity }: ContactSectionProps) {
           style={{ background: "radial-gradient(circle at 80% 0%, rgba(181,33,255,.12), transparent 60%), var(--c-card)" }}
         >
           <div>
-            <div className="eyebrow mb-[18px]">Book a call</div>
+            <div className="eyebrow mb-[18px]">{copy.booking.eyebrow}</div>
             <h3 className="display m-0 text-[clamp(28px,3vw,40px)] tracking-tightish2 leading-tight">
-              30 minutes — let&apos;s see if we click.
+              {copy.booking.title}
             </h3>
             <p className="mt-3.5 text-fg-soft max-w-[44ch]">
-              For recruiters, founders or fellow devs. Pick a slot — calendar invite arrives instantly.
+              {copy.booking.lead}
             </p>
           </div>
           <CalendarWidget
             refreshKey={calendarRefresh}
-            onSlotClick={(slot) => setPickedSlot(slot)}
+            onDayClick={(slots) => setPickedDaySlots(slots)}
           />
         </div>
       </div>
 
-      {pickedSlot && (
+      {pickedDaySlots && (
         <BookingModal
-          slot={pickedSlot}
-          timezone={identity.timezone}
-          onClose={() => setPickedSlot(null)}
+          daySlots={pickedDaySlots}
+          copy={copy.bookingModal}
+          lang={lang}
+          onClose={() => setPickedDaySlots(null)}
           onBooked={() => {
-            setPickedSlot(null);
+            setPickedDaySlots(null);
             setCalendarRefresh((k) => k + 1);
           }}
         />

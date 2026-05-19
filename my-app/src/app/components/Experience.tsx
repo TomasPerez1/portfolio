@@ -1,22 +1,56 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "./FeaturedWork";
-import type { ExperienceEntry } from "../i18n/portfolio.types";
+import type { ExperienceEntry, ExperienceHeaderCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
+
+const HOVER_CLOSE_DELAY_MS = 80;
 
 export default function Experience({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);
   if (!ready || !data) return null;
-  return <ExperienceSection items={data.experience} />;
+  return <ExperienceSection items={data.experience} header={data.sectionHeaders.experience} />;
 }
 
-function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
+function ExpRow({
+  e,
+  last,
+  hoverPrefix,
+  highlightSingular,
+  highlightPlural,
+}: {
+  e: ExperienceEntry;
+  last: boolean;
+  hoverPrefix: string;
+  highlightSingular: string;
+  highlightPlural: string;
+}) {
   const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
+
+  const handleEnter = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), HOVER_CLOSE_DELAY_MS);
+  };
+
   return (
     <div
-      onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
       className={`grid items-start gap-3 md:gap-6 py-7 border-t border-line grid-cols-1 md:[grid-template-columns:180px_24px_1fr] ${last ? "border-b" : ""}`}
     >
       <div className="font-mono text-[13px] text-fg-soft md:pt-1">
@@ -51,8 +85,12 @@ function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
           </ul>
         </div>
 
-        <div className="mt-2 font-mono text-[11px] text-fg-faint tracking-[.08em] uppercase">
-          {open ? "" : `Hover to expand · ${e.bullets.length} highlight${e.bullets.length > 1 ? "s" : ""}`}
+        <div
+          className="mt-2 font-mono text-[11px] text-fg-faint tracking-[.08em] uppercase min-h-[14px] transition-opacity duration-200"
+          style={{ opacity: open ? 0 : 1 }}
+          aria-hidden={open}
+        >
+          {`${hoverPrefix} · ${e.bullets.length} ${e.bullets.length === 1 ? highlightSingular : highlightPlural}`}
         </div>
       </div>
     </div>
@@ -61,14 +99,15 @@ function ExpRow({ e, last }: { e: ExperienceEntry; last: boolean }) {
 
 interface ExperienceSectionProps {
   items: readonly ExperienceEntry[];
+  header: ExperienceHeaderCopy;
 }
 
-function ExperienceSection({ items }: ExperienceSectionProps) {
+function ExperienceSection({ items, header }: ExperienceSectionProps) {
   const reduce = useReducedMotion();
   return (
     <motion.section
       id="experience"
-      data-screen-label="05 Experience"
+      data-screen-label={header.screenLabel}
       className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
       variants={reduce ? noMotion : sectionReveal}
       initial="hidden"
@@ -76,13 +115,22 @@ function ExperienceSection({ items }: ExperienceSectionProps) {
       viewport={{ once: true, amount: 0.15 }}
     >
       <SectionHeader
-        index="§ 04"
-        kicker="Experience"
-        title="3+ years of shipping."
-        hint="A condensed timeline. Roles, companies and what I actually delivered."
+        index={header.index}
+        kicker={header.kicker}
+        title={header.title}
+        hint={header.hint}
       />
       <div className="flex flex-col">
-        {items.map((e, i) => <ExpRow key={i} e={e} last={i === items.length - 1} />)}
+        {items.map((e, i) => (
+          <ExpRow
+            key={i}
+            e={e}
+            last={i === items.length - 1}
+            hoverPrefix={header.hoverPrefix}
+            highlightSingular={header.highlightSingular}
+            highlightPlural={header.highlightPlural}
+          />
+        ))}
       </div>
     </motion.section>
   );

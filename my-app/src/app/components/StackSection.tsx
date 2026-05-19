@@ -2,25 +2,26 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { SectionHeader } from "./FeaturedWork";
-import type { StackCategories } from "../i18n/portfolio.types";
+import type { StackCategories, StackHeaderCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 
 export default function StackSection({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);
   if (!ready || !data) return null;
-  return <StackSectionInner stack={data.stack} />;
+  return <StackSectionInner stack={data.stack} header={data.sectionHeaders.stack} />;
 }
 
 interface StackSectionInnerProps {
   stack: StackCategories;
+  header: StackHeaderCopy;
 }
 
-function StackSectionInner({ stack }: StackSectionInnerProps) {
+function StackSectionInner({ stack, header }: StackSectionInnerProps) {
   const reduce = useReducedMotion();
   return (
     <motion.section
       id="stack"
-      data-screen-label="04 Stack"
+      data-screen-label={header.screenLabel}
       className="bg-card border-y border-line px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
       variants={reduce ? noMotion : sectionReveal}
       initial="hidden"
@@ -28,14 +29,14 @@ function StackSectionInner({ stack }: StackSectionInnerProps) {
       viewport={{ once: true, amount: 0.15 }}
     >
       <SectionHeader
-        index="§ 03"
-        kicker="Stack"
-        title="The toolkit, day to day."
-        hint="What I reach for first when shipping. Each entry has the depth so you can read it at a glance."
+        index={header.index}
+        kicker={header.kicker}
+        title={header.title}
+        hint={header.hint}
       />
-      <div className="grid gap-[clamp(16px,1.4vw,24px)]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
+      <div className="grid gap-[clamp(12px,1vw,20px)] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {Object.entries(stack).map(([cat, items]) => (
-          <div key={cat} className="p-6 border border-line rounded-[18px] bg-bg">
+          <div key={cat} className="p-4 border border-line rounded-[18px] bg-bg">
             <div className="flex items-center gap-2.5 mb-[18px]">
               <span className="w-2 h-2 rounded-full bg-spark" />
               <span className="eyebrow">{cat}</span>
