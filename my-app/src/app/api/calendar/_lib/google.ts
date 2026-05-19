@@ -6,27 +6,25 @@ let cachedClient: calendar_v3.Calendar | null = null;
 export function getCalendarClient(): calendar_v3.Calendar {
   if (cachedClient) return cachedClient;
 
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const keyB64 = process.env.GOOGLE_PRIVATE_KEY_B64;
-  if (!email || !keyB64) {
-    throw new Error("Missing GOOGLE_SERVICE_ACCOUNT_EMAIL or GOOGLE_PRIVATE_KEY_B64 env vars");
+  const clientId = process.env.GOOGLE_OAUTH_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_OAUTH_REFRESH_TOKEN;
+
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error(
+      "Missing OAuth env vars: GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_REFRESH_TOKEN",
+    );
   }
 
-  const privateKey = Buffer.from(keyB64, "base64").toString("utf-8");
-  const auth = new google.auth.JWT({
-    email,
-    key: privateKey,
-    scopes: ["https://www.googleapis.com/auth/calendar"],
-  });
+  const oauth2Client = new google.auth.OAuth2(clientId, clientSecret);
+  oauth2Client.setCredentials({ refresh_token: refreshToken });
 
-  cachedClient = google.calendar({ version: "v3", auth });
+  cachedClient = google.calendar({ version: "v3", auth: oauth2Client });
   return cachedClient;
 }
 
 export function getCalendarId(): string {
-  const id = process.env.GOOGLE_CALENDAR_ID;
-  if (!id) throw new Error("Missing GOOGLE_CALENDAR_ID env var");
-  return id;
+  return process.env.GOOGLE_CALENDAR_ID ?? "primary";
 }
 
 export function getScheduleConfig(): ScheduleConfig {

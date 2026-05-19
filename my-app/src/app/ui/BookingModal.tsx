@@ -61,7 +61,17 @@ export default function BookingModal({ daySlots, copy, lang, onClose, onBooked }
       }
       if (!res.ok) {
         const data = await res.json().catch(() => ({ error: copy.fallbackError }));
-        toast.error(data.error ?? copy.fallbackError);
+        if (data.error === "RATE_LIMIT") {
+          const minutes = Math.max(1, Math.ceil((data.retryAfterSec ?? 60) / 60));
+          toast.error(copy.rateLimitError.replace("{minutes}", `${minutes} min`));
+          return;
+        }
+        const errorMap: Record<string, string> = {
+          INVALID_EMAIL_FORMAT: copy.invalidEmailError,
+          INVALID_EMAIL_DOMAIN: copy.invalidEmailError,
+          DISPOSABLE_EMAIL: copy.disposableEmailError,
+        };
+        toast.error(errorMap[data.error] ?? data.error ?? copy.fallbackError);
         return;
       }
       toast.success(copy.successMsg);

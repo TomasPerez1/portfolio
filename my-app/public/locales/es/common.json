@@ -120,7 +120,7 @@
       "screenLabel": "07 Contacto",
       "index": "§ 06",
       "kicker": "Contacto",
-      "title": "Construyamos algo juntos."
+      "title": "Construyamos algo juntos!"
     }
   },
   "featuredViewLabel": "Ir al sitio",
@@ -401,16 +401,19 @@
     "cooldownLabel": "Esperá {seconds}s",
     "copyLabel": "Copiar",
     "copiedLabel": "Copiado ✓",
-    "successMsg": "Mensaje enviado — te contesto a la brevedad.",
+    "successMsg": "Mensaje enviado, te contesto a la brevedad!",
     "errorMsg": "Algo salió mal. Probá de nuevo o escribime directo al mail.",
     "toast": {
       "success": "Email enviado con éxito",
-      "error": "No se envió el email"
+      "error": "No se envió el email",
+      "invalidEmail": "Ese email no parece válido. Verificá la dirección.",
+      "disposableEmail": "Por favor usá un email no temporal.",
+      "rateLimit": "Demasiados intentos. Esperá {minutes} y volvé a probar."
     },
     "booking": {
       "eyebrow": "Agendá una llamada",
-      "title": "30 minutos — a ver si conectamos.",
-      "lead": "Para recruiters, founders o devs como vos. Elegí un horario — la invitación al calendario llega al toque."
+      "title": "30 minutos para ver si conectamos.",
+      "lead": "Para recruiters, founders o devs. Elegí un horario que te quede cómodo."
     },
     "bookingModal": {
       "eyebrow": "Reservar una reunión",
@@ -426,6 +429,9 @@
       "validationError": "Nombre y email son obligatorios",
       "slotTakenError": "Alguien acaba de reservar ese horario. Elegí otro.",
       "fallbackError": "Falló la reserva",
+      "invalidEmailError": "Ese email no parece válido. Verificá la dirección.",
+      "disposableEmailError": "Por favor usá un email no temporal.",
+      "rateLimitError": "Demasiados intentos. Esperá {minutes} y volvé a probar.",
       "successMsg": "Reunión reservada. Revisá tu inbox para la invitación de calendario.",
       "networkError": "Error de red"
     },

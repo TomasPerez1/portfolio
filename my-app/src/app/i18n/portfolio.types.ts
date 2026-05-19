@@ -148,6 +148,9 @@ export interface ContactFormPlaceholders {
 export interface ContactToastCopy {
   success: string;
   error: string;
+  invalidEmail: string;
+  disposableEmail: string;
+  rateLimit: string;
 }
 
 export interface ContactBookingCopy {
@@ -170,6 +173,9 @@ export interface BookingModalCopy {
   validationError: string;
   slotTakenError: string;
   fallbackError: string;
+  invalidEmailError: string;
+  disposableEmailError: string;
+  rateLimitError: string;
   successMsg: string;
   networkError: string;
 }

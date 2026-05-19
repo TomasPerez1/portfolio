@@ -1,10 +1,11 @@
 import { Resend } from "resend";
 import type { EmailData } from "./types";
+import { validateEmailDeliverable } from "../_lib/email-validation";
 
 const { RESEND_API_KEY, RESEND_FROM, OWNER_EMAIL } = process.env;
 
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000;
+const RATE_LIMIT_MAX = 6;
 const ipHits = new Map<string, number[]>();
 
 function getClientIp(request: Request): string {
@@ -60,9 +61,14 @@ export async function POST(request: Request) {
     const limit = checkRateLimit(ip);
     if (!limit.ok) {
       return Response.json(
-        { error: `Rate limit exceeded. Retry in ${limit.retryAfterSec}s` },
+        { error: "RATE_LIMIT", retryAfterSec: limit.retryAfterSec },
         { status: 429, headers: { "Retry-After": String(limit.retryAfterSec) } },
       );
+    }
+
+    const emailCheck = await validateEmailDeliverable(email);
+    if (!emailCheck.ok) {
+      return Response.json({ error: emailCheck.code }, { status: 400 });
     }
 
     const resend = new Resend(RESEND_API_KEY);

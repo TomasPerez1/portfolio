@@ -2,11 +2,12 @@ import { Resend } from "resend";
 import { getCalendarClient, getCalendarId, getScheduleConfig } from "../_lib/google";
 import { isSlotAvailable } from "../_lib/slots";
 import type { BookingRequest, BusyRange } from "../_lib/types";
+import { validateEmailDeliverable } from "../../_lib/email-validation";
 
 export const dynamic = "force-dynamic";
 
-const RATE_LIMIT_WINDOW_MS = 30 * 60 * 1000;
-const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000;
+const RATE_LIMIT_MAX = 6;
 const ipHits = new Map<string, number[]>();
 
 function getClientIp(request: Request): string {
@@ -26,10 +27,6 @@ function checkRateLimit(ip: string): { ok: true } | { ok: false; retryAfterSec: 
   hits.push(now);
   ipHits.set(ip, hits);
   return { ok: true };
-}
-
-function isValidEmail(value: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function formatHumanDate(iso: string, timezone: string): string {
@@ -57,9 +54,6 @@ export async function POST(request: Request) {
     if (!slotStart || !slotEnd || !name || !email) {
       return Response.json({ error: "Missing required fields" }, { status: 400 });
     }
-    if (!isValidEmail(email)) {
-      return Response.json({ error: "Invalid email" }, { status: 400 });
-    }
     if (Date.parse(slotStart) <= Date.now()) {
       return Response.json({ error: "Slot is in the past" }, { status: 400 });
     }
@@ -68,9 +62,14 @@ export async function POST(request: Request) {
     const limit = checkRateLimit(ip);
     if (!limit.ok) {
       return Response.json(
-        { error: `Rate limit exceeded. Retry in ${limit.retryAfterSec}s` },
+        { error: "RATE_LIMIT", retryAfterSec: limit.retryAfterSec },
         { status: 429, headers: { "Retry-After": String(limit.retryAfterSec) } },
       );
+    }
+
+    const emailCheck = await validateEmailDeliverable(email);
+    if (!emailCheck.ok) {
+      return Response.json({ error: emailCheck.code }, { status: 400 });
     }
 
     const config = getScheduleConfig();
@@ -99,6 +98,7 @@ export async function POST(request: Request) {
 
     const event = await calendar.events.insert({
       calendarId,
+      sendUpdates: "all",
       requestBody: {
         summary: `Portfolio meeting · ${name}`,
         description: [
@@ -107,6 +107,10 @@ export async function POST(request: Request) {
         ].join(""),
         start: { dateTime: slotStart, timeZone: config.timezone },
         end: { dateTime: slotEnd, timeZone: config.timezone },
+        attendees: [
+          { email, displayName: name, responseStatus: "needsAction" },
+          { email: ownerEmail, responseStatus: "accepted", organizer: true },
+        ],
         reminders: { useDefault: true },
       },
     });
@@ -125,14 +129,6 @@ export async function POST(request: Request) {
           replyTo: email,
           subject: `[Portfolio] New booking — ${name}`,
           text: `New booking confirmed.\n\nFrom: ${name} <${email}>\nWhen: ${startHuman} → ${endHuman} (${config.timezone})\n${message ? `\nMessage:\n${message}` : ""}`,
-        });
-
-        await resend.emails.send({
-          from,
-          to: email,
-          replyTo: ownerEmail,
-          subject: `Meeting confirmed — ${startHuman}`,
-          text: `Hi ${name},\n\nYour meeting is confirmed.\n\nWhen: ${startHuman} → ${endHuman} (${config.timezone})\n\nReply to this email if you need to reschedule.\n\n— Tomás`,
         });
       } catch (mailError) {
         console.error("Booking email notification failed:", mailError);

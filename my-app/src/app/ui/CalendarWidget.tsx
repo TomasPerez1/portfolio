@@ -115,7 +115,7 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
       <div className="mt-3.5 font-mono text-[11px] text-fg-soft">
         {error
           ? <span className="text-rose-400">Error: {error}</span>
-          : `${totalAvailable} slots available · ${timezone || "—"}`}
+          : `· ${timezone.replaceAll('/', ', ').replaceAll('_', ' ') || "—"}`}
       </div>
     </div>
   );

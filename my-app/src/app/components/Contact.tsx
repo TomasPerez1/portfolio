@@ -186,7 +186,19 @@ function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
         }),
       });
       if (!res.ok) {
-        toast.error(formatErrorToast(res.status, copy.toast.error));
+        const data = await res.json().catch(() => ({ error: null }));
+        if (data.error === "RATE_LIMIT") {
+          const minutes = Math.max(1, Math.ceil((data.retryAfterSec ?? 60) / 60));
+          toast.error(copy.toast.rateLimit.replace("{minutes}", `${minutes} min`));
+          return;
+        }
+        const errorMap: Record<string, string> = {
+          INVALID_EMAIL_FORMAT: copy.toast.invalidEmail,
+          INVALID_EMAIL_DOMAIN: copy.toast.invalidEmail,
+          DISPOSABLE_EMAIL: copy.toast.disposableEmail,
+        };
+        const mapped = errorMap[data.error];
+        toast.error(mapped ?? formatErrorToast(res.status, copy.toast.error));
         return;
       }
       toast.success(copy.toast.success);

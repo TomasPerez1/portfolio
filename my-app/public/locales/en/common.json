@@ -96,7 +96,7 @@
       "index": "§ 03",
       "kicker": "Stack",
       "title": "What I actually use.",
-      "hint": "Cada fila muestra qué tan profundo fui con cada tecnología."
+      "hint": "Each row shows how deep I've gone with each technology."
     },
     "about": {
       "index": "§ 05",
@@ -117,7 +117,7 @@
       "screenLabel": "07 Contact",
       "index": "§ 06",
       "kicker": "Contact",
-      "title": "Let's build something."
+      "title": "Let's build something!"
     }
   },
   "featuredViewLabel": "Go to site",
@@ -398,16 +398,19 @@
     "cooldownLabel": "Wait {seconds}s",
     "copyLabel": "Copy",
     "copiedLabel": "Copied ✓",
-    "successMsg": "Message sent — I'll get back to you soon.",
+    "successMsg": "Message sent, I'll get back to you soon!",
     "errorMsg": "Something went wrong. Please try again or email me directly.",
     "toast": {
       "success": "Email sent successfully",
-      "error": "Email not sent"
+      "error": "Email not sent",
+      "invalidEmail": "That email doesn't look valid. Please check the address.",
+      "disposableEmail": "Please use a non-temporary email address.",
+      "rateLimit": "Too many attempts. Please wait {minutes} and try again."
     },
     "booking": {
       "eyebrow": "Book a call",
-      "title": "30 minutes — let's see if we click.",
-      "lead": "For recruiters, founders or fellow devs. Pick a slot — calendar invite arrives instantly."
+      "title": "30 minutes to see if we match.",
+      "lead": "For recruiters, founders, or developers. Choose a time that works for you."
     },
     "bookingModal": {
       "eyebrow": "Book a meeting",
@@ -423,6 +426,9 @@
       "validationError": "Name and email required",
       "slotTakenError": "Slot just got booked. Pick another.",
       "fallbackError": "Booking failed",
+      "invalidEmailError": "That email doesn't look valid. Please check the address.",
+      "disposableEmailError": "Please use a non-temporary email address.",
+      "rateLimitError": "Too many attempts. Please wait {minutes} and try again.",
       "successMsg": "Meeting booked. Check your inbox for the calendar invite.",
       "networkError": "Network error"
     },
