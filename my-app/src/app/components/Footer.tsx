@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 import { useTranslation } from "../i18n/client";
 import { noMotion, sectionReveal } from "./_animations";
@@ -32,7 +32,7 @@ export default function Footer({ lang }: { lang: string }) {
         { label: "CV", href: t("CV"), external: true },
       ];
   return (
-    <motion.footer
+    <m.footer
       className="px-[clamp(20px,5vw,96px)] py-14 border-t border-line flex flex-col gap-8"
       variants={reduce ? noMotion : sectionReveal}
       initial="hidden"
@@ -63,6 +63,6 @@ export default function Footer({ lang }: { lang: string }) {
         <span>© 2026 Tomás Pérez · Built with React, Next.js & ☕</span>
         <span>v2 · Last updated May 2026</span>
       </div>
-    </motion.footer>
+    </m.footer>
   );
 }

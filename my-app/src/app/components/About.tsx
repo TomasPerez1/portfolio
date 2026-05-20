@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { SectionHeader } from "./FeaturedWork";
 import { noMotion, sectionReveal } from "./_animations";
 import type {
@@ -58,7 +58,7 @@ interface AboutSectionProps {
 function AboutSection({ identity, about, header, englishFact }: AboutSectionProps) {
   const reduce = useReducedMotion();
   return (
-    <motion.section
+    <m.section
       id="about"
       data-screen-label="06 About"
       className="bg-card border-t border-line px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
@@ -73,7 +73,7 @@ function AboutSection({ identity, about, header, englishFact }: AboutSectionProp
         <div className="md:col-span-7 md:row-span-2 p-8 rounded-[18px] bg-bg border border-line flex flex-col justify-between gap-6">
           <div className="flex flex-col gap-3.5 text-[clamp(18px,1.05vw,16px)] leading-relaxed text-fg-soft">
             {about.paragraphs.map((p, i) => (
-              <p key={i} className="m-0">
+              <p key={`${i}-${p.slice(0, 24)}`} className="m-0">
                 {p}
               </p>
             ))}
@@ -126,7 +126,7 @@ function AboutSection({ identity, about, header, englishFact }: AboutSectionProp
 
         <CurrentlyCarousel items={about.currently} reduce={!!reduce} />
       </div>
-    </motion.section>
+    </m.section>
   );
 }
 
@@ -158,7 +158,7 @@ function CurrentlyCarousel({ items, reduce }: CurrentlyCarouselProps) {
       style={{ background: theme.background }}
     >
       <AnimatePresence mode="wait" initial={false}>
-        <motion.div
+        <m.div
           key={index}
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -193,14 +193,14 @@ function CurrentlyCarousel({ items, reduce }: CurrentlyCarouselProps) {
               </span>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </AnimatePresence>
 
       {items.length > 1 && (
         <div className="absolute bottom-3 right-3 flex gap-1.5">
-          {items.map((_, i) => (
+          {items.map((it, i) => (
             <span
-              key={i}
+              key={it.title}
               className={`h-1.5 w-1.5 rounded-full transition-colors ${
                 i === index ? (isDark ? "bg-[rgba(20,184,166,.9)]" : "bg-spark") : "bg-line"
               }`}

@@ -16,7 +16,7 @@ function getClientIp(request: Request): string {
   return request.headers.get("x-real-ip") ?? "unknown";
 }
 
-function checkRateLimit(ip: string): { ok: true } | { ok: false; retryAfterSec: number } {
+function checkRateLimit(ip: string): { ok: boolean; retryAfterSec: number } {
   const now = Date.now();
   const hits = (ipHits.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
   if (hits.length >= RATE_LIMIT_MAX) {
@@ -26,7 +26,7 @@ function checkRateLimit(ip: string): { ok: true } | { ok: false; retryAfterSec: 
   }
   hits.push(now);
   ipHits.set(ip, hits);
-  return { ok: true };
+  return { ok: true, retryAfterSec: 0 };
 }
 
 function formatHumanDate(iso: string, timezone: string): string {

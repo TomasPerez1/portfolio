@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
 
 const COOLDOWN_MS = 90_000;
@@ -219,7 +219,7 @@ function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
   };
 
   return (
-    <motion.section
+    <m.section
       id="contact"
       data-screen-label={header.screenLabel}
       className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
@@ -322,6 +322,6 @@ function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
           }}
         />
       )}
-    </motion.section>
+    </m.section>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import type { Identity, HeroCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
 import { useTranslation } from "../i18n/client";
 import { VOXEL_STATES } from "./voxel-states";
+
 
 const SHUFFLE_DURATION_MS = 600;
 
@@ -37,7 +38,6 @@ export default function Hero({ lang, showStatus = true }: { lang: string; showSt
 
 function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps) {
   const [tilt, setTilt] = useState<Tilt>({ x: -22, y: 28 });
-  const [time, setTime] = useState<Date>(() => new Date());
   const [voxelStateIndex, setVoxelStateIndex] = useState<number>(0);
   const [shuffling, setShuffling] = useState<boolean>(false);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -54,11 +54,6 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
       onShuffle();
     }
   };
-
-  useEffect(() => {
-    const i = setInterval(() => setTime(new Date()), 60_000);
-    return () => clearInterval(i);
-  }, []);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -96,10 +91,6 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
     };
   }, []);
 
-  const ar = time.toLocaleTimeString("en-US", {
-    timeZone: "America/Argentina/Buenos_Aires", hour: "2-digit", minute: "2-digit", hour12: false,
-  });
-
   return (
     <section
       id="top"
@@ -117,13 +108,10 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
       <div className="relative z-[2]">
         {showStatus && (
           <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px]">
-            <span className="badge flex-1 min-w-[260px] max-w-full !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
+            <span className="badge flex-1 min-w-[260px] max-w-fit !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
               <span className="animate-pulse w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)] shrink-0" />
-              <span className="flex-1">{data.statusLine}</span>
+              <span className="flex-1 ">{data.statusLine}</span>
             </span>
-            {/* <span className="badge text-[13.5px] font-mono flex-1 min-w-[260px] max-w-[420px] py-2 justify-center text-center">
-              {data.location} · {ar} {data.timezone}
-            </span> */}
           </div>
         )}
 
@@ -177,7 +165,7 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
             <div
               className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-1.5
                          px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-line-2
-                         font-mono text-[11px] text-fg-soft pointer-events-none"
+                         font-mono text-[11px] text-fg-soft pointer-events-none w-[200px]"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-spark" /> Voxel · click to shuffle
             </div>
@@ -311,7 +299,7 @@ function Voxel({ x, y, z, size, isYellow, transition }: VoxelProps) {
     [`rotateX(-90deg) translateZ(${size / 2}px)`, "brightness(.42)"],
   ];
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, scale: 0.4 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.4 }}
@@ -328,14 +316,14 @@ function Voxel({ x, y, z, size, isYellow, transition }: VoxelProps) {
         top: -size / 2,
       }}
     >
-      {faces.map(([t, b], i) => (
+      {faces.map(([t, b]) => (
         <div
-          key={i}
+          key={t}
           className="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,.25)]"
           style={{ background: base, transform: t, filter: b }}
         />
       ))}
-    </motion.div>
+    </m.div>
   );
 }
 

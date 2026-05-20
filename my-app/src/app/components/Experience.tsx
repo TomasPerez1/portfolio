@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "./FeaturedWork";
@@ -76,8 +76,8 @@ function ExpRow({
           }}
         >
           <ul className="m-0 p-0 list-none flex flex-col gap-2 overflow-hidden min-h-0">
-            {e.bullets.map((b, i) => (
-              <li key={i} className="flex gap-2.5 text-fg-soft text-sm">
+            {e.bullets.map((b) => (
+              <li key={b} className="flex gap-2.5 text-fg-soft text-sm">
                 <span className="text-spark mt-0.5">→</span>
                 <span>{b}</span>
               </li>
@@ -105,7 +105,7 @@ interface ExperienceSectionProps {
 function ExperienceSection({ items, header }: ExperienceSectionProps) {
   const reduce = useReducedMotion();
   return (
-    <motion.section
+    <m.section
       id="experience"
       data-screen-label={header.screenLabel}
       className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
@@ -123,7 +123,7 @@ function ExperienceSection({ items, header }: ExperienceSectionProps) {
       <div className="flex flex-col">
         {items.map((e, i) => (
           <ExpRow
-            key={i}
+            key={`${e.company}-${e.role}-${e.from}`}
             e={e}
             last={i === items.length - 1}
             hoverPrefix={header.hoverPrefix}
@@ -132,6 +132,6 @@ function ExperienceSection({ items, header }: ExperienceSectionProps) {
           />
         ))}
       </div>
-    </motion.section>
+    </m.section>
   );
 }

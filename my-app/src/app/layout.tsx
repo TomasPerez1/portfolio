@@ -57,6 +57,7 @@ export default async function RootLayout({
       className={`${bricolage.variable} ${geist.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Theme-flash prevention: must run synchronously before paint. next/script strategies would cause FOUC. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem("theme");var d=s||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",d);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();`,

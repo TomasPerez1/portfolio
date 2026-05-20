@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 import type { Slot } from "../api/calendar/_lib/types";
 
 export interface CalendarWidgetProps {
@@ -18,48 +18,75 @@ interface DayCell {
 const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"] as const;
 const MONTH_LABELS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+type AvailabilityState =
+  | { status: "loading" }
+  | { status: "ready"; slots: Slot[]; timezone: string }
+  | { status: "error"; error: string };
+
+type AvailabilityAction =
+  | { type: "reset" }
+  | { type: "success"; slots: Slot[]; timezone: string }
+  | { type: "error"; error: string };
+
+function availabilityReducer(_state: AvailabilityState, action: AvailabilityAction): AvailabilityState {
+  switch (action.type) {
+    case "reset":
+      return { status: "loading" };
+    case "success":
+      return { status: "ready", slots: action.slots, timezone: action.timezone };
+    case "error":
+      return { status: "error", error: action.error };
+  }
+}
+
 export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarWidgetProps) {
-  const [slots, setSlots] = useState<Slot[] | null>(null);
-  const [timezone, setTimezone] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const [cursor, setCursor] = useState<Date>(() => startOfMonth(new Date()));
+  const [availability, dispatch] = useReducer(availabilityReducer, { status: "loading" } as AvailabilityState);
+  const [today, setToday] = useState<Date | null>(null);
+  const [cursor, setCursor] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const now = new Date();
+    setToday(startOfDay(now));
+    setCursor((prev) => prev ?? startOfMonth(now));
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
-    setSlots(null);
-    setError(null);
+    dispatch({ type: "reset" });
     fetch("/api/calendar/slots")
       .then((r) => r.json())
       .then((data: { slots?: Slot[]; timezone?: string; error?: string }) => {
         if (cancelled) return;
         if (data.error) {
-          setError(data.error);
-          setSlots([]);
+          dispatch({ type: "error", error: data.error });
         } else {
-          setSlots(data.slots ?? []);
-          setTimezone(data.timezone ?? "");
+          dispatch({ type: "success", slots: data.slots ?? [], timezone: data.timezone ?? "" });
         }
       })
       .catch((e) => {
         if (cancelled) return;
-        setError(e instanceof Error ? e.message : "Failed to load");
-        setSlots([]);
+        dispatch({ type: "error", error: e instanceof Error ? e.message : "Failed to load" });
       });
     return () => { cancelled = true; };
   }, [refreshKey]);
 
-  const cells: DayCell[] = useMemo(() => buildMonthCells(cursor, slots ?? []), [cursor, slots]);
-  const monthLabel = `${MONTH_LABELS[cursor.getMonth()]} ${cursor.getFullYear()}`;
+  const slots: Slot[] = availability.status === "ready" ? availability.slots : [];
+  const cells: DayCell[] = useMemo(
+    () => (cursor && today ? buildMonthCells(cursor, slots, today) : []),
+    [cursor, slots, today],
+  );
 
-  const loading = slots === null;
-
-  if (loading) {
+  if (!cursor || !today || availability.status === "loading") {
     return (
       <div className="rounded-[18px] border border-line bg-bg p-5 min-h-[330px] flex items-center justify-center text-fg-soft font-mono text-xs">
         Loading availability…
       </div>
     );
   }
+
+  const monthLabel = `${MONTH_LABELS[cursor.getMonth()]} ${cursor.getFullYear()}`;
+  const timezone = availability.status === "ready" ? availability.timezone : "";
+  const errorMsg = availability.status === "error" ? availability.error : null;
 
   return (
     <div className="rounded-[18px] border border-line bg-bg p-5">
@@ -70,7 +97,7 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
             type="button"
             aria-label="Previous month"
             onClick={() => setCursor(addMonths(cursor, -1))}
-            disabled={isSameMonth(cursor, new Date())}
+            disabled={isSameMonth(cursor, today)}
             className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft hover:text-fg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             ‹
@@ -89,12 +116,13 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
         {WEEKDAYS.map((d) => (
           <div key={d} className="text-center font-mono text-[10px] text-fg-faint tracking-[.1em]">{d}</div>
         ))}
-        {cells.map((cell, i) => {
+        {cells.map((cell) => {
           const hasSlots = cell.slots.length > 0;
           const disabled = !cell.inMonth || cell.isPast || !hasSlots;
+          const cellKey = cell.inMonth ? `m-${cell.date.toISOString()}` : `pad-${cell.date.getTime()}`;
           return (
             <button
-              key={i}
+              key={cellKey}
               type="button"
               disabled={disabled}
               onClick={() => hasSlots && onDayClick(cell.slots)}
@@ -112,15 +140,15 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
         })}
       </div>
       <div className="mt-3.5 font-mono text-[11px] text-fg-soft">
-        {error
-          ? <span className="text-rose-400">Error: {error}</span>
+        {errorMsg
+          ? <span className="text-rose-400">Error: {errorMsg}</span>
           : `· ${timezone.replaceAll('/', ', ').replaceAll('_', ' ') || "—"}`}
       </div>
     </div>
   );
 }
 
-function buildMonthCells(cursor: Date, slots: readonly Slot[]): DayCell[] {
+function buildMonthCells(cursor: Date, slots: readonly Slot[], today: Date): DayCell[] {
   const first = startOfMonth(cursor);
   const startWeekday = (first.getDay() + 6) % 7; // Monday = 0
   const daysInMonth = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 0).getDate();
@@ -135,24 +163,31 @@ function buildMonthCells(cursor: Date, slots: readonly Slot[]): DayCell[] {
   }
 
   for (let i = 0; i < startWeekday; i++) {
-    cells.push({ date: new Date(0), inMonth: false, slots: [], isPast: false });
+    const padDate = new Date(cursor.getFullYear(), cursor.getMonth(), -(startWeekday - 1 - i));
+    cells.push({ date: padDate, inMonth: false, slots: [], isPast: false });
   }
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
   for (let day = 1; day <= daysInMonth; day++) {
     const date = new Date(cursor.getFullYear(), cursor.getMonth(), day);
     const isPast = date.getTime() < today.getTime();
     const daySlots = slotsByDay.get(date.toDateString()) ?? [];
     cells.push({ date, inMonth: true, slots: daySlots, isPast });
   }
+  let trailing = 1;
   while (cells.length % 7 !== 0) {
-    cells.push({ date: new Date(0), inMonth: false, slots: [], isPast: false });
+    const padDate = new Date(cursor.getFullYear(), cursor.getMonth() + 1, trailing++);
+    cells.push({ date: padDate, inMonth: false, slots: [], isPast: false });
   }
   return cells;
 }
 
 function startOfMonth(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), 1);
+}
+
+function startOfDay(d: Date): Date {
+  const copy = new Date(d);
+  copy.setHours(0, 0, 0, 0);
+  return copy;
 }
 
 function addMonths(d: Date, n: number): Date {
@@ -162,4 +197,3 @@ function addMonths(d: Date, n: number): Date {
 function isSameMonth(a: Date, b: Date): boolean {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
 }
-

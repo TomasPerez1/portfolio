@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
 import type { GridProject, ProjectsGridHeaderCopy } from "../i18n/portfolio.types";
@@ -67,7 +67,7 @@ interface ProjectsGridSectionProps {
 function ProjectsGridSection({ items, header }: ProjectsGridSectionProps) {
   const reduce = useReducedMotion();
   return (
-    <motion.section
+    <m.section
       data-screen-label={header.screenLabel}
       className="px-[clamp(20px,5vw,96px)] pb-[clamp(72px,10vw,140px)]"
       variants={reduce ? noMotion : sectionReveal}
@@ -82,6 +82,6 @@ function ProjectsGridSection({ items, header }: ProjectsGridSectionProps) {
       <div className="grid gap-[clamp(16px,1.4vw,24px)]" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
         {items.map((p) => <SmallCard key={p.id} p={p} />)}
       </div>
-    </motion.section>
+    </m.section>
   );
 }

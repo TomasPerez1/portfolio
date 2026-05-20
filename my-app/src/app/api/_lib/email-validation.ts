@@ -28,9 +28,10 @@ const DISPOSABLE_DOMAINS = new Set([
   "anonbox.net",
 ]);
 
-export type EmailValidationResult =
-  | { ok: true }
-  | { ok: false; code: "INVALID_EMAIL_FORMAT" | "DISPOSABLE_EMAIL" | "INVALID_EMAIL_DOMAIN" };
+export type EmailValidationResult = {
+  ok: boolean;
+  code?: "INVALID_EMAIL_FORMAT" | "DISPOSABLE_EMAIL" | "INVALID_EMAIL_DOMAIN";
+};
 
 const SYNTAX_RE = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/;
 

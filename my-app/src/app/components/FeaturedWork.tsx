@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
 import type { FeaturedProject, SectionHeaderCopy } from "../i18n/portfolio.types";
@@ -22,7 +22,7 @@ export function StackTicker() {
     <section aria-label="Tech stack" className="border-y border-line py-[22px] overflow-hidden bg-card">
       <div className="flex gap-14 whitespace-nowrap animate-ticker">
         {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((t, i) => (
-          <span key={i} className="inline-flex items-center gap-3.5 font-display font-semibold
+          <span key={`${t}-${i}`} className="inline-flex items-center gap-3.5 font-display font-semibold
                                    text-[clamp(20px,2.6vw,36px)] tracking-tightish2 text-fg">
             {t}
             <span className="w-2.5 h-2.5 rounded-full bg-spark shrink-0" />
@@ -133,7 +133,7 @@ interface FeaturedWorkSectionProps {
 function FeaturedWorkSection({ items, header, viewLabel }: FeaturedWorkSectionProps) {
   const reduce = useReducedMotion();
   return (
-    <motion.section
+    <m.section
       id="work"
       data-screen-label="02 Selected Work"
       className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
@@ -151,6 +151,6 @@ function FeaturedWorkSection({ items, header, viewLabel }: FeaturedWorkSectionPr
       <div className="flex flex-col gap-[clamp(18px,2.5vw,28px)]">
         {items.map((p) => <FeaturedCard key={p.id} p={p} viewLabel={viewLabel} />)}
       </div>
-    </motion.section>
+    </m.section>
   );
 }

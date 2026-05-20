@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { SectionHeader } from "./FeaturedWork";
 import type { StackCategories, StackHeaderCopy } from "../i18n/portfolio.types";
@@ -19,7 +19,7 @@ interface StackSectionInnerProps {
 function StackSectionInner({ stack, header }: StackSectionInnerProps) {
   const reduce = useReducedMotion();
   return (
-    <motion.section
+    <m.section
       id="stack"
       data-screen-label={header.screenLabel}
       className="bg-card border-y border-line px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
@@ -52,6 +52,6 @@ function StackSectionInner({ stack, header }: StackSectionInnerProps) {
           </div>
         ))}
       </div>
-    </motion.section>
+    </m.section>
   );
 }
