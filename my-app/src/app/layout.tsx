@@ -1,17 +1,19 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Provider } from "./providers";
-import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { cookies } from "next/headers";
 import { bricolage, geist, jetbrainsMono } from "./fonts";
 import "./globals.css";
 
-const poppins = Poppins({
-  weight: "500",
-  subsets: ["latin"],
-  display: "swap",
-});
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Tomás Pérez — Full-stack Developer",
@@ -64,7 +66,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className={poppins.className}>
+      <body>
         <Provider>
           <>
             {children}

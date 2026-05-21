@@ -136,7 +136,7 @@
         ["Vulnerabilities fixed", "44 in 2 days"],
         ["PDF reports speed-up", "−50%"]
       ],
-      "image": "../../proyects/ZS/zs.JPG",
+      "image": "/proyects/ZS/zs.JPG",
       "link": "https://www.zurich-santander.com.ar/zurich/nosotros"
     },
     {
@@ -153,7 +153,7 @@
         ["Edition cap", "25 DJs"],
         ["Partnership", "SoundCloud"]
       ],
-      "image": "../../proyects/dj-presskit/dj-presskit.png",
+      "image": "/proyects/dj-presskit/dj-presskit.png",
       "link": "https://dj-presskit.com"
     },
     {
@@ -170,7 +170,7 @@
         ["Delivery", "< 4 weeks"],
         ["Mobile-first", "Yes"]
       ],
-      "image": "../../proyects/iphone-brc/iphone-brc.png",
+      "image": "/proyects/iphone-brc/iphone-brc.png",
       "link": "https://ibrc.com.ar"
     }
   ],
