@@ -43,6 +43,7 @@
     "linkedin": "linkedin.com/in/tomas-perez-developer",
     "site": "tomasperezdev.space",
     "statusLine": "Disponible para roles orientados a producto, freelance y colaboraciones con propósito.",
+    "statusLineShort": "Disponible",
     "tagline": "Creando software que resuelve problemas reales, no solo técnicos.",
     "tagHighlight": "Más de 3 años construyendo con Node.js, React, Next.js, Tailwind CSS, NestJS, TypeScript y SQL como stack.",
     "tagTrailing": "Actualmente desarrollando plataformas enterprise en Zurich/Santander y proyectos freelance incluyendo un SaaS de DJS con partnership oficial de SoundCloud.",
@@ -132,7 +133,7 @@
       "kicker": "Plataformas enterprise de seguros",
       "year": "2025 — Presente",
       "role": "Full-stack (orientado a Backend)",
-      "stack": ["Node.js", "NestJS", "TypeScript", "REST APIs", "OpenShift", "Oracle SQL", "React", "Jest"],
+      "stack": ["Node.js", "NestJS", "React", "TypeScript", "REST APIs", "OpenShift", "Docker", "Oracle SQL",  "Jest"],
       "blurb": "Construyendo y modernizando plataformas enterprise internas para el sector seguros, foco en modernización de legacy, performance y entrega de features críticas para el negocio.",
       "metrics": [
         ["Vulnerabilidades corregidas", "44 en 2 días"],
@@ -248,8 +249,9 @@
     ],
     "Backend": [
       ["Node.js", "3a"],
-      ["NestJS", "2a"],
-      ["Express", "3a"],
+      ["NestJS", "3a"],
+      ["Express", "2a"],
+      ["Prisma ORM", "2a"],
       ["REST APIs", "3a"]
     ],
     "Arquitectura y Prácticas": [
@@ -266,12 +268,13 @@
       ["Redis", "1a"],
       ["Docker", "2a"],
       ["OpenShift", "1a"],
-      ["Git · GitHub", "Diario"],
-      ["Vercel", "2a"]
+      ["Vercel", "2a"],
+      ["Git · GitHub", "Diario"]
     ],
     "Herramientas IA": [
       ["Claude Code", "Diario"],
       ["AI-Driven Development", "Diario"],
+      ["Harness Engineering ", "Activo"],
       ["LLM Orchestration", "Activo"],
       ["Agentic Workflows", "Activo"]
     ]
@@ -312,7 +315,7 @@
       "bullets": [
         "Construcción del sistema de dashboard donde los artistas gestionan bio, calendario de eventos, releases, galería multimedia y tech rider con actualizaciones en tiempo real reflejadas en su sitio.",
         "Desarrollo de generación dinámica de sitios press-kit en Next.js. Secciones hero personalizadas, embeds de SoundCloud / YouTube, calendarios sincronizados y galerías optimizadas.",
-        "Implementación del sistema de diseño \"cápsulas\": temas visuales (colores, texturas, layouts) limitados por edición para diferenciación de marca.",
+        "Implementación del sistema de diseño \"cápsulas\", temas visuales (colores, texturas, layouts) limitados por edición para diferenciación de marca.",
         "Integración con la API de SoundCloud para playback y gestión de releases.",
         "Aporte en la arquitectura full-stack multitenant, setup de dominios personalizados y entrega de contenido escalable."
       ]
@@ -337,8 +340,8 @@
       "where": "Hydrotek · Spotsline · Property Scraper · Myfotolibro · Properties&&You",
       "bullets": [
         "Hydrotek (2024): co-desarrollo de un e-commerce con productos, usuarios, cupones y blog integrado. Aprendí y entregué NestJS, TypeScript y Prisma en menos de dos semanas. Hice reverse-engineering de un sistema de facturación sin documentación.",
-        "Property Scraper (2024): sistema full-stack de scraping para un cliente inmobiliario para Mercado Libre y Zonaprop. Ownership de comunicación con el cliente, arquitectura, desarrollo y deploy. Bypasseé la seguridad de las plataformas y afiné la asincronía de JS con Puppeteer; construí la generación de reportes PDF en el backend.",
-        "Spotsline (2023–2024): e-commerce para una empresa industrial. Integré la base de datos local DBS con réplica en SQL Server. Aprendí Framer Motion en <1 semana; optimicé React con useCallback / useDebounce.",
+        "Property Scraper (2024): sistema full-stack de scraping para un cliente inmobiliario para Mercado Libre y Zonaprop. Ownership de comunicación con el cliente, arquitectura, desarrollo y deploy. Bypasseé la seguridad de las plataformas y afiné la asincronía de JS con Puppeteer, construí la generación de reportes PDF en el backend.",
+        "Spotsline (2023–2024): e-commerce para una empresa industrial. Integré la base de datos local DBS con réplica en SQL Server. Aprendí Framer Motion en <1 semana, optimicé React con useCallback / useDebounce.",
         "Myfotolibro (2023): plataforma de fotolibros con links de subida personalizados, compresión de imágenes a estándares de impresión, integración con Cloudinary dentro del plan gratuito.",
         "Properties && You (2022): marketplace inmobiliario PERN en Henry Bootcamp, en este proyecto lideré un equipo de 6, aprendí Tailwind + Mercado Pago + Firebase en una semana."
       ]
@@ -373,7 +376,7 @@
       {
         "eyebrow": "Actualmente trabajando en",
         "title": "DJ Presskit — SaaS con partnership de SoundCloud",
-        "description": "Co-desarrollador en DJ Presskit, un SaaS para DJs con partnership oficial de SoundCloud. Ownership end-to-end: decisiones de producto, arquitectura, deploy y contacto directo con la base de usuarios.",
+        "description": "Co-desarrollador en DJ Presskit, un SaaS para DJs con partnership oficial de SoundCloud. Ownership end-to-end. Decisiones de producto, arquitectura, deploy y contacto directo con la base de usuarios.",
         "chips": ["Next.js", "NestJS", "TypeScript", "SaaS", "SoundCloud API"],
         "theme": "aqua"
       }
@@ -434,6 +437,17 @@
       "rateLimitError": "Demasiados intentos. Esperá {minutes} y volvé a probar.",
       "successMsg": "Reunión reservada. Revisá tu inbox para la invitación de calendario.",
       "networkError": "Error de red"
+    },
+    "calendar": {
+      "weekdays": ["LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB", "DOM"],
+      "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      "loadingLabel": "Cargando disponibilidad…",
+      "prevMonthLabel": "Mes anterior",
+      "nextMonthLabel": "Mes siguiente",
+      "emptyLabel": "Vacío",
+      "slotSingular": "horario",
+      "slotPlural": "horarios",
+      "errorPrefix": "Error"
     },
     "mapsUrl": "https://www.google.com/maps/place/CABA,+Buenos+Aires,+Argentina"
   },

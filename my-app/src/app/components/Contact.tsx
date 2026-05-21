@@ -39,19 +39,21 @@ interface FieldProps {
   multiline?: boolean;
   required?: boolean;
   disabled?: boolean;
+  maxLength?: number;
 }
 
-function Field({ label, v, setV, placeholder, type = "text", multiline, required, disabled }: FieldProps) {
+function Field({ label, v, setV, placeholder, type = "text", multiline, required, disabled, maxLength }: FieldProps) {
   const sharedProps = {
     value: v,
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setV(e.target.value),
     placeholder,
     required,
     disabled,
+    maxLength,
     className: `w-full bg-bg text-fg border border-line rounded-[10px] font-body text-sm
                 outline-none transition-colors focus:border-spark
                 disabled:opacity-60 disabled:cursor-not-allowed
-                ${multiline ? "p-3.5 min-h-[110px] resize-y" : "h-11 px-3.5"}`,
+                ${multiline ? "p-3.5 min-h-[110px] max-h-[280px] resize-y" : "h-11 px-3.5"}`,
   };
   return (
     <label className="flex flex-col gap-2">
@@ -59,6 +61,11 @@ function Field({ label, v, setV, placeholder, type = "text", multiline, required
       {multiline
         ? <textarea {...sharedProps} rows={4} />
         : <input type={type} {...sharedProps} />}
+      {maxLength && (
+        <span className={`font-mono text-[11px] text-right ${v.length >= maxLength ? "text-spark" : "text-fg-faint"}`}>
+          {v.length}/{maxLength}
+        </span>
+      )}
     </label>
   );
 }
@@ -222,7 +229,7 @@ function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
     <m.section
       id="contact"
       data-screen-label={header.screenLabel}
-      className="px-[clamp(20px,5vw,96px)] py-[clamp(72px,10vw,140px)]"
+      className="px-[clamp(20px,5vw,96px)] pt-[clamp(8px,1.5vw,20px)] pb-[clamp(72px,10vw,140px)]"
       variants={reduce ? noMotion : sectionReveal}
       initial="hidden"
       whileInView="visible"
@@ -241,7 +248,7 @@ function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
             <Field label={copy.formLabels.email} v={email} setV={setEmail} placeholder={copy.formPlaceholders.email} type="email" required disabled={disabled} />
           </div>
           <Field label={copy.formLabels.subject} v={subject} setV={setSubject} placeholder={copy.formPlaceholders.subject} required disabled={disabled} />
-          <Field label={copy.formLabels.message} v={message} setV={setMessage} placeholder={copy.formPlaceholders.message} multiline required disabled={disabled} />
+          <Field label={copy.formLabels.message} v={message} setV={setMessage} placeholder={copy.formPlaceholders.message} multiline required disabled={disabled} maxLength={1000} />
 
           <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
             <label>
@@ -304,6 +311,7 @@ function ContactSection({ identity, copy, header, lang }: ContactSectionProps) {
             </p>
           </div>
           <CalendarWidget
+            copy={copy.calendar}
             refreshKey={calendarRefresh}
             onDayClick={(slots) => setPickedDaySlots(slots)}
           />

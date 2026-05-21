@@ -34,16 +34,37 @@ const STATE_2: VoxelState = {
   removed: set("0,0,3", "0,3,0", "0,3,3", "3,0,0", "3,0,3", "3,3,3", "1,0,3", "2,0,3", "0,1,3", "0,2,3"),
 };
 
-// State 3 — hollow ring around the equator
+// State 3 — carved happy face: features removed from front shell, yellow core
+// exposed through the holes; asymmetric corner chips and top accent stripe
+const STATE_SMILEY: VoxelState = {
+  yellow: set(
+    // exposed core behind the carved eyes
+    "0,2,2", "3,2,2",
+    // exposed core behind the carved smile
+    "0,1,2", "3,1,2", "1,0,2", "2,0,2",
+    // top edge accent stripe
+    "1,3,3", "2,3,3",
+  ),
+  removed: set(
+    // eyes carved into the front face
+    "0,2,3", "3,2,3",
+    // smile carved into the front face
+    "0,1,3", "3,1,3", "1,0,3", "2,0,3",
+    // asymmetric corner chips for irregular silhouette
+    "0,3,3", "3,3,0",
+  ),
+};
+
+// State 4 — hollow ring around the equator
 const STATE_3: VoxelState = {
   yellow: set("0,1,0", "0,2,0", "0,1,3", "0,2,3", "3,1,0", "3,2,0", "3,1,3", "3,2,3", "1,1,3", "2,1,3", "1,2,3", "2,2,3"),
   removed: set("1,1,1", "2,1,1", "1,2,1", "2,2,1", "1,1,2", "2,1,2", "1,2,2", "2,2,2"),
 };
 
-// State 4 — asymmetric tower with cap
+// State 5 — asymmetric tower with cap
 const STATE_4: VoxelState = {
   yellow: set("0,3,0", "1,3,0", "2,3,0", "3,3,0", "0,3,1", "1,3,1", "2,3,1", "3,3,1", "1,2,0", "2,2,0", "1,1,0", "2,0,0"),
   removed: set("0,0,3", "1,0,3", "2,0,3", "3,0,3", "0,1,3", "3,1,3", "0,2,3", "3,2,3", "1,3,3", "2,3,3"),
 };
 
-export const VOXEL_STATES: readonly VoxelState[] = [STATE_0, STATE_1, STATE_2, STATE_3, STATE_4];
+export const VOXEL_STATES: readonly VoxelState[] = [STATE_0, STATE_1, STATE_2, STATE_SMILEY, STATE_3, STATE_4];

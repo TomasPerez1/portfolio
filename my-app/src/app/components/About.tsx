@@ -79,7 +79,7 @@ function AboutSection({ identity, about, header, englishFact }: AboutSectionProp
             ))}
           </div>
           <div className="flex items-center gap-3.5">
-            <div className="relative w-[6rem] h-[6rem] rounded-full bg-card overflow-hidden border border-line-2">
+            <div className="relative w-[6rem] h-[6rem] shrink-0 aspect-square rounded-full bg-card overflow-hidden border border-line-2">
               <Image
                 src="/profile/porfile_box.jpg"
                 alt="Tomás Pérez"
@@ -154,7 +154,7 @@ function CurrentlyCarousel({ items, reduce }: CurrentlyCarouselProps) {
 
   return (
     <div
-      className={`md:col-span-5 p-6 rounded-[18px] border ${theme.border} min-h-[180px] relative overflow-hidden`}
+      className={`md:col-span-5 p-6 rounded-[18px] border ${theme.border} min-h-[260px] relative overflow-hidden`}
       style={{ background: theme.background }}
     >
       <AnimatePresence mode="wait" initial={false}>

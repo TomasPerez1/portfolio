@@ -48,6 +48,7 @@ input, input[type="text"], input[type="password"], input[type="email"], input[ty
   --c-spark:     #b521ff;
   --c-spark-2:   #d946ef;
   --c-grid:      rgba(237,237,237,.10);
+  --c-hero-aura: rgba(181,33,255,.2);
   /* Geist is shipped by `geist/font/sans` under --font-geist-sans.
      Alias to --font-body so the Tailwind `font-body` utility works. */
   --font-body:   var(--font-geist-sans);
@@ -62,7 +63,24 @@ input, input[type="text"], input[type="password"], input[type="email"], input[ty
   --c-line-2:    rgba(23,23,23,.18);
   --c-card:      #ededed;
   --c-card-2:    #e0e0e0;
-  --c-grid:      rgba(23,23,23,.10);
+  --c-grid:      rgba(23,23,23,.22);
+  --c-hero-aura: rgba(181,33,255,.42);
+}
+
+:root.light .voxel-pill,
+:root[data-theme="light"] .voxel-pill {
+  background-color: var(--c-card-2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root.light #top .btn:not(.btn-primary),
+:root[data-theme="light"] #top .btn:not(.btn-primary) {
+  background-color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .animate-ticker { animation-duration: 28.5s; }
 }
 
 html { scroll-behavior: smooth; }
@@ -70,7 +88,7 @@ html { scroll-behavior: smooth; }
 
 @layer components {
   .display    { @apply font-display font-bold tracking-tightest leading-[.92]; }
-  .display-xl { font-size: clamp(64px, 13vw, 220px); }
+  .display-xl { font-size: clamp(80px, 16.25vw, 275px); }
   .display-l  { font-size: clamp(44px, 7.5vw, 112px); }
   .display-m  { font-size: clamp(32px, 4.5vw, 64px); }
   .eyebrow    { @apply font-mono text-[11px] tracking-[.14em] uppercase text-fg-soft; }

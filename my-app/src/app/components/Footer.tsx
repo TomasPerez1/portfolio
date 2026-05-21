@@ -41,7 +41,7 @@ export default function Footer({ lang }: { lang: string }) {
     >
       <div className="flex flex-wrap justify-between items-end gap-6">
         <div className="display text-[clamp(48px,9vw,140px)] tracking-tightest leading-[.9]">
-          tomas<span className="text-spark">.</span>dev
+          tperez<span className="text-spark">.</span>dev
         </div>
         <div className="flex flex-wrap gap-2.5">
           {links.map((link) => (
@@ -60,8 +60,7 @@ export default function Footer({ lang }: { lang: string }) {
       </div>
       <div className="h-px w-full bg-line" />
       <div className="flex flex-wrap justify-between gap-3 font-mono text-xs text-fg-soft">
-        <span>© 2026 Tomás Pérez · Built with React, Next.js & ☕</span>
-        <span>v2 · Last updated May 2026</span>
+        <span>© 2026 Tomás Pérez · Built with Next.js, Tailwind, Framer Motion & 🧉☕</span>
       </div>
     </m.footer>
   );

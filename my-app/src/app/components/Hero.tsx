@@ -8,6 +8,7 @@ import { VOXEL_STATES } from "./voxel-states";
 
 
 const SHUFFLE_DURATION_MS = 600;
+const VOXEL_INFLUENCE_RADIUS = 520;
 
 interface Tilt {
   x: number;
@@ -15,7 +16,7 @@ interface Tilt {
 }
 
 interface HeroSectionProps {
-  data: Pick<Identity, "statusLine" | "location" | "timezone" | "tagline" | "tagHighlight" | "tagTrailing">;
+  data: Pick<Identity, "statusLine" | "statusLineShort" | "location" | "timezone" | "tagline" | "tagHighlight" | "tagTrailing">;
   hero: HeroCopy;
   cvLink?: string;
   showStatus?: boolean;
@@ -25,10 +26,10 @@ export default function Hero({ lang, showStatus = true }: { lang: string; showSt
   const { data, ready } = usePortfolioData(lang);
   const { t } = useTranslation(lang, "common");
   if (!ready || !data) return null;
-  const { statusLine, location, timezone, tagline, tagHighlight, tagTrailing } = data.identity;
+  const { statusLine, statusLineShort, location, timezone, tagline, tagHighlight, tagTrailing } = data.identity;
   return (
     <HeroSection
-      data={{ statusLine, location, timezone, tagline, tagHighlight, tagTrailing }}
+      data={{ statusLine, statusLineShort, location, timezone, tagline, tagHighlight, tagTrailing }}
       hero={data.hero}
       cvLink={t("CV")}
       showStatus={showStatus}
@@ -65,29 +66,31 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
     let t = 0;
     let frame = 0;
     let autoOn = true;
+    const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+    let idleTimer: number | undefined;
     const onMove = (e: MouseEvent) => {
       autoOn = false;
       const r = el.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-      setTilt({ x: -22 - dy * 14, y: 28 + dx * 30 });
+      const dx = clamp((e.clientX - (r.left + r.width / 2)) / VOXEL_INFLUENCE_RADIUS, -1, 1);
+      const dy = clamp((e.clientY - (r.top + r.height / 2)) / VOXEL_INFLUENCE_RADIUS, -1, 1);
+      setTilt({ x: -22 - dy * 30, y: 28 + dx * 65 });
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => { autoOn = true; }, 1500);
     };
     const tick = () => {
       frame++;
       if (autoOn && frame % 2 === 0) {
-        t += 0.005;
-        setTilt({ x: -22 + Math.sin(t) * 4, y: 28 + Math.cos(t * 0.7) * 8 });
+        t += 0.008;
+        setTilt({ x: -22 + Math.sin(t) * 9, y: 28 + Math.cos(t * 0.7) * 18 });
       }
       raf = requestAnimationFrame(tick);
     };
-    const onLeave = () => { autoOn = true; };
-    el.addEventListener("mousemove", onMove);
-    el.addEventListener("mouseleave", onLeave);
+    window.addEventListener("mousemove", onMove);
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
-      el.removeEventListener("mousemove", onMove);
-      el.removeEventListener("mouseleave", onLeave);
+      window.clearTimeout(idleTimer);
+      window.removeEventListener("mousemove", onMove);
     };
   }, []);
 
@@ -99,23 +102,19 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
                  px-[clamp(20px,5vw,96px)] pt-[clamp(72px,10vw,140px)]"
     >
       <GridBackdrop />
-      <div
-        className="absolute -right-[10vw] top-[10%] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px]
-                   rounded-full blur-[40px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(181,33,255,.2) 0%, transparent 60%)" }}
-      />
 
       <div className="relative z-[2]">
         {showStatus && (
-          <div className="flex flex-wrap items-stretch gap-3 mb-10 max-w-[760px]">
-            <span className="badge flex-1 min-w-[260px] max-w-fit !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
+          <div className="flex flex-wrap items-stretch justify-end md:justify-start gap-3 mt-[30px] md:mt-0 mb-10 max-w-[760px]">
+            <span className="badge flex-none md:flex-1 md:min-w-[260px] max-w-fit !normal-case text-[12px] tracking-normal py-2 leading-snug text-left">
               <span className="animate-pulse w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(25,195,125,.18)] shrink-0" />
-              <span className="flex-1 ">{data.statusLine}</span>
+              <span className="flex-1 hidden md:inline">{data.statusLine}</span>
+              <span className="flex-1 md:hidden">{data.statusLineShort || data.statusLine}</span>
             </span>
           </div>
         )}
 
-        <div className="grid items-center gap-[clamp(24px,4vw,64px)] grid-cols-1 md:[grid-template-columns:minmax(0,1fr)_minmax(0,360px)]">
+        <div className="grid items-center gap-[clamp(24px,4vw,64px)] grid-cols-1 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,360px)]">
           <div>
             <div className="eyebrow mb-[18px]">Portfolio · 2026</div>
             <h1 className="display display-xl m-0">
@@ -157,17 +156,22 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
             aria-label="Shuffle voxel cube"
             onClick={onShuffle}
             onKeyDown={onShuffleKey}
-            className={`relative aspect-square max-w-[360px] mx-auto md:mx-0 w-full cursor-pointer select-none transition-transform duration-100
+            className={`relative aspect-square max-w-[360px] mx-auto lg:mx-0 w-full cursor-pointer select-none transition-transform duration-100
                        ${shuffling ? "scale-[.97]" : ""}`}
             style={{ perspective: "1100px" }}
           >
+            <div
+              aria-hidden="true"
+              className="absolute inset-[-60%] rounded-full blur-[40px] pointer-events-none z-0"
+              style={{ background: "radial-gradient(circle, var(--c-hero-aura) 0%, transparent 60%)" }}
+            />
             <VoxelArt tilt={tilt} stateIndex={voxelStateIndex} />
             <div
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-1.5
-                         px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-line-2
-                         font-mono text-[11px] text-fg-soft pointer-events-none w-[200px]"
+              className="voxel-pill absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2
+                         px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-line-2
+                         font-mono text-[13px] text-fg-soft pointer-events-none whitespace-nowrap"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-spark" /> Voxel · click to shuffle
+              <span className="w-2 h-2 rounded-full bg-spark" /> Voxel · click to shuffle
             </div>
           </div>
         </div>

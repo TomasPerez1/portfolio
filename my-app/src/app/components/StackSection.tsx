@@ -34,7 +34,7 @@ function StackSectionInner({ stack, header }: StackSectionInnerProps) {
         title={header.title}
         hint={header.hint}
       />
-      <div className="grid gap-[clamp(12px,1vw,20px)] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      <div className="grid gap-[clamp(12px,1vw,20px)] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
         {Object.entries(stack).map(([cat, items]) => (
           <div key={cat} className="p-4 border border-line rounded-[18px] bg-bg">
             <div className="flex items-center gap-2.5 mb-[18px]">
@@ -43,7 +43,7 @@ function StackSectionInner({ stack, header }: StackSectionInnerProps) {
             </div>
             <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
               {items.map(([name, depth]) => (
-                <li key={name} className="flex justify-between items-baseline gap-3 pb-2.5 border-b border-dashed border-line">
+                <li key={name} className="flex justify-between items-baseline gap-3 pb-2.5 border-b border-dashed border-line last:border-b-0 last:pb-0">
                   <span className="text-[15px] font-medium">{name}</span>
                   <span className="font-mono text-[11px] text-fg-faint">{depth}</span>
                 </li>

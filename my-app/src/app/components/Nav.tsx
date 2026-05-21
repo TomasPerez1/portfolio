@@ -49,7 +49,7 @@ function NavChrome({ theme, onToggleTheme, links = DEFAULT_LINKS, langSwitch }: 
       >
         <a href="#top" className="flex items-center gap-2 pr-2.5 border-r border-white/15 text-white">
           <Logo />
-          <span className="font-mono text-xs font-semibold">tomas.dev</span>
+          <span className="font-mono text-xs font-semibold">tperez.dev</span>
         </a>
         <div className="hidden md:flex gap-0.5">
           {links.map(([label, href]) => (

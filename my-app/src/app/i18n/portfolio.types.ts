@@ -8,6 +8,7 @@ export interface Identity {
   linkedin: string;
   site: string;
   statusLine: string;
+  statusLineShort: string;
   tagline: string;
   tagHighlight: string;
   tagTrailing: string;
@@ -197,7 +198,20 @@ export interface ContactCopy {
   toast: ContactToastCopy;
   booking: ContactBookingCopy;
   bookingModal: BookingModalCopy;
+  calendar: CalendarCopy;
   mapsUrl: string;
+}
+
+export interface CalendarCopy {
+  weekdays: readonly [string, string, string, string, string, string, string];
+  months: readonly [string, string, string, string, string, string, string, string, string, string, string, string];
+  loadingLabel: string;
+  prevMonthLabel: string;
+  nextMonthLabel: string;
+  emptyLabel: string;
+  slotSingular: string;
+  slotPlural: string;
+  errorPrefix: string;
 }
 
 export interface FooterCopy {

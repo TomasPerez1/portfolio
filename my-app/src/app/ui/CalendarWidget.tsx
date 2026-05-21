@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useReducer, useState } from "react";
 import type { Slot } from "../api/calendar/_lib/types";
+import type { CalendarCopy } from "../i18n/portfolio.types";
 
 export interface CalendarWidgetProps {
   onDayClick: (slots: Slot[]) => void;
+  copy: CalendarCopy;
   refreshKey?: number;
 }
 
@@ -15,8 +17,7 @@ interface DayCell {
   isPast: boolean;
 }
 
-const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"] as const;
-const MONTH_LABELS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const MAX_MONTHS_AHEAD = 6;
 
 type AvailabilityState =
   | { status: "loading" }
@@ -39,7 +40,7 @@ function availabilityReducer(_state: AvailabilityState, action: AvailabilityActi
   }
 }
 
-export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarWidgetProps) {
+export default function CalendarWidget({ onDayClick, copy, refreshKey = 0 }: CalendarWidgetProps) {
   const [availability, dispatch] = useReducer(availabilityReducer, { status: "loading" } as AvailabilityState);
   const [today, setToday] = useState<Date | null>(null);
   const [cursor, setCursor] = useState<Date | null>(null);
@@ -79,12 +80,12 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
   if (!cursor || !today || availability.status === "loading") {
     return (
       <div className="rounded-[18px] border border-line bg-bg p-5 min-h-[330px] flex items-center justify-center text-fg-soft font-mono text-xs">
-        Loading availability…
+        {copy.loadingLabel}
       </div>
     );
   }
 
-  const monthLabel = `${MONTH_LABELS[cursor.getMonth()]} ${cursor.getFullYear()}`;
+  const monthLabel = `${copy.months[cursor.getMonth()]} ${cursor.getFullYear()}`;
   const timezone = availability.status === "ready" ? availability.timezone : "";
   const errorMsg = availability.status === "error" ? availability.error : null;
 
@@ -95,7 +96,7 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
         <div className="flex gap-2">
           <button
             type="button"
-            aria-label="Previous month"
+            aria-label={copy.prevMonthLabel}
             onClick={() => setCursor(addMonths(cursor, -1))}
             disabled={isSameMonth(cursor, today)}
             className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft hover:text-fg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
@@ -104,16 +105,17 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
           </button>
           <button
             type="button"
-            aria-label="Next month"
+            aria-label={copy.nextMonthLabel}
             onClick={() => setCursor(addMonths(cursor, 1))}
-            className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft hover:text-spark transition-colors"
+            disabled={monthsBetween(today, cursor) >= MAX_MONTHS_AHEAD}
+            className="w-7 h-7 rounded-lg border border-line-2 inline-grid place-items-center text-fg-soft hover:text-spark disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             ›
           </button>
         </div>
       </div>
       <div className="grid grid-cols-7 gap-1.5">
-        {WEEKDAYS.map((d) => (
+        {copy.weekdays.map((d) => (
           <div key={d} className="text-center font-mono text-[10px] text-fg-faint tracking-[.1em]">{d}</div>
         ))}
         {cells.map((cell) => {
@@ -132,7 +134,7 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
                 ${cell.inMonth && !cell.isPast && hasSlots ? "bg-card-2 text-fg border-line-2 hover:bg-spark hover:text-white hover:border-transparent cursor-pointer" : ""}
                 ${cell.inMonth && !cell.isPast && !hasSlots ? "bg-transparent text-fg-faint border-transparent" : ""}
               `}
-              aria-label={cell.inMonth ? `${cell.date.getDate()} — ${cell.slots.length} slot${cell.slots.length === 1 ? "" : "s"}` : "Empty"}
+              aria-label={cell.inMonth ? `${cell.date.getDate()} — ${cell.slots.length} ${cell.slots.length === 1 ? copy.slotSingular : copy.slotPlural}` : copy.emptyLabel}
             >
               {cell.inMonth ? cell.date.getDate() : ""}
             </button>
@@ -141,7 +143,7 @@ export default function CalendarWidget({ onDayClick, refreshKey = 0 }: CalendarW
       </div>
       <div className="mt-3.5 font-mono text-[11px] text-fg-soft">
         {errorMsg
-          ? <span className="text-rose-400">Error: {errorMsg}</span>
+          ? <span className="text-rose-400">{copy.errorPrefix}: {errorMsg}</span>
           : `· ${timezone.replaceAll('/', ', ').replaceAll('_', ' ') || "—"}`}
       </div>
     </div>
@@ -196,4 +198,8 @@ function addMonths(d: Date, n: number): Date {
 
 function isSameMonth(a: Date, b: Date): boolean {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+}
+
+function monthsBetween(from: Date, to: Date): number {
+  return (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());
 }
