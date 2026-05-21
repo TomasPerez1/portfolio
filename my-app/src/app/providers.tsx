@@ -1,9 +1,18 @@
 "use client";
 
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
+import { LazyMotion, domAnimation } from "framer-motion";
 import React, { FC, ReactNode } from "react";
+import ThemeProvider from "./theme/ThemeProvider";
 
 export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
-  // @ts-ignore - Solución temporal para deploy
-  return <NextUIProvider>{children}</NextUIProvider>;
+  return (
+    <ThemeProvider>
+      <HeroUIProvider>
+        <LazyMotion features={domAnimation} strict>
+          {children}
+        </LazyMotion>
+      </HeroUIProvider>
+    </ThemeProvider>
+  );
 };

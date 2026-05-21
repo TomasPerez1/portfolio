@@ -1,0 +1,72 @@
+# Portfolio v1 — Bundle Baseline
+
+**Captured:** 2026-05-10
+**Branch:** v2.0.0 (pre-Phase-1 modifications, working tree at commit 7bbf8d7 + planning files)
+**Next.js:** 14.2.16
+**Command:** `npm run build` (in my-app/)
+**node_modules size:** 415M
+
+---
+
+## Headline numbers (gates PR-03 ≥30% reduction in Phase 9)
+
+| Metric | Value |
+|--------|-------|
+| `/[lang]` route size | **169 kB** |
+| `/[lang]` First Load JS | **269 kB** |
+| Shared First Load JS | **87.5 kB** |
+| node_modules size | **415 MB** |
+
+The principal target for the ≥30% reduction claim is **First Load JS for `/[lang]`** (currently 269 kB). The 30% target therefore lands at **≤188 kB**.
+
+---
+
+## Full build output
+
+```
+> my-app@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.16
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+(7 ESLint warnings — all pre-existing, none blocking)
+
+   Collecting page data ...
+   Generating static pages (8/8)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ƒ /                                    141 B          87.6 kB
+├ ƒ /_not-found                          872 B          88.4 kB
+├ ● /[lang]                              169 kB          269 kB
+├   ├ /en
+├   └ /es
+└ ƒ /api/send                            0 B                0 B
++ First Load JS shared by all            87.5 kB
+  ├ chunks/117-94d84865655780fd.js       31.6 kB
+  ├ chunks/fd9d1056-9d086cf17accdc7b.js  53.6 kB
+  └ other shared chunks (total)          2.27 kB
+
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+```
+
+---
+
+## What this gates
+
+- **PR-03** in REQUIREMENTS.md: ≥30% First Load JS reduction vs v1 baseline.
+- **Phase 9 verification**: Compare final `/[lang]` First Load JS against the 269 kB number above. Target: ≤188 kB.
+
+## Major contributors expected to drop in Phase 2
+
+- `@nextui-org/react` + theme + `@react-stately`/`@react-aria` deps
+- `@splinetool/react-spline` + `@splinetool/runtime` (Spline runtime is the heaviest single payload)
+- `mini-svg-data-uri` only stays if still used by `bg-grid` plugin
+
+Raw build log: `baseline-v1.raw.txt` (in this directory).

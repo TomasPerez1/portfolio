@@ -2,37 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--c-fg);
+  background: var(--c-bg);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-input, input[type="text"],input[type="password"], input[type="email"], input[type="number"],textarea {
-  caret-color: #000000;
+input, input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea {
+  caret-color: var(--c-fg);
 }
-
-#content {
-  background-color: #22014d;
-} 
-
-
-#navigation {
-  background-image: url("../../public/background/bg_vertical_dark_xl.JPG");
-}
-
 
 ::-webkit-scrollbar {
   width: 6px; 
@@ -48,5 +26,96 @@ input, input[type="text"],input[type="password"], input[type="email"], input[typ
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4d4d4d; 
+  background: #4d4d4d;
+}
+
+/* ---------------------------------------------------------------------- *
+ * v2 design tokens — Phase 1 Foundation Migration
+ * Source: .claude_design/export/styles/globals.css
+ * Theme switch driven by [data-theme] attribute (D-14, Phase 5).
+ * Fonts handled via next/font (see src/app/fonts.ts) — D-12.
+ * ---------------------------------------------------------------------- */
+
+:root {
+  --c-bg:        #0a0a0a;
+  --c-fg:        #ededed;
+  --c-fg-soft:   rgba(237,237,237,.62);
+  --c-fg-faint:  rgba(237,237,237,.42);
+  --c-line:      rgba(237,237,237,.10);
+  --c-line-2:    rgba(237,237,237,.18);
+  --c-card:      #111111;
+  --c-card-2:    #161616;
+  --c-spark:     #b521ff;
+  --c-spark-2:   #d946ef;
+  --c-grid:      rgba(237,237,237,.10);
+  --c-hero-aura: rgba(181,33,255,.2);
+  /* Geist is shipped by `geist/font/sans` under --font-geist-sans.
+     Alias to --font-body so the Tailwind `font-body` utility works. */
+  --font-body:   var(--font-geist-sans);
+}
+
+:root.light, :root[data-theme="light"] {
+  --c-bg:        #fafafa;
+  --c-fg:        #171717;
+  --c-fg-soft:   rgba(23,23,23,.66);
+  --c-fg-faint:  rgba(23,23,23,.42);
+  --c-line:      rgba(23,23,23,.10);
+  --c-line-2:    rgba(23,23,23,.18);
+  --c-card:      #ededed;
+  --c-card-2:    #e0e0e0;
+  --c-grid:      rgba(23,23,23,.22);
+  --c-hero-aura: rgba(181,33,255,.42);
+}
+
+:root.light .voxel-pill,
+:root[data-theme="light"] .voxel-pill {
+  background-color: var(--c-card-2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root.light #top .btn:not(.btn-primary),
+:root[data-theme="light"] #top .btn:not(.btn-primary) {
+  background-color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .animate-ticker { animation-duration: 28.5s; }
+}
+
+html { scroll-behavior: smooth; }
+::selection { background: var(--c-spark); color: white; }
+
+@layer components {
+  .display    { @apply font-display font-bold tracking-tightest leading-[.92]; }
+  .display-xl { font-size: clamp(80px, 16.25vw, 275px); }
+  .display-l  { font-size: clamp(44px, 7.5vw, 112px); }
+  .display-m  { font-size: clamp(32px, 4.5vw, 64px); }
+  .eyebrow    { @apply font-mono text-[11px] tracking-[.14em] uppercase text-fg-soft; }
+
+  .badge {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] tracking-[.1em] uppercase
+           px-2.5 py-1.5 rounded-full border border-line-2 text-fg-soft bg-card-2;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[.05em]
+           px-2 py-1 rounded-md bg-card-2 text-fg-soft border border-line;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2.5 h-11 px-[18px] rounded-full
+           border border-line-2 bg-transparent font-medium text-sm
+           transition-[transform,background,border-color,color] duration-200
+           hover:bg-card-2 hover:-translate-y-px;
+  }
+  .btn-primary {
+    @apply bg-spark text-white border-transparent
+           shadow-[0_8px_28px_-8px_rgba(181,33,255,.55)] hover:bg-spark-2;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker,
+  .animate-scroll-line,
+  .animate-spin-slow {
+    animation: none;
+  }
 }

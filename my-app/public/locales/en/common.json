@@ -5,10 +5,6 @@
     "contact": "Contact"
   },
   "CV": "/cv/FULLSTACK-TOMAS_PEREZ_en.pdf",
-  "spline": {
-    "rotate": "Rotate me!",
-    "rotate-mobile": "Rotate me with 2 fingers!"
-  },
   "form": {
     "name": "Name",
     "name-input": "Enter your name",
@@ -17,7 +13,6 @@
     "message": "Message",
     "message-input": "Enter a message",
     "send": "Send"
-
   },
   "about-me": "I'm Tomás, a <strong>Full-stack</strong> developer with a passion for technology, continuous learning, and creating innovative solutions. I specialize in designing and building robust and scalable web applications.<br /> My focus is not only on the code, but also on the impact the solutions can have. I combine my technical expertise with interpersonal skills that allow me to lead teams, communicate complex ideas effectively, and collaborate in agile environments using the <strong>SCRUM methodology</strong>.<br /> My technical skills on the frontend include developing intuitive and responsive interfaces with <strong> React, Next.js, Typescript and Tailwind CSS </strong> to deliver modern and functional results. On the backend, I focus on building solid and secure APIs with technologies like <strong>Node.js, Nest.js, and Express</strong>, always complementing these solutions with well-structured relational databases like <strong>PostgreSQL/Mysql</strong>, and an ORM like <strong>Prisma/Sequelize</strong> to optimize the data flow.<br /> My <strong>English level is C1 <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificate)</a> </strong>, which allows me to communicate effectively with international teams.<br /> Beyond the technical, I am an analytical, creative and problem solving person. I enjoy challenges because each one is an opportunity to learn and grow, both professionally and personally.",
   "proyects": {
@@ -33,10 +28,428 @@
       "date": "Jan 2024 - April 2024",
       "description": "I developed an e-commerce for an argentinemetallurgical company with a high flow ofcustomers and stock management.<br/> . I integrated a local database (DBS) to thesystem, making a copy in SQL formathosted in SQL Server to ensure data accessibility and security <br/>. I learned and implemented animations with Framer Motion in less than a week, improving the visual experience and userinteraction <br/>. I optimized component functionalities andstate handling with the efficient use of useCallback and useDebounce"
     },
-    
     "property-scraper": {
       "date": "Oct 2024 - Dic 2024",
       "description": "I developed a web scraper capable of extractingproperties from Mercado Libre and Zonaprop, along with their associated data. The tool includes thefunctionality to manage properties by saving themin queries and generating PDF files with such information <br/>. I overcame Mercado Libre and Zonaprop'ssecurity measures to access data efficiently <br/>. I significantly optimized scraping responsetimes by effectively managing JavaScript asynchrony and Puppeteer limits <br/>. Implemented the download of PDF files with modifiable data directly from the backend, improving personalization and user experience"
     }
+  },
+  "identity": {
+    "name": "Tomás Pérez",
+    "role": "Full-stack Developer",
+    "location": "CABA, Buenos Aires, AR",
+    "timezone": "GMT-3",
+    "email": "tomas.perez.developer@gmail.com",
+    "phone": "+54 9 2944140001",
+    "linkedin": "linkedin.com/in/tomas-perez-developer",
+    "site": "tomasperezdev.space",
+    "statusLine": "Available for product-focused roles, freelance work, and meaningful collaborations.",
+    "statusLineShort": "Available",
+    "tagline": "Creating software that solves real problems not just technical ones.",
+    "tagHighlight": "3+ years building with Node.js, React, Next.js, NestJS and TypeScript",
+    "tagTrailing": "Currently shipping enterprise platforms at Zurich/Santander and a SoundCloud-partnered SaaS.",
+    "longBio": [
+      "Building software that solves real-world problems, not just technical ones. Over 3 years of experience building with Node.js, React, Next.js, Tailwind CSS, NestJS, TypeScript, and SQL. Currently developing enterprise platforms in Zurich and Santander, as well as freelance projects, including a DJ SaaS platform with an official partnership with SoundCloud."
+    ],
+    "quickFacts": [
+      ["Based", "CABA, Buenos Aires"],
+      ["English", "B2 — Upper Intermediate"],
+      ["Currently learning", "Spect Driven Development with AI, AWS"],
+      ["Open to", "Remote · Hybrid · Freelance"]
+    ]
+  },
+  "hero": {
+    "ctaPrimary": "See selected work",
+    "ctaSecondary": "Get in touch",
+    "ctaTertiary": "Download CV",
+    "facts": {
+      "role": { "label": "Role", "value": "Full-stack Developer" },
+      "based": { "label": "Based", "value": "CABA, Buenos Aires" },
+      "english": {
+        "label": "English",
+        "value": "B2 — Upper Intermediate",
+        "certificateUrl": "https://cert.efset.org/frCgKc",
+        "certificateLabel": "Certificate"
+      }
+    }
+  },
+  "sections": {
+    "featured": "Featured work",
+    "projects": "More projects",
+    "stack": "Stack",
+    "experience": "Experience",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "sectionHeaders": {
+    "featured": {
+      "index": "§ 02",
+      "kicker": "Selected Work",
+      "title": "Things I've built recently.",
+      "hint": "Three featured projects with the impact, role and stack laid out."
+    },
+    "projectsGrid": {
+      "screenLabel": "03 More projects",
+      "title": "+ More projects",
+      "metaSuffix": "more · 2022 → 2026"
+    },
+    "stack": {
+      "screenLabel": "04 Stack",
+      "index": "§ 03",
+      "kicker": "Stack",
+      "title": "What I actually use.",
+      "hint": "Each row shows how deep I've gone with each technology."
+    },
+    "about": {
+      "index": "§ 05",
+      "kicker": "About",
+      "title": "The person behind the code."
+    },
+    "experience": {
+      "screenLabel": "05 Experience",
+      "index": "§ 04",
+      "kicker": "Experience",
+      "title": "3+ years of shipping.",
+      "hint": "A condensed timeline. Roles, companies and what I actually delivered.",
+      "hoverPrefix": "Hover to expand",
+      "highlightSingular": "highlight",
+      "highlightPlural": "highlights"
+    },
+    "contact": {
+      "screenLabel": "07 Contact",
+      "index": "§ 06",
+      "kicker": "Contact",
+      "title": "Let's build something!"
+    }
+  },
+  "featuredViewLabel": "Go to site",
+  "featured": [
+    {
+      "id": "zurich-santander",
+      "n": "01",
+      "title": "Zurich / Santander",
+      "kicker": "Enterprise insurance platforms",
+      "year": "2025 — Present",
+      "role": "Full-stack (Backend-oriented)",
+      "stack": ["Node.js", "NestJS", "React", "TypeScript", "REST APIs", "OpenShift", "Docker", "Oracle SQL",  "Jest"],
+      "blurb": "Building and modernising internal enterprise platforms for the insurance sector, focused on legacy modernisation, performance and shipping business-critical features.",
+      "metrics": [
+        ["Vulnerabilities fixed", "44 in 2 days"],
+        ["PDF reports speed-up", "−50%"]
+      ],
+      "image": "../../proyects/ZS/zs.JPG",
+      "link": "https://www.zurich-santander.com.ar/zurich/nosotros"
+    },
+    {
+      "id": "dj-presskit",
+      "n": "02",
+      "title": "DJ Presskit",
+      "kicker": "SaaS · Official SoundCloud Partner",
+      "year": "2025 — Present",
+      "role": "Co-developer · Full-stack",
+      "stack": ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Supabase", "NestJS", "Multitenant", "SoundCloud API"],
+      "blurb": "SaaS that generates professional digital press-kit sites for DJs and music producers. Custom subdomains, real-time dashboard, exclusive design \"capsules\" limited to 25 DJs per edition.",
+      "metrics": [
+        ["Active artists", "60+"],
+        ["Edition cap", "25 DJs"],
+        ["Partnership", "SoundCloud"]
+      ],
+      "image": "../../proyects/dj-presskit/dj-presskit.png",
+      "link": "https://dj-presskit.com"
+    },
+    {
+      "id": "iphone-brc",
+      "n": "03",
+      "title": "iPhone BRC",
+      "kicker": "High-conversion e-commerce landing",
+      "year": "2025",
+      "role": "Frontend Developer",
+      "stack": ["Next.js", "Framer Motion", "Tailwind", "Cloudflare", "WhatsApp API"],
+      "blurb": "Landing for an Apple retailer in Bariloche, AR. Animated Hero section video, product showcases, infinite logo carousels and CTAs wired to WhatsApp. Optimised for SEO and mobile.",
+      "metrics": [
+        ["Views in 90 days", "13K+"],
+        ["Delivery", "< 4 weeks"],
+        ["Mobile-first", "Yes"]
+      ],
+      "image": "../../proyects/iphone-brc/iphone-brc.png",
+      "link": "https://ibrc.com.ar"
+    }
+  ],
+  "projects": [
+    {
+      "id": "tienda-lqa",
+      "n": "04",
+      "title": "Tienda Lo Quiero Acá",
+      "kicker": "Backend · Hexagonal architecture",
+      "stack": ["NestJS", "TypeScript", "Redis", "MySQL", "AWS", "Hexagonal", "Kubernetes", "SOLID"],
+      "year": "2026 — Present",
+      "link": "https://www.loquieroaca.com/"
+    },
+    {
+      "id": "property-scraper",
+      "n": "05",
+      "title": "Property Scraper",
+      "kicker": "Real-estate data extraction",
+      "stack": ["Node.js", "Python", "PDF Generation", "Puppeteer", "React"],
+      "year": "2024",
+      "link": "#"
+    },
+    {
+      "id": "hydrotek",
+      "n": "06",
+      "title": "Hydrotek Store",
+      "kicker": "E-commerce · First production deploy",
+      "stack": ["React", "Tailwind", "NestJS", "TypeScript", "Prisma"],
+      "year": "2024",
+      "link": "https://www.hydrotek.store/"
+    },
+    {
+      "id": "spotsline",
+      "n": "07",
+      "title": "Spotsline Web",
+      "kicker": "Industrial e-commerce + stock",
+      "stack": ["React", "Framer Motion", "SQL Server"],
+      "year": "2023 — 2024",
+      "link": "https://www.spotsline.com.ar/"
+    },
+    {
+      "id": "myfotolibro",
+      "n": "08",
+      "title": "Myfotolibro Web",
+      "kicker": "Photobook upload + compression",
+      "stack": ["Node.js", "Cloudinary"],
+      "year": "2023",
+      "link": "#"
+    },
+    {
+      "id": "properties-you",
+      "n": "09",
+      "title": "Properties && You",
+      "kicker": "Real-estate marketplace · Bootcamp",
+      "stack": ["PERN", "Tailwind", "Firebase", "Mercado Pago"],
+      "year": "2022",
+      "link": "#"
+    }
+  ],
+  "stack": {
+    "Languages": [
+      ["JavaScript", "3y"],
+      ["TypeScript", "3y"],
+      ["Python", "Side projects"]
+    ],
+    "Frontend": [
+      ["React", "3y"],
+      ["Next.js", "3y"],
+      ["Tailwind CSS", "3y"],
+      ["Framer Motion", "2y"],
+      ["Redux", "2y"],
+      ["Figma", "Daily"]
+    ],
+    "Backend": [
+      ["Node.js", "3y"],
+      ["NestJS", "3y"],
+      ["Express", "2y"],
+      ["Prisma ORM", "2a"],
+      ["REST APIs", "3y"]
+    ],
+    "Architecture & Practices": [
+      ["Hexagonal Architecture"],
+      ["Clean Architecture"],
+      ["SOLID Principles"],
+      ["Monorepo"],
+      ["Multitenant"]
+    ],
+    "Data & Infra": [
+      ["PostgreSQL", "3y"],
+      ["MySQL", "2y"],
+      ["Oracle SQL", "1y"],
+      ["Redis", "1y"],
+      ["Docker", "2y"],
+      ["OpenShift", "1y"],
+      ["Vercel", "2y"],
+      ["Git · GitHub ", "Daily"]
+    ],
+    "AI Tooling": [
+      ["Claude Code", "Daily"],
+      ["AI-Driven Development", "Daily"],
+      ["Harness Engineering ", "Active"],
+      ["LLM Orchestration", "Active"],
+      ["Agentic Workflows", "Active"]
+    ]
+  },
+  "experience": [
+    {
+      "from": "Mar 2026",
+      "to": "Present",
+      "role": "Backend Developer",
+      "company": "Tienda Lo Quiero Acá",
+      "where": "Remote · NestJS · Hexagonal Architecture",
+      "bullets": [
+        "Develop & maintain backend APIs on a large NestJS / TypeScript codebase structured around hexagonal architecture and Clean Architecture principles.",
+        "Apply SOLID consistently, dependency injection by interface, repositories decoupled from the ORM, services with single responsibility.",
+        "Implement Redis caching for high-traffic endpoints, reducing load on the primary database.",
+        "Navigate and contribute effectively to a large pre-existing codebase, adapting fast to team conventions."
+      ]
+    },
+    {
+      "from": "May 2025",
+      "to": "Present",
+      "role": "Full-stack Developer (Backend-oriented)",
+      "company": "Zurich / Santander",
+      "where": "Insurance Platforms · Hybrid",
+      "bullets": [
+        "Resolved 44 security vulnerabilities across two React front-ends in 3 days to enable migration to Gluon (Santander's DevOps tooling) — originally scoped at 700+ hours.",
+        "Reduced PDF-report generation response times by 50% on a Node.js API via query optimisation and caching strategies.",
+        "Led modernisation of legacy systems and internal APIs across multiple platforms.",
+        "Bridged technical and business stakeholders in a multi-disciplinary agile environment."
+      ]
+    },
+    {
+      "from": "Mar 2025",
+      "to": "Present",
+      "role": "Co-founder & Full-stack",
+      "company": "DJ Presskit",
+      "where": "Freelance · SaaS · SoundCloud Official Partner",
+      "bullets": [
+        "Built the dashboard system where artists manage bio, event calendar, releases, multimedia gallery and tech rider with real-time updates reflected on their site.",
+        "Developed dynamic press-kit site generation in Next.js. Custom hero sections, SoundCloud / YouTube embeds, synced calendars, optimised galleries.",
+        "Implemented the \"capsule\" design system, visual themes (colors, textures, layouts) limited per edition for brand differentiation.",
+        "Integrated the SoundCloud API for playback and release management.",
+        "Contributed to multi-tenant full-stack architecture, custom-domain setup and scalable content delivery."
+      ]
+    },
+    {
+      "from": "Feb 2025",
+      "to": "Mar 2025",
+      "role": "Frontend Developer",
+      "company": "iPhone BRC (via Real Labs)",
+      "where": "Freelance · Bariloche, AR",
+      "bullets": [
+        "Built a fully responsive Next.js landing. Animated video hero, product showcases, WhatsApp-integrated CTAs.",
+        "Implemented smooth scroll animations, infinite logo carousels and dynamic product cards with Cloudflare image optimisation.",
+        "Delivered an SEO and mobile-performance optimised site on a tight timeline, in coordination with Real Labs design and branding teams."
+      ]
+    },
+    {
+      "from": "2022",
+      "to": "2024",
+      "role": "Freelance Full-stack",
+      "company": "Multiple clients",
+      "where": "Hydrotek · Spotsline · Property Scraper · Myfotolibro · Properties&&You",
+      "bullets": [
+        "Hydrotek (2024): co-developed an e-commerce with products, users, coupons and integrated blog. Learned and shipped NestJS, TypeScript and Prisma in under two weeks, reverse-engineered an undocumented invoicing system.",
+        "Property Scraper (2024): full-stack scraping system for a real-estate client, geting data from Mercado Libre and Zonaprop. Owned client communication, architecture, dev and deploy. Bypassed platform security and tuned async JS with Puppeteer, built backend PDF report generation.",
+        "Spotsline (2023–2024): e-commerce for an industrial company. Integrated local DBS database with SQL Server replica. Learned Framer Motion in <1 week, optimised React with useCallback / useDebounce.",
+        "Myfotolibro (2023): photobook platform — custom upload links, image compression to print standards, Cloudinary integration within the free tier.",
+        "Properties && You (2022): PERN real-estate marketplace at Henry Bootcamp — led a team of 6, learned Tailwind + Mercado Pago + Firebase in a week."
+      ]
+    },
+    {
+      "from": "Jun 2022",
+      "to": "Dec 2022",
+      "role": "Full-stack Web Development",
+      "company": "Henry Bootcamp",
+      "where": "Buenos Aires, AR",
+      "bullets": [
+        "Intensive full-stack bootcamp — JavaScript, React, Node.js, PostgreSQL.",
+        "Continuous self-taught learning since (2023 → Present)."
+      ]
+    }
+  ],
+  "about": {
+    "heading": "About",
+    "paragraphs": [
+      "I'm Tomás, a Full Stack Developer based in Buenos Aires. I got into this on my own because I genuinely enjoyed building things people could actually use and that hasn't changed.",
+      "I like having full ownership over what I build. Understanding the business, making architecture decisions, talking to the client, and handling the deploy. That's what led me to work on enterprise insurance platforms, collaborate with agencies, and launch my own projects like DJ Presskit.",
+      "I pick up new tech fast. But what can't be learned quickly is listening well, communicating clearly, owning the outcome and that's what I care about most."
+    ],
+    "currently": [
+      {
+        "eyebrow": "Currently working on",
+        "title": "Backend on a hexagonal NestJS codebase",
+        "description": "Development and maintenance of backend APIs on a large-scale NestJS codebase with TypeScript, structured under hexagonal architecture and Clean Architecture principles.",
+        "chips": ["NestJS", "TypeScript", "API REST", "Hexagonal", "Redis"],
+        "theme": "purple"
+      },
+      {
+        "eyebrow": "Currently working on",
+        "title": "DJ Presskit — SoundCloud-partnered SaaS",
+        "description": "Co-developer on DJ Presskit, a SaaS for DJs with official SoundCloud partnership. End-to-end ownership. Product decisions, architecture, deploy and direct contact with the user base.",
+        "chips": ["Next.js", "NestJS", "TypeScript", "SaaS", "SoundCloud API"],
+        "theme": "aqua"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Let's build something",
+    "lead": "Open to product-focused roles, freelance work and meaningful collaborations. The fastest way to reach me is below.",
+    "formEyebrow": "Send a message",
+    "repliesBadge": "Replies within 24h",
+    "formLabels": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message"
+    },
+    "formPlaceholders": {
+      "name": "Your name",
+      "email": "you@example.com",
+      "subject": "Quick line",
+      "message": "What's on your mind?"
+    },
+    "submitLabel": "Send message",
+    "submittingLabel": "Sending…",
+    "cooldownLabel": "Wait {seconds}s",
+    "copyLabel": "Copy",
+    "copiedLabel": "Copied ✓",
+    "successMsg": "Message sent, I'll get back to you soon!",
+    "errorMsg": "Something went wrong. Please try again or email me directly.",
+    "toast": {
+      "success": "Email sent successfully",
+      "error": "Email not sent",
+      "invalidEmail": "That email doesn't look valid. Please check the address.",
+      "disposableEmail": "Please use a non-temporary email address.",
+      "rateLimit": "Too many attempts. Please wait {minutes} and try again."
+    },
+    "booking": {
+      "eyebrow": "Book a call",
+      "title": "30 minutes to see if we match.",
+      "lead": "For recruiters, founders, or developers. Choose a time that works for you."
+    },
+    "bookingModal": {
+      "eyebrow": "Book a meeting",
+      "localTimePrefix": "Your local time",
+      "timePickerLabel": "Pick a time",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "messageLabel": "Message (optional)",
+      "privacyNote": "Your email is shared with Google Calendar to send the invite.",
+      "confirmLabel": "Confirm booking",
+      "confirmingLabel": "Booking…",
+      "closeLabel": "Close",
+      "validationError": "Name and email required",
+      "slotTakenError": "Slot just got booked. Pick another.",
+      "fallbackError": "Booking failed",
+      "invalidEmailError": "That email doesn't look valid. Please check the address.",
+      "disposableEmailError": "Please use a non-temporary email address.",
+      "rateLimitError": "Too many attempts. Please wait {minutes} and try again.",
+      "successMsg": "Meeting booked. Check your inbox for the calendar invite.",
+      "networkError": "Network error"
+    },
+    "calendar": {
+      "weekdays": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "loadingLabel": "Loading availability…",
+      "prevMonthLabel": "Previous month",
+      "nextMonthLabel": "Next month",
+      "emptyLabel": "Empty",
+      "slotSingular": "slot",
+      "slotPlural": "slots",
+      "errorPrefix": "Error"
+    },
+    "mapsUrl": "https://www.google.com/maps/place/CABA,+Buenos+Aires,+Argentina"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js, TypeScript and Tailwind."
   }
 }
