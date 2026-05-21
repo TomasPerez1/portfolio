@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
 import { noMotion, sectionReveal } from "./_animations";
 import { useState } from "react";
@@ -56,7 +57,7 @@ export function SectionHeader({ index, kicker, title, hint }: SectionHeaderProps
   );
 }
 
-export function FeaturedCard({ p, viewLabel = "View case study" }: { p: FeaturedProject; viewLabel?: string }) {
+export function FeaturedCard({ p, priority = false, viewLabel = "View case study" }: { p: FeaturedProject; priority?: boolean; viewLabel?: string }) {
   const [hover, setHover] = useState(false);
   return (
     <a
@@ -70,10 +71,15 @@ export function FeaturedCard({ p, viewLabel = "View case study" }: { p: Featured
                   ${hover ? "border-line-2 -translate-y-0.5" : "border-line"} border`}
     >
       <div className="relative aspect-[16/11] rounded-[18px] overflow-hidden bg-card-2 border border-line">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
+        <Image
+          src={p.image}
+          alt={p.title}
+          fill
+          sizes="(max-width: 1023px) 92vw, 46vw"
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
+          className="object-cover transition-transform duration-700"
           style={{
-            backgroundImage: `url(${p.image})`,
             transform: hover ? "scale(1.04)" : "scale(1)",
             filter: "saturate(.9)",
           }}

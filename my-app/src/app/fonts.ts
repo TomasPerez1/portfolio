@@ -3,9 +3,10 @@ import { GeistSans } from "geist/font/sans";
 
 export const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
   display: "swap",
+  preload: true,
 });
 
 // Geist is distributed by Vercel via the `geist` package (NOT next/font/google).
@@ -14,7 +15,7 @@ export const geist = GeistSans;
 
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 });

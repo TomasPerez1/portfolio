@@ -25,7 +25,7 @@ function SmallCard({ p }: { p: GridProject }) {
       </div>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h4 className="display m-0 text-2xl leading-tight tracking-tightish2">{p.title}</h4>
+          <h3 className="display m-0 text-2xl leading-tight tracking-tightish2">{p.title}</h3>
           <div className="mt-1 text-[13px] text-fg-soft">{p.kicker}</div>
         </div>
         {p.link ? (
@@ -76,7 +76,7 @@ function ProjectsGridSection({ items, header }: ProjectsGridSectionProps) {
       viewport={{ once: true, amount: 0.15 }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-3 mb-9">
-        <h3 className="display display-m m-0">{header.title}</h3>
+        <h2 className="display display-m m-0">{header.title}</h2>
         <span className="eyebrow">{items.length} {header.metaSuffix}</span>
       </div>
       <div className="grid gap-[clamp(16px,1.4vw,24px)]" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>

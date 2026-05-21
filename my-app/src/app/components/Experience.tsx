@@ -62,7 +62,7 @@ function ExpRow({
       </div>
       <div>
         <div className="flex flex-wrap items-baseline gap-3.5">
-          <h4 className="display m-0 text-[clamp(22px,2.4vw,32px)] tracking-tightish2 leading-snug">{e.role}</h4>
+          <h3 className="display m-0 text-[clamp(22px,2.4vw,32px)] tracking-tightish2 leading-snug">{e.role}</h3>
           <span className="text-fg-soft text-sm">at <span className="text-fg">{e.company}</span></span>
         </div>
         <div className="mt-1.5 text-[13px] font-mono text-fg-faint">{e.where}</div>

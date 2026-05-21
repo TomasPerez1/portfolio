@@ -139,7 +139,7 @@
         ["Vulnerabilidades corregidas", "44 en 2 días"],
         ["Mejora en reportes PDF", "−50%"]
       ],
-      "image": "../../proyects/ZS/zs.JPG",
+      "image": "/proyects/ZS/zs.JPG",
       "link": "https://www.zurich-santander.com.ar/zurich/nosotros"
     },
     {
@@ -156,7 +156,7 @@
         ["Cupo por edición", "25 DJs"],
         ["Partnership", "SoundCloud"]
       ],
-      "image": "../../proyects/dj-presskit/dj-presskit.png",
+      "image": "/proyects/dj-presskit/dj-presskit.png",
       "link": "https://dj-presskit.com"
     },
     {
@@ -173,7 +173,7 @@
         ["Entrega", "< 4 semanas"],
         ["Mobile-first", "Sí"]
       ],
-      "image": "../../proyects/iphone-brc/iphone-brc.png",
+      "image": "/proyects/iphone-brc/iphone-brc.png",
       "link": "https://ibrc.com.ar"
     }
   ],
