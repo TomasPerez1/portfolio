@@ -41,7 +41,9 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
   const [tilt, setTilt] = useState<Tilt>({ x: -22, y: 28 });
   const [voxelStateIndex, setVoxelStateIndex] = useState<number>(0);
   const [shuffling, setShuffling] = useState<boolean>(false);
+  const [voxelMounted, setVoxelMounted] = useState<boolean>(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const bcrRef = useRef<{ cx: number; cy: number } | null>(null);
 
   const onShuffle = () => {
     if (shuffling) return;
@@ -57,23 +59,45 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
   };
 
   useEffect(() => {
+    // Defer voxel mount until after first paint to keep FCP/LCP unblocked
+    const id = requestAnimationFrame(() => setVoxelMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
     const el = wrapRef.current;
-    if (!el) return;
-    // RC-03: reduced-motion + 30fps throttle
+    if (!el || !voxelMounted) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     if (reduceMotion) return;
     let raf = 0;
+    let rafTilt = 0;
     let t = 0;
     let frame = 0;
     let autoOn = true;
-    const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+    let pendingTilt: Tilt | null = null;
     let idleTimer: number | undefined;
+    const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+    const updateBCR = () => {
+      const r = el.getBoundingClientRect();
+      bcrRef.current = { cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
+    };
+    updateBCR();
+    const flushTilt = () => {
+      rafTilt = 0;
+      if (pendingTilt) {
+        setTilt(pendingTilt);
+        pendingTilt = null;
+      }
+    };
     const onMove = (e: MouseEvent) => {
       autoOn = false;
-      const r = el.getBoundingClientRect();
-      const dx = clamp((e.clientX - (r.left + r.width / 2)) / VOXEL_INFLUENCE_RADIUS, -1, 1);
-      const dy = clamp((e.clientY - (r.top + r.height / 2)) / VOXEL_INFLUENCE_RADIUS, -1, 1);
-      setTilt({ x: -22 - dy * 30, y: 28 + dx * 65 });
+      const bcr = bcrRef.current;
+      if (!bcr) return;
+      const dx = clamp((e.clientX - bcr.cx) / VOXEL_INFLUENCE_RADIUS, -1, 1);
+      const dy = clamp((e.clientY - bcr.cy) / VOXEL_INFLUENCE_RADIUS, -1, 1);
+      pendingTilt = { x: -22 - dy * 30, y: 28 + dx * 65 };
+      if (!rafTilt) rafTilt = requestAnimationFrame(flushTilt);
       window.clearTimeout(idleTimer);
       idleTimer = window.setTimeout(() => { autoOn = true; }, 1500);
     };
@@ -85,14 +109,19 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
       }
       raf = requestAnimationFrame(tick);
     };
-    window.addEventListener("mousemove", onMove);
+    if (!isTouch) window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("scroll", updateBCR, { passive: true });
+    window.addEventListener("resize", updateBCR);
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
+      cancelAnimationFrame(rafTilt);
       window.clearTimeout(idleTimer);
-      window.removeEventListener("mousemove", onMove);
+      if (!isTouch) window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("scroll", updateBCR);
+      window.removeEventListener("resize", updateBCR);
     };
-  }, []);
+  }, [voxelMounted]);
 
   return (
     <section
@@ -165,7 +194,7 @@ function HeroSection({ data, hero, cvLink, showStatus = true }: HeroSectionProps
               className="absolute inset-[-60%] rounded-full blur-[40px] pointer-events-none z-0"
               style={{ background: "radial-gradient(circle, var(--c-hero-aura) 0%, transparent 60%)" }}
             />
-            <VoxelArt tilt={tilt} stateIndex={voxelStateIndex} />
+            {voxelMounted && <VoxelArt tilt={tilt} stateIndex={voxelStateIndex} />}
             <div
               className="voxel-pill absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2
                          px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-line-2

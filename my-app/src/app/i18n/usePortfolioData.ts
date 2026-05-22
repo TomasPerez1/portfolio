@@ -1,25 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { initI18next } from "./index";
+import en from "../../../public/locales/en/common.json";
+import es from "../../../public/locales/es/common.json";
 import type { PortfolioData } from "./portfolio.types";
 
+const LOCALES: Record<string, PortfolioData> = {
+  en: en as unknown as PortfolioData,
+  es: es as unknown as PortfolioData,
+};
+
 export function usePortfolioData(lng: string) {
-  const [data, setData] = useState<PortfolioData | null>(null);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    initI18next(lng, "common").then((i18nInstance) => {
-      if (cancelled) return;
-      const bundle = i18nInstance.getResourceBundle(lng, "common") as PortfolioData;
-      setData(bundle);
-      setReady(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [lng]);
-
-  return { data, ready };
+  const data = LOCALES[lng] ?? LOCALES.en;
+  return { data, ready: true };
 }
