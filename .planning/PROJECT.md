@@ -5,9 +5,30 @@
 **Owner:** Tomás Pérez
 **Branch:** v2.0.0
 **Target runtime:** Vercel
-**Last updated:** 2026-05-10
+**Last updated:** 2026-06-13
 
 Visual redesign v2.0.0 merging the Claude Design system into the existing Next.js 14 App Router codebase. This is a structural and visual refactor, not a rewrite — existing functional pieces (i18n, contact pipeline, Calendly, analytics) are preserved; the heavy dependencies (Spline, NextUI) are replaced with a new design token system, HeroUI, and voxel CSS 3D.
+
+---
+
+## Current Milestone: v2.1.0 — SEO & AI Discoverability
+
+**Goal:** Make the portfolio fully discoverable and machine-readable — for recruiters, search engines, and AI candidate-search bots/agents — without sacrificing performance (in fact improving it).
+
+**Target features:**
+- **SSR content fix (surgical)** — remove the vestigial i18next async hook + spinner gate; render content server-side from the existing static `usePortfolioData` import. Perf-positive (faster LCP, smaller bundle), zero translation loss.
+- **Per-locale metadata** — `generateMetadata` with title/description/OG/hreflang/canonical. EN canonical, ES support.
+- **JSON-LD `Person` schema** — machine-readable profile for bots/AI agents (server-side, zero runtime cost).
+- **Open Graph image** — professional share preview (the primary real-world use case: sharing the URL with a person).
+- **robots.txt / llms.txt** — tuned for AI crawlers (GPTBot, ClaudeBot, etc.).
+- **Keyword strategy (AI-protagonist)** — grounded in real existing content + research of current AI-in-development trends to build a podium of high-value trending keywords.
+- **`<html lang>` fix** — derive from the route locale, not the cookie.
+
+**Key context:**
+- Performance is non-negotiable: zero regressions. The SSR fix is perf-positive, not a tradeoff.
+- EN canonical / ES support / hreflang both.
+- AI / Agentic Development is the protagonist of the messaging (backed by real content: Claude Code daily, LLM Orchestration, Agentic Workflows, Harness Engineering).
+- Research of current AI-in-web/software-development trends is required to surface high-value trending keywords.
 
 ---
 
@@ -163,3 +184,22 @@ Custom animations: `tickerFlow` (38s marquee), `scrollLine` (vertical pulse), `s
 | — | Experience.tsx | New |
 | — | Footer.tsx | New |
 | — | StackTicker (in FeaturedWork) | New |
+
+---
+
+## Evolution
+
+This document evolves at phase transitions and milestone boundaries.
+
+**After each phase transition** (via `/gsd-transition`):
+1. Requirements invalidated? → Move to Out of Scope with reason
+2. Requirements validated? → Move to Validated with phase reference
+3. New requirements emerged? → Add to Active
+4. Decisions to log? → Add to Key Decisions
+5. "What This Is" still accurate? → Update if drifted
+
+**After each milestone** (via `/gsd-complete-milestone`):
+1. Full review of all sections
+2. Core Value check — still the right priority?
+3. Audit Out of Scope — reasons still valid?
+4. Update Context with current state

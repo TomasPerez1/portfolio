@@ -1,3 +1,18 @@
+---
+gsd_state_version: 1.0
+milestone: v2.1.0
+milestone_name: SEO & AI Discoverability
+status: planning
+last_updated: "2026-06-13T23:57:24.065Z"
+last_activity: 2026-06-13
+progress:
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
+---
+
 # Project State
 
 ## Project Reference
@@ -9,16 +24,15 @@ See: .planning/PROJECT.md (updated 2026-05-10)
 
 ## Current Position
 
-Phase: 8 of 9 (Phase 7 implementation complete; user Google Cloud + email env setup still pending for E2E verification)
-Plan: Phase 8 PLAN.md executed end-to-end (voxel Rubik + scroll animations); Phase 7 smoke test deferred until user completes service-account setup
-Status: Phase 8 done. Next: Phase 9 (QA, Performance & Deploy — Lighthouse, bundle analysis, cross-browser, Vercel production)
-Last activity: 2026-05-11 — Phase 8: 5 voxel states + framer shuffle animation + scroll-fade entrance on 7 sections; voxel position fix via motion-value style props; Phase 6 cleanup (theme tokens, badge balance, CSS contrast); Phase 7 refactor (wrappers folded, components flattened, ui/ consolidated)
-
-Progress: [░░░░░░░░░░] 0%
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-06-13 — Milestone v2.1.0 started
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: —
 - Total execution time: 0 hours
@@ -30,6 +44,7 @@ Progress: [░░░░░░░░░░] 0%
 | - | - | - | - |
 
 **Recent Trend:**
+
 - Last 5 plans: —
 - Trend: —
 
@@ -42,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 All 12 locked decisions documented in PROJECT.md Key Decisions table.
 
 Key decisions affecting Phase 1 start:
+
 - D-07: Install HeroUI MCP via `npx -y @heroui/react-mcp`
 - D-08: Install shadcn MCP via `npx shadcn@latest mcp init --client claude`
 - D-12: Fonts via `next/font` — remove any Google Fonts CDN references
