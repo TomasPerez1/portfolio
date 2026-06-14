@@ -2,13 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.1.0
 milestone_name: SEO & AI Discoverability
-status: planning
-last_updated: "2026-06-14T00:00:00.000Z"
-last_activity: 2026-06-14
+status: executing
+stopped_at: ROADMAP.md created for v2.1.0 (Phases 10-16, full coverage of 20 requirements), REQUIREMENTS.md traceability finalized, STATE.md updated.
+last_updated: "2026-06-14T13:49:54.730Z"
+last_activity: 2026-06-14 -- Phase 10 execution started
 progress:
   total_phases: 7
   completed_phases: 0
-  total_plans: 0
+  total_plans: 2
   completed_plans: 0
   percent: 0
 ---
@@ -20,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-13)
 
 **Core value:** Make the portfolio fully discoverable and machine-readable — for recruiters, search engines, and AI candidate-search bots/agents — without sacrificing performance (in fact improving it).
-**Current focus:** Phase 10 (SSR Content Fix) — roadmap created, ready to plan
+**Current focus:** Phase 10 — ssr-content-fix
 
 ## Current Position
 
-Phase: 10 — SSR Content Fix
-Plan: — (not yet planned)
-Status: Roadmap created, ready for `/gsd:plan-phase 10`
-Last activity: 2026-06-14 — ROADMAP.md created for v2.1.0 (Phases 10-16), REQUIREMENTS.md traceability finalized
+Phase: 10 (ssr-content-fix) — EXECUTING
+Plan: 1 of 2
+Status: Executing Phase 10
+Last activity: 2026-06-14 -- Phase 10 execution started
 
 ## Performance Metrics
 
@@ -64,6 +65,7 @@ v2.1.0 owner decisions locked (see REQUIREMENTS.md header + PROJECT.md):
 - Zero new npm dependencies required for this milestone (native Next.js 16 Metadata API / `next/og` / `robots.ts` / `sitemap.ts`); `schema-dts` optional as types-only devDependency
 
 Architecture decision (from research, applies to Phase 11/13):
+
 - Do NOT promote `app/[lang]/layout.tsx` to root. Keep `app/layout.tsx` as true root (`<html>`/`<body>`); read `<html lang>` via `(await headers()).get('x-locale')` set by `middleware.ts`. `[lang]/layout.tsx` stays a nested layout but gains `generateMetadata()` + JSON-LD `<script>`.
 
 ### Pending Todos
