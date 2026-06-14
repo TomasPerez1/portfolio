@@ -302,7 +302,7 @@ Zero new npm dependencies are required (everything is a native Next.js 16 file c
   4. `package.json` no longer lists `i18next`, `react-i18next`, or `i18next-resources-to-backend`; all content (including CV/about copy) renders identically to before in both locales
 **Plans**: 2 plans
 - [x] 10-01-PLAN.md — Data-layer foundation + i18next consumer migration (cv type/JSON rename, getPortfolioData.ts, Hero/Footer/ClientPage off useTranslation + spinner gate)
-- [ ] 10-02-PLAN.md — Grep gate, delete dead i18n modules, npm uninstall i18next, SSR/curl + hydration validation
+- [~] 10-02-PLAN.md — Grep gate, delete dead i18n modules, npm uninstall i18next, SSR/curl + hydration validation (autonomous tasks done: grep gate passed, 4 modules deleted, 3 packages uninstalled; paused at the human build-validation checkpoint)
 **Open Questions**: None — architecture and file sequence fully specified by research; execution is mechanical.
 
 ---
