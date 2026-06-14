@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v2.1.0
 milestone_name: SEO & AI Discoverability
-status: executing
-stopped_at: Phase 10 (SSR Content Fix) complete — both plans done, production build human-verified (full crawlable content + zero hydration errors on /en and /es).
-last_updated: "2026-06-14T15:00:00.000Z"
+status: ready_to_plan
+stopped_at: Phase 10 complete (2/2) — ready to discuss Phase 11
+last_updated: 2026-06-14T14:13:00.511Z
 last_activity: 2026-06-14 -- Phase 10 complete (Plan 10-02 closed out after human build approval)
 progress:
   total_phases: 7
@@ -21,20 +21,20 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-13)
 
 **Core value:** Make the portfolio fully discoverable and machine-readable — for recruiters, search engines, and AI candidate-search bots/agents — without sacrificing performance (in fact improving it).
-**Current focus:** Phase 11 — `<html lang>` fix (next phase)
+**Current focus:** Phase 11 — `<html lang>` fix
 
 ## Current Position
 
-Phase: 10 (ssr-content-fix) — COMPLETE (2/2 plans)
-Plan: 2 of 2 done
-Status: Phase 10 complete. SSR-01, SSR-02, SSR-03 satisfied. Production build human-verified: full crawlable content + zero hydration errors on /en and /es. Known-deferred: `<html lang>` always "en" (fixed in Phase 11).
-Last activity: 2026-06-14 -- Phase 10 closed out after human build approval
+Phase: 11
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-06-14
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 0
+- Total plans completed: 2
 - Average duration: —
 - Total execution time: 0 hours
 
@@ -42,7 +42,7 @@ Last activity: 2026-06-14 -- Phase 10 closed out after human build approval
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 10 | 2 | - | - |
 
 **Recent Trend:**
 
