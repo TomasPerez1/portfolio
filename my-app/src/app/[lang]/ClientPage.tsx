@@ -1,7 +1,5 @@
 "use client";
 
-import LangLoader from "../ui/LangLoader";
-import { useTranslation } from "../i18n/client";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
 import FeaturedWork, { StackTicker } from "../components/FeaturedWork";
@@ -17,8 +15,6 @@ interface ClientPageProps {
 }
 
 function ClientPage({ lang = "en" }: ClientPageProps) {
-  const { ready } = useTranslation(lang, "common");
-  if (!ready) return <LangLoader />;
   return (
     <main className="bg-bg min-h-screen flex flex-col">
       <Nav lang={lang} />

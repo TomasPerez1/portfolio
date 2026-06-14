@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import type { Identity, HeroCopy } from "../i18n/portfolio.types";
 import { usePortfolioData } from "../i18n/usePortfolioData";
-import { useTranslation } from "../i18n/client";
 import { VOXEL_STATES } from "./voxel-states";
 
 
@@ -24,14 +23,13 @@ interface HeroSectionProps {
 
 export default function Hero({ lang, showStatus = true }: { lang: string; showStatus?: boolean }) {
   const { data, ready } = usePortfolioData(lang);
-  const { t } = useTranslation(lang, "common");
   if (!ready || !data) return null;
   const { statusLine, statusLineShort, location, timezone, tagline, tagHighlight, tagTrailing } = data.identity;
   return (
     <HeroSection
       data={{ statusLine, statusLineShort, location, timezone, tagline, tagHighlight, tagTrailing }}
       hero={data.hero}
-      cvLink={t("CV")}
+      cvLink={data.cv}
       showStatus={showStatus}
     />
   );

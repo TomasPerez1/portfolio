@@ -2,7 +2,6 @@
 
 import { m, useReducedMotion } from "framer-motion";
 import { usePortfolioData } from "../i18n/usePortfolioData";
-import { useTranslation } from "../i18n/client";
 import { noMotion, sectionReveal } from "./_animations";
 
 export interface FooterLink {
@@ -12,25 +11,17 @@ export interface FooterLink {
 }
 
 const GITHUB_URL = "https://github.com/Pelucheado";
-const FALLBACK_LINKS: readonly FooterLink[] = [
-  { label: "GitHub", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Email", href: "#" },
-  { label: "CV", href: "#" },
-];
 
 export default function Footer({ lang }: { lang: string }) {
   const { data, ready } = usePortfolioData(lang);
-  const { t } = useTranslation(lang, "common");
   const reduce = useReducedMotion();
-  const links: readonly FooterLink[] = !ready || !data
-    ? FALLBACK_LINKS
-    : [
-        { label: "GitHub", href: GITHUB_URL, external: true },
-        { label: "LinkedIn", href: `https://${data.identity.linkedin}`, external: true },
-        { label: "Email", href: `mailto:${data.identity.email}` },
-        { label: "CV", href: t("CV"), external: true },
-      ];
+  if (!ready || !data) return null;
+  const links: readonly FooterLink[] = [
+    { label: "GitHub", href: GITHUB_URL, external: true },
+    { label: "LinkedIn", href: `https://${data.identity.linkedin}`, external: true },
+    { label: "Email", href: `mailto:${data.identity.email}` },
+    { label: "CV", href: data.cv, external: true },
+  ];
   return (
     <m.footer
       className="px-[clamp(20px,5vw,96px)] py-14 border-t border-line flex flex-col gap-8"
