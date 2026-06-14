@@ -2,13 +2,18 @@
 
 ## Overview
 
-Nine sequential phases transform the existing Next.js 14 codebase into a redesigned v2.0.0 portfolio. The sequence is strictly linear: each phase unblocks the next. Phases 1-4 are infrastructure (tokens, stack swap, i18n, TypeScript); Phases 5-7 build and wire the visible product; Phases 8-9 add the animation layer and ship to production.
+This roadmap covers two milestones. **v2.0.0 (Visual Redesign, Phases 1-9)** transformed the existing Next.js codebase into the redesigned portfolio and is complete history — preserved below, do not edit. **v2.1.0 (SEO & AI Discoverability, Phases 10-16)** is the active milestone: it fixes the SSR/spinner-gate bug that currently hides all content from crawlers, then layers per-locale metadata, JSON-LD, OG images, and AI-crawler directives on top — closing with a mandatory performance re-verification gate.
 
 ## Milestones
 
-- 🚧 **v2.0.0 — Visual Redesign** — Phases 1-9 (in progress)
+- ✅ **v2.0.0 — Visual Redesign** — Phases 1-9 (complete)
+- 🚧 **v2.1.0 — SEO & AI Discoverability** — Phases 10-16 (in progress)
 
 ---
+
+# Milestone v2.0.0 — Visual Redesign (Phases 1-9)
+
+Nine sequential phases transform the existing Next.js 14 codebase into a redesigned v2.0.0 portfolio. The sequence is strictly linear: each phase unblocks the next. Phases 1-4 are infrastructure (tokens, stack swap, i18n, TypeScript); Phases 5-7 build and wire the visible product; Phases 8-9 add the animation layer and ship to production.
 
 ## Phases
 
@@ -239,7 +244,7 @@ Nine sequential phases transform the existing Next.js 14 codebase into a redesig
 
 ---
 
-## Progress
+## Progress — v2.0.0
 
 **Execution Order:** 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 (strictly linear)
 
@@ -254,3 +259,177 @@ Nine sequential phases transform the existing Next.js 14 codebase into a redesig
 | 7. Contact Wire-up | 0/? | Not started | - |
 | 8. Animation & Polish | 0/? | Not started | - |
 | 9. QA, Performance & Deploy | 0/? | Not started | - |
+
+---
+
+# Milestone v2.1.0 — SEO & AI Discoverability (Phases 10-16)
+
+## Overview
+
+Seven sequential phases fix a portfolio that currently ships **zero crawlable content** (the i18next spinner gate hides the entire tree from any non-JS request) and then layer the full native Next.js Metadata/SEO toolkit on top: per-locale `generateMetadata`, JSON-LD `Person` + featured-project structured data, static OG images, AI-crawler-aware `robots.ts`, and `llms.txt`. Phase 10 (SSR fix) is foundational — it unblocks every later phase and is framed as **perf-positive** (smaller client bundle, faster LCP), not a tradeoff. Phase 12 (keyword/copy strategy) is a **hard gate**: every AI-trend term claimed in metadata or JSON-LD must already be visible in `common.json` before Phase 13 writes it into `<title>`, `<meta description>`, or `knowsAbout`. Phase 16 (performance verification) is a **mandatory exit gate** — the milestone is not done until Lighthouse/CWV targets are re-confirmed on both locales.
+
+Zero new npm dependencies are required (everything is a native Next.js 16 file convention or export); the only optional addition is `schema-dts` as a types-only devDependency.
+
+## Phases
+
+- [ ] **Phase 10: SSR Content Fix** — Remove i18next + spinner gate; create server-safe `getPortfolioData(lang)`. Foundational, perf-positive.
+- [ ] **Phase 11: `<html lang>` Fix** — Middleware sets `x-locale` header; root layout reads it for `<html lang>`. Small, isolated.
+- [ ] **Phase 12: Keyword Strategy & Copy** — Apply the keyword podium to `common.json` (EN + ES). Hard gate before metadata/JSON-LD.
+- [ ] **Phase 13: Metadata, Canonical/Hreflang & JSON-LD** — `generateMetadata` + `Person` + `CreativeWork` for the 3 featured projects.
+- [ ] **Phase 14: OG Images** — Per-locale `opengraph-image.tsx`, static at build time.
+- [ ] **Phase 15: Crawler Directives** — `robots.ts` AI allowlist, sitemap verification, `llms.txt`.
+- [ ] **Phase 16: Performance Verification** — Final exit gate: Lighthouse + bundle analysis on both locales.
+
+---
+
+## Phase Details
+
+### Phase 10: SSR Content Fix
+**Goal**: A crawler or bot with no JS execution receives the fully-rendered portfolio content in the initial HTML on both `/en` and `/es` — never a spinner. This is the single highest-leverage fix: every later phase (metadata, JSON-LD, OG images) describes content that, from a crawler's perspective, doesn't exist until this lands. The fix is perf-positive (smaller client bundle, faster LCP), not a tradeoff.
+**Depends on**: Nothing (first phase of this milestone; builds on completed v2.0.0)
+**Requirements**: SSR-01, SSR-02, SSR-03
+**Key Tasks**:
+- Remove the `useTranslation().ready` async gate and `LangLoader` spinner from `app/[lang]/ClientPage.tsx`, `Hero.tsx`, `Footer.tsx`
+- Add `cv: string` to the `Identity`/`PortfolioData` type (confirm `CV` key position in `common.json` first)
+- Create NEW `app/i18n/getPortfolioData.ts` — plain sync, server-safe accessor (no `"use client"`), single source of truth for content, consumed later by metadata/JSON-LD/OG image (Phases 13-14)
+- Check `app/i18n/__assert.ts` for imports from `client.ts`/`index.ts` before deleting; delete `app/i18n/client.ts`, `app/i18n/index.ts`, `app/ui/LangLoader.tsx`
+- Remove `i18next`, `react-i18next`, `i18next-resources-to-backend` from `package.json`
+- Verify with `next build && next start` — check browser console for hydration errors on both `/en` and `/es` (spinner-gate removal surfaces latent mismatches for the first time)
+**Success Criteria** (what must be TRUE):
+  1. View-source (or `curl`) on `/en` and `/es` shows the full rendered portfolio content in the initial HTML — no spinner-only response
+  2. `getPortfolioData(lang)` is callable from server-only code (no `"use client"` boundary) and returns the same shape as the client hook
+  3. `next build && next start` completes cleanly; browser console shows zero hydration errors/warnings on both `/en` and `/es`
+  4. `package.json` no longer lists `i18next`, `react-i18next`, or `i18next-resources-to-backend`; all content (including CV/about copy) renders identically to before in both locales
+**Plans**: TBD
+**Open Questions**: None — architecture and file sequence fully specified by research; execution is mechanical.
+
+---
+
+### Phase 11: `<html lang>` Fix
+**Goal**: The `<html lang>` attribute correctly reflects the route locale on every page, derived from the request — not from a cookie that is never set. This is small and isolated (different files than Phase 10) but must land before Phase 13, since hreflang correctness depends on a correct `<html lang>`.
+**Depends on**: Phase 10 (sequenced after for clarity; touches disjoint files but both must be correct before Phase 13)
+**Requirements**: LOCALE-01
+**Key Tasks**:
+- `middleware.ts` — set a new `x-locale` request header from the already-computed `locale` (path-rewrite logic stays unchanged)
+- `app/layout.tsx` — read `(await headers()).get('x-locale')` for `<html lang>`; remove the `NEXT_LOCALE` cookie read entirely
+- Verify both `/en` and `/es` (and the `/` redirect target) emit the correct `lang` attribute
+**Success Criteria** (what must be TRUE):
+  1. View-source on `/en` shows `<html lang="en">`
+  2. View-source on `/es` shows `<html lang="es">`
+  3. No code path reads `NEXT_LOCALE` cookie for `<html lang>` anymore (verified by grep/search)
+  4. `next build && next start` still completes cleanly — no new hydration mismatch introduced by the header read
+**Plans**: TBD
+**Open Questions**: None — middleware-header pattern documented and small (~3-line middleware change + 1-line layout change).
+
+---
+
+### Phase 12: Keyword Strategy & Copy
+**Goal**: The visible copy in `common.json` (EN + ES) leads with the AI-protagonist positioning (Agentic Workflows, AI-Driven Development, Harness Engineering) — grounded entirely in real, existing profile content. This is a content/copy phase, not a code phase, and it is a **hard gate**: Phase 13 may not write any term into `<title>`, `<meta description>`, or JSON-LD `knowsAbout` that is not already visible here. No fabricated or stretched claims (honesty gate).
+**Depends on**: Nothing technical (independent of Phases 10-11), but must complete BEFORE Phase 13
+**Requirements**: KW-01, KW-02, KW-03
+**Key Tasks**:
+- Apply the validated keyword podium to `common.json` (EN + ES): 1st "Agentic Workflows"/"Agentic Engineering", 2nd "AI-Driven Development", 3rd "Harness Engineering" — woven into Stack/About section copy and `tagHighlight` subhead (e.g. "...working AI-augmented, agentic-first, every day")
+- Add "Context Engineering" as a 6th item to `Stack > AI Tooling` in `common.json` (EN + ES) — per locked owner decision
+- Confirm English level stays "B2 — Upper Intermediate" everywhere (no C1 claim anywhere in copy) — per locked owner decision
+- Draft final `<title>` tag and `<meta description>` text for both locales (Option B framing: "Tomas Perez — Full-Stack Developer | Agentic AI-Driven Development"), ready for Phase 13 to consume
+- Draft the `knowsAbout` term list (AI-trend terms first, then core stack) for Phase 13's JSON-LD — every term traceable to a `common.json` key
+**Success Criteria** (what must be TRUE):
+  1. `common.json` (EN + ES) contains visible copy referencing "Agentic Workflows"/"Agentic Engineering" and "AI-Driven Development" — both already marked "Active"/"Daily" in the existing Stack data
+  2. `Stack > AI Tooling` lists 6 items including "Context Engineering" in both locales
+  3. No occurrence of "C1" or a C1 English claim exists anywhere in `common.json` (EN or ES)
+  4. A finalized title-tag string, meta-description string (both locales), and ordered `knowsAbout` array are written down and every term in them can be pointed to a specific line in `common.json`
+**Plans**: TBD
+**Open Questions**: None — owner decisions (Context Engineering, B2 vs C1, sameAs scope) are locked in PROJECT.md/REQUIREMENTS.md.
+
+---
+
+### Phase 13: Metadata, Canonical/Hreflang & JSON-LD
+**Goal**: Every locale page emits correct, localized `<title>`/`<meta description>`/OG/Twitter tags, symmetric canonical + hreflang (en/es/x-default), and server-rendered JSON-LD (`Person` + the 3 featured projects) — all derived from `getPortfolioData(lang)` and the Phase 12 copy. This phase converges the data layer (Phase 10), the locale signal (Phase 11), and the finalized copy (Phase 12).
+**Depends on**: Phase 10 (data layer), Phase 11 (`<html lang>` correctness), Phase 12 (finalized copy — hard gate)
+**Requirements**: META-01, META-02, META-03, SCHEMA-01, SCHEMA-02, SCHEMA-03
+**Key Tasks**:
+- Add `metadataBase` (production origin, e.g. `new URL("https://tomasperezdev.space")`) to root layout metadata
+- `app/[lang]/layout.tsx` — implement `generateMetadata()`: title/description (from Phase 12), OG tags, Twitter card, via `getPortfolioData(lang)`
+- Build a centralized `getAlternates(lang)` helper for symmetric `alternates.canonical` + `alternates.languages` (en/es/x-default) — `/es` self-canonicalizes to `/es`, `/en` to `/en`
+- Add JSON-LD `Person` `<script type="application/ld+json">` (server component, `dangerouslySetInnerHTML`, escaped) in `[lang]/layout.tsx` — `jobTitle`, `knowsAbout` (Phase 12's ordered list), `sameAs` (LinkedIn + own site only — no GitHub, per locked decision)
+- Add JSON-LD `CreativeWork`/`WorkExample` blocks for the 3 featured projects (Zurich/Santander, DJ Presskit, iPhone BRC)
+- Validate all JSON-LD with Google's Rich Results Test AND the schema.org validator
+**Success Criteria** (what must be TRUE):
+  1. View-source on `/en` and `/es` shows distinct, correct `<title>` and `<meta name="description">` matching Phase 12's copy
+  2. `/es`'s canonical self-references `/es` and `/en`'s self-references `/en`; both emit `hreflang` alternates for `en`, `es`, and `x-default`; `metadataBase` resolves to the production origin (no `localhost` leakage)
+  3. View-source on both locales shows a `Person` JSON-LD block with `jobTitle`, `knowsAbout` (AI-trend terms first), and `sameAs` containing exactly LinkedIn + own site (no GitHub)
+  4. View-source shows `CreativeWork`/`WorkExample` JSON-LD for all 3 featured projects
+  5. Google Rich Results Test and the schema.org validator report no errors for either locale; no claim in any JSON-LD block is absent from visible `common.json` content
+**Plans**: TBD
+**Open Questions**: Hreflang/canonical symmetry and JSON-LD validation are subtle (Pitfalls 5/6) — plan explicit verification steps against Rich Results Test + schema.org validator during execution.
+
+---
+
+### Phase 14: OG Images
+**Goal**: Sharing the portfolio link (LinkedIn/Slack/WhatsApp) shows a professional, per-locale 1200x630 preview image — generated at build time with zero per-request cost. Sequenced after Phase 12/13 so the image text matches the finalized title/description.
+**Depends on**: Phase 10 (`getPortfolioData`), Phase 12 (finalized copy for image text), Phase 13 (metadata references the image)
+**Requirements**: OG-01
+**Key Tasks**:
+- Create `app/[lang]/opengraph-image.tsx` per locale using `next/og`'s `ImageResponse` (1200x630)
+- Load 1-2 TTF font weights via `fs.readFile` into `assets/og/` (WOFF2/`next/font` CSS vars do not work inside Satori)
+- Build a minimal template: identity name, role/title text (from Phase 12), brand colors/tokens from the design system
+- Confirm `next build` output marks the OG image route as static/SSG for both locales (not dynamic)
+- Verify `generateMetadata` (Phase 13) references the generated OG image correctly
+**Success Criteria** (what must be TRUE):
+  1. Requesting the OG image URL for `/en` and `/es` returns a 1200x630 image reflecting that locale's title/role text
+  2. `next build` output shows the OG image routes as static/SSG, not dynamic, for both locales
+  3. Pasting the portfolio URL into a link-preview tool (or LinkedIn Post Inspector / Twitter Card Validator) shows the generated image and correct title/description
+**Plans**: TBD
+**Open Questions**: Font-loading mechanics for `ImageResponse` (TTF extraction via `readFile`, static-generation verification) are new to this codebase — confirm build output marks routes static before relying on them.
+
+---
+
+### Phase 15: Crawler Directives
+**Goal**: AI crawlers and search engines receive explicit, correct directives — `robots.ts` allowlists major AI bots and references the sitemap, the sitemap is verified consistent with Phase 13's canonical URLs, and `llms.txt` publishes a machine-readable summary reflecting the finalized positioning from Phase 12.
+**Depends on**: Phase 12 (positioning for `llms.txt` content), Phase 13 (canonical URLs for sitemap consistency)
+**Requirements**: CRAWL-01, CRAWL-02, CRAWL-03
+**Key Tasks**:
+- Create `app/robots.ts` (`MetadataRoute.Robots`) with explicit `Allow` rules for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, Claude-SearchBot, PerplexityBot, Perplexity-User, Google-Extended; reference the sitemap
+- Delete `public/robots.txt` (static file and route convention cannot coexist for the same path)
+- Verify `sitemap.ts` — `lastModified`, URL/trailing-slash consistency, and hreflang alternates match Phase 13's canonical URLs
+- Create `public/llms.txt` — markdown summary using Phase 12's finalized positioning (AI-trend terms, role, stack)
+**Success Criteria** (what must be TRUE):
+  1. `/robots.txt` (served by `app/robots.ts`) explicitly allows all 9 listed AI crawler user-agents and references `/sitemap.xml`; `public/robots.txt` no longer exists
+  2. `/sitemap.xml` lists `/en` and `/es` with correct `hreflang` alternates and `lastModified`, consistent with Phase 13's canonical URLs
+  3. `/llms.txt` is publicly accessible and its content reflects the AI-protagonist positioning finalized in Phase 12 (no stale/contradictory claims)
+**Plans**: TBD
+**Open Questions**: None — `MetadataRoute.Robots`/`Sitemap` shapes confirmed against Context7 docs, no API ambiguity.
+
+---
+
+### Phase 16: Performance Verification
+**Goal**: The cumulative additions from Phases 10-15 (JSON-LD payload, extra hreflang link tags, OG image routes, robots/sitemap changes) have not regressed the v2.0.0 performance baseline — on both locales. This is the milestone's mandatory exit gate, not optional cleanup; performance is non-negotiable.
+**Depends on**: Phase 10 through Phase 15 (all content/code additions must be in place)
+**Requirements**: PERF-01, PERF-02, PERF-03
+**Key Tasks**:
+- Review `next build` output — confirm `/en`, `/es`, and both OG image routes are static/SSG, not dynamic (watch for accidental `cookies()`/`headers()` calls in `generateMetadata` forcing dynamic rendering)
+- Run Lighthouse on both `/en` and `/es` — compare against PROJECT.md targets (LCP<2.5s, CLS<0.1, INP<200ms, Lighthouse ≥90 desktop / ≥80 mobile)
+- Run bundle analyzer — confirm `getPortfolioData` split (Phase 10) means each route ships only its own locale's JSON, not both
+- If any regression is found, fix and re-verify before closing the milestone
+**Success Criteria** (what must be TRUE):
+  1. `next build` output shows `/en`, `/es`, and both OG image routes as static/SSG (○ or ●), not dynamic (λ)
+  2. Lighthouse Performance ≥ 90 desktop / ≥ 80 mobile on both `/en` and `/es`, with LCP<2.5s, CLS<0.1, INP<200ms — no regression vs the v2.0.0 baseline
+  3. Bundle analyzer confirms the client bundle for `/en` does not include `es/common.json` (and vice versa) — the locale-split is real, not theoretical
+**Plans**: TBD
+**Open Questions**: None — this is a verification/measurement phase against already-established targets.
+
+---
+
+## Progress — v2.1.0
+
+**Execution Order:** 10 → 11 → 12 → 13 → 14 → 15 → 16 (linear; Phase 12 is a hard gate before Phase 13)
+
+| Phase | Plans Complete | Status | Completed |
+|-------|----------------|--------|-----------|
+| 10. SSR Content Fix | 0/? | Not started | - |
+| 11. `<html lang>` Fix | 0/? | Not started | - |
+| 12. Keyword Strategy & Copy | 0/? | Not started | - |
+| 13. Metadata, Canonical/Hreflang & JSON-LD | 0/? | Not started | - |
+| 14. OG Images | 0/? | Not started | - |
+| 15. Crawler Directives | 0/? | Not started | - |
+| 16. Performance Verification | 0/? | Not started | - |

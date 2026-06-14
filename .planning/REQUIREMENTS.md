@@ -82,7 +82,7 @@ EN canonical / ES support · English level stays **B2 — Upper Intermediate** (
 
 ## Traceability
 
-Provisional mapping (roadmapper finalizes phase boundaries; phases continue from v2.0.0's Phase 9).
+Finalized mapping — phases continue from v2.0.0's Phase 9 (7 phases: 10-16). See `.planning/ROADMAP.md` Milestone v2.1.0 for full phase details and success criteria.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
@@ -114,4 +114,4 @@ Provisional mapping (roadmapper finalizes phase boundaries; phases continue from
 
 ---
 *Requirements defined: 2026-06-14*
-*Last updated: 2026-06-14 after initial definition (milestone v2.1.0)*
+*Last updated: 2026-06-14 — roadmap created, phase boundaries finalized (Phases 10-16)*
