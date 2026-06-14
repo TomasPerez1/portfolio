@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.1.0
 milestone_name: SEO & AI Discoverability
 status: executing
-stopped_at: ROADMAP.md created for v2.1.0 (Phases 10-16, full coverage of 20 requirements), REQUIREMENTS.md traceability finalized, STATE.md updated.
-last_updated: "2026-06-14T14:30:00.000Z"
-last_activity: 2026-06-14 -- Phase 10 Plan 02 paused at human-verify checkpoint (build validation)
+stopped_at: Phase 10 (SSR Content Fix) complete — both plans done, production build human-verified (full crawlable content + zero hydration errors on /en and /es).
+last_updated: "2026-06-14T15:00:00.000Z"
+last_activity: 2026-06-14 -- Phase 10 complete (Plan 10-02 closed out after human build approval)
 progress:
   total_phases: 7
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 1
-  percent: 7
+  completed_plans: 2
+  percent: 14
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-13)
 
 **Core value:** Make the portfolio fully discoverable and machine-readable — for recruiters, search engines, and AI candidate-search bots/agents — without sacrificing performance (in fact improving it).
-**Current focus:** Phase 10 — ssr-content-fix
+**Current focus:** Phase 11 — `<html lang>` fix (next phase)
 
 ## Current Position
 
-Phase: 10 (ssr-content-fix) — EXECUTING
-Plan: 2 of 2 (paused at build-validation human checkpoint)
-Status: Plan 10-02 autonomous tasks done (dead modules deleted, i18next uninstalled); awaiting human build validation
-Last activity: 2026-06-14 -- Phase 10 Plan 02 paused at human-verify checkpoint
+Phase: 10 (ssr-content-fix) — COMPLETE (2/2 plans)
+Plan: 2 of 2 done
+Status: Phase 10 complete. SSR-01, SSR-02, SSR-03 satisfied. Production build human-verified: full crawlable content + zero hydration errors on /en and /es. Known-deferred: `<html lang>` always "en" (fixed in Phase 11).
+Last activity: 2026-06-14 -- Phase 10 closed out after human build approval
 
 ## Performance Metrics
 
@@ -95,9 +95,9 @@ None yet — Phase 10 not yet planned.
 ## Session Continuity
 
 Last session: 2026-06-14
-Stopped at: Phase 10 Plan 02 — grep gate passed, four dead i18n modules deleted (9e5d682), three i18next packages uninstalled (ed77640). Paused at the blocking human-verify checkpoint: production build validation (next build && next start + browser console hydration check on /en and /es) cannot be auto-run (CLAUDE.md "Never build after changes"). Awaiting human "approved".
-Resume file: .planning/phases/10-ssr-content-fix/10-02-PLAN.md (resume at Task 3 curl checks + Task 4 hydration verify after human confirms build)
+Stopped at: Phase 10 complete. Plan 10-02 closed out — grep gate passed, four dead i18n modules deleted (9e5d682), three i18next packages uninstalled (ed77640), human-approved the production build (full crawlable content + zero hydration errors on /en and /es), SUMMARY committed (3477e30). SSR-01/SSR-02/SSR-03 marked satisfied.
+Resume file: none — ready to plan Phase 11 (`<html lang>` fix).
 
 ---
 
-*Next action: `/gsd:plan-phase 10` — plan the SSR Content Fix phase (foundational, perf-positive, unblocks all subsequent phases)*
+*Next action: `/gsd:plan-phase 11` — plan the `<html lang>` fix (middleware sets x-locale header; root layout reads it; drop NEXT_LOCALE cookie read). Must land before Phase 13 hreflang.*

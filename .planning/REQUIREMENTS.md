@@ -12,9 +12,9 @@ EN canonical / ES support · English level stays **B2 — Upper Intermediate** (
 
 ### SSR & Discoverability Foundation
 
-- [ ] **SSR-01**: A crawler or bot (no JS execution) receives the fully-rendered portfolio content in the initial HTML on both `/en` and `/es` — never a spinner-only response.
-- [ ] **SSR-02**: A server-safe `getPortfolioData(lang)` accessor provides portfolio content to server code (metadata, JSON-LD, OG image) without a `"use client"` boundary, as the single source of truth shared with the client.
-- [ ] **SSR-03**: i18next (`i18next`, `react-i18next`, `i18next-resources-to-backend`) and the `LangLoader` spinner gate are removed with zero translation loss and zero hydration errors (`next build && next start`, console clean on both locales).
+- [x] **SSR-01**: A crawler or bot (no JS execution) receives the fully-rendered portfolio content in the initial HTML on both `/en` and `/es` — never a spinner-only response.
+- [x] **SSR-02**: A server-safe `getPortfolioData(lang)` accessor provides portfolio content to server code (metadata, JSON-LD, OG image) without a `"use client"` boundary, as the single source of truth shared with the client.
+- [x] **SSR-03**: i18next (`i18next`, `react-i18next`, `i18next-resources-to-backend`) and the `LangLoader` spinner gate are removed with zero translation loss and zero hydration errors (`next build && next start`, console clean on both locales).
 
 ### Locale Correctness
 
@@ -86,9 +86,9 @@ Finalized mapping — phases continue from v2.0.0's Phase 9 (7 phases: 10-16). S
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SSR-01 | Phase 10 | Pending |
-| SSR-02 | Phase 10 | Pending |
-| SSR-03 | Phase 10 | Pending |
+| SSR-01 | Phase 10 | Satisfied |
+| SSR-02 | Phase 10 | Satisfied |
+| SSR-03 | Phase 10 | Satisfied |
 | LOCALE-01 | Phase 11 | Pending |
 | KW-01 | Phase 12 | Pending |
 | KW-02 | Phase 12 | Pending |
