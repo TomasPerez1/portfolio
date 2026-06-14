@@ -4,7 +4,7 @@
     "proyects": "Proyectos",
     "contact": "Contacto"
   },
-  "CV": "/cv/FULLSTACK-TOMAS_PEREZ_es.pdf",
+  "cv": "/cv/FULLSTACK-TOMAS_PEREZ_es.pdf",
   "form": {
     "name": "Nombre",
     "name-input": "Ingrese su nombre",

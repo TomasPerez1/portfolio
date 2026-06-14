@@ -222,6 +222,7 @@ export interface FooterCopy {
 export interface PortfolioData {
   identity: Identity;
   hero: HeroCopy;
+  cv: string;
   sections: SectionLabels;
   sectionHeaders: SectionHeaders;
   featuredViewLabel: string;
