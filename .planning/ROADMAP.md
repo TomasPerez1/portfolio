@@ -301,7 +301,7 @@ Zero new npm dependencies are required (everything is a native Next.js 16 file c
   3. `next build && next start` completes cleanly; browser console shows zero hydration errors/warnings on both `/en` and `/es`
   4. `package.json` no longer lists `i18next`, `react-i18next`, or `i18next-resources-to-backend`; all content (including CV/about copy) renders identically to before in both locales
 **Plans**: 2 plans
-- [ ] 10-01-PLAN.md — Data-layer foundation + i18next consumer migration (cv type/JSON rename, getPortfolioData.ts, Hero/Footer/ClientPage off useTranslation + spinner gate)
+- [x] 10-01-PLAN.md — Data-layer foundation + i18next consumer migration (cv type/JSON rename, getPortfolioData.ts, Hero/Footer/ClientPage off useTranslation + spinner gate)
 - [ ] 10-02-PLAN.md — Grep gate, delete dead i18n modules, npm uninstall i18next, SSR/curl + hydration validation
 **Open Questions**: None — architecture and file sequence fully specified by research; execution is mechanical.
 
@@ -428,7 +428,7 @@ Zero new npm dependencies are required (everything is a native Next.js 16 file c
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 10. SSR Content Fix | 0/2 | Not started | - |
+| 10. SSR Content Fix | 1/2 | In Progress|  |
 | 11. `<html lang>` Fix | 0/? | Not started | - |
 | 12. Keyword Strategy & Copy | 0/? | Not started | - |
 | 13. Metadata, Canonical/Hreflang & JSON-LD | 0/? | Not started | - |
