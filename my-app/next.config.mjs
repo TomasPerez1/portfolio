@@ -20,12 +20,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: [
-      "framer-motion",
-      "sonner",
-      "react-i18next",
-      "i18next",
-    ],
+    optimizePackageImports: ["framer-motion", "sonner"],
   },
 };
 
