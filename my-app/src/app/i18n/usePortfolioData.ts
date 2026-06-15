@@ -1,15 +1,30 @@
 "use client";
 
-import en from "../../../public/locales/en/common.json";
-import es from "../../../public/locales/es/common.json";
+import { createContext, useContext } from "react";
 import type { PortfolioData } from "./portfolio.types";
 
-const LOCALES: Record<string, PortfolioData> = {
-  en: en as unknown as PortfolioData,
-  es: es as unknown as PortfolioData,
-};
+/**
+ * Holds the active locale's portfolio data, injected once by the server via
+ * `<PortfolioDataProvider>` (data from `getPortfolioData(lang)`). Reading from
+ * context instead of statically importing both locale JSONs means the client
+ * bundle ships ONLY the active locale's data (PERF-03), not both.
+ */
+export const PortfolioDataContext = createContext<PortfolioData | null>(null);
 
-export function usePortfolioData(lng: string) {
-  const data = LOCALES[lng] ?? LOCALES.en;
+export const PortfolioDataProvider = PortfolioDataContext.Provider;
+
+/**
+ * Returns the active locale's portfolio data from context.
+ * The `lng` argument is accepted for backward compatibility with existing call
+ * sites but is no longer used to select data — the server already resolved the
+ * locale via `getPortfolioData(lang)` and injected it.
+ */
+export function usePortfolioData(_lng?: string) {
+  const data = useContext(PortfolioDataContext);
+  if (!data) {
+    throw new Error(
+      "usePortfolioData must be used within <PortfolioDataProvider>",
+    );
+  }
   return { data, ready: true };
 }

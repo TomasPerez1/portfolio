@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Provider } from "./providers";
 import { Toaster } from "sonner";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { bricolage, geist, jetbrainsMono } from "./fonts";
 import "./globals.css";
 
@@ -16,6 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tomasperezdev.space"),
   title: "Tomás Pérez — Full-stack Developer",
   description:
     "3+ years building enterprise platforms with Node.js, React, Next.js and TypeScript. Backend-oriented full-stack developer based in Buenos Aires, Argentina.",
@@ -50,7 +51,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const lang = (await cookies()).get("NEXT_LOCALE")?.value || "en";
+  const lang = (await headers()).get("x-locale") ?? "en";
 
   return (
     <html
