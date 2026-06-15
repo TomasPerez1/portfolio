@@ -1,7 +1,5 @@
 "use client";
 
-import LangLoader from "../ui/LangLoader";
-import { useTranslation } from "../i18n/client";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
 import FeaturedWork, { StackTicker } from "../components/FeaturedWork";
@@ -11,27 +9,30 @@ import Experience from "../components/Experience";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import { PortfolioDataProvider } from "../i18n/usePortfolioData";
+import type { PortfolioData } from "../i18n/portfolio.types";
 
 interface ClientPageProps {
   lang?: string;
+  data: PortfolioData;
 }
 
-function ClientPage({ lang = "en" }: ClientPageProps) {
-  const { ready } = useTranslation(lang, "common");
-  if (!ready) return <LangLoader />;
+function ClientPage({ lang = "en", data }: ClientPageProps) {
   return (
-    <main className="bg-bg min-h-screen flex flex-col">
-      <Nav lang={lang} />
-      <Hero lang={lang} />
-      <StackTicker />
-      <About lang={lang} />
-      <FeaturedWork lang={lang} />
-      {/* <ProjectsGrid lang={lang} /> */}
-      <StackSection lang={lang} />
-      <Experience lang={lang} />
-      <Contact lang={lang} />
-      <Footer lang={lang} />
-    </main>
+    <PortfolioDataProvider value={data}>
+      <main className="bg-bg min-h-screen flex flex-col">
+        <Nav lang={lang} />
+        <Hero lang={lang} />
+        <StackTicker />
+        <About lang={lang} />
+        <FeaturedWork lang={lang} />
+        {/* <ProjectsGrid lang={lang} /> */}
+        <StackSection lang={lang} />
+        <Experience lang={lang} />
+        <Contact lang={lang} />
+        <Footer lang={lang} />
+      </main>
+    </PortfolioDataProvider>
   );
 }
 

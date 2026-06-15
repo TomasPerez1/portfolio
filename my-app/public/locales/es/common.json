@@ -4,7 +4,7 @@
     "proyects": "Proyectos",
     "contact": "Contacto"
   },
-  "CV": "/cv/FULLSTACK-TOMAS_PEREZ_es.pdf",
+  "cv": "/cv/FULLSTACK-TOMAS_PEREZ_es.pdf",
   "form": {
     "name": "Nombre",
     "name-input": "Ingrese su nombre",
@@ -14,7 +14,7 @@
     "message-input": "Ingrese el mensaje",
     "send": "Enviar"
   },
-  "about-me": "Soy Tomás, un <strong>desarrollador Full Stack</strong> apasionado por la tecnología, el aprendizaje continuo y la creación de soluciones innovadoras. Me especializo en diseñar y construir aplicaciones web robustas y escalables.<br /> Mi enfoque no solo está en el código, sino también en el impacto que las soluciones pueden generar. Combino mi experiencia técnica con habilidades interpersonales que me permiten liderar equipos, comunicar ideas complejas de manera efectiva y colaborar en entornos ágiles bajo la <strong>metodología SCRUM</strong>.<br />  Entre mis habilidades técnicas en el frontend, desarrollo interfaces intuitivas y responsivas con <strong>React, Next.js, Typescript y Tailwind CSS</strong> para ofrecer resultados modernos y funcionales. En el backend, mi enfoque está en construir APIs sólidas y seguras con tecnologías como <strong>Node.js, Nest.js y Express</strong>, siempre complementando estas soluciones con bases de datos relacionales bien estructuradas como <strong>PostgreSQL/MySQL</strong>, y una ORM como <strong>Prisma/Sequelize</strong> para optimizar el flujo de datos.<br />  Mi <strong>nivel de inglés es C1 <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificado)</a></strong>, lo que me permite comunicarme de manera efectiva con equipos internacionales.<br />  Más allá de lo técnico, soy una persona analítica, creativa y orientada a la resolución de problemas. Disfruto de los desafíos, porque cada uno representa una oportunidad para aprender y crecer, tanto en el ámbito profesional como en el personal.",
+  "about-me": "Soy Tomás, un <strong>desarrollador Full Stack</strong> apasionado por la tecnología, el aprendizaje continuo y la creación de soluciones innovadoras. Me especializo en diseñar y construir aplicaciones web robustas y escalables.<br /> Mi enfoque no solo está en el código, sino también en el impacto que las soluciones pueden generar. Combino mi experiencia técnica con habilidades interpersonales que me permiten liderar equipos, comunicar ideas complejas de manera efectiva y colaborar en entornos ágiles bajo la <strong>metodología SCRUM</strong>.<br />  Entre mis habilidades técnicas en el frontend, desarrollo interfaces intuitivas y responsivas con <strong>React, Next.js, Typescript y Tailwind CSS</strong> para ofrecer resultados modernos y funcionales. En el backend, mi enfoque está en construir APIs sólidas y seguras con tecnologías como <strong>Node.js, Nest.js y Express</strong>, siempre complementando estas soluciones con bases de datos relacionales bien estructuradas como <strong>PostgreSQL/MySQL</strong>, y una ORM como <strong>Prisma/Sequelize</strong> para optimizar el flujo de datos.<br />  Mi <strong>nivel de inglés es B2 — Upper Intermediate <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificado)</a></strong>, lo que me permite comunicarme de manera efectiva con equipos internacionales.<br />  Más allá de lo técnico, soy una persona analítica, creativa y orientada a la resolución de problemas. Disfruto de los desafíos, porque cada uno representa una oportunidad para aprender y crecer, tanto en el ámbito profesional como en el personal.",
   "proyects": {
     "hydrotek": {
       "date": "Jul 2023 - Dic 2023",
@@ -45,7 +45,7 @@
     "statusLine": "Disponible para roles orientados a producto, freelance y colaboraciones con propósito.",
     "statusLineShort": "Disponible",
     "tagline": "Creando software que resuelve problemas reales, no solo técnicos.",
-    "tagHighlight": "Más de 3 años construyendo con Node.js, React, Next.js, Tailwind CSS, NestJS, TypeScript y SQL como stack.",
+    "tagHighlight": "Más de 3 años con Node.js, React, Next.js, NestJS y TypeScript — ahora construyendo AI-augmented y agentic-first, todos los días.",
     "tagTrailing": "Actualmente desarrollando plataformas enterprise en Zurich/Santander y proyectos freelance incluyendo un SaaS de DJS con partnership oficial de SoundCloud.",
     "longBio": [
       "Más de 3 años construyendo y desplegando apps web con Node.js, React, Next.js y TypeScript. Ownership end-to-end — desde la arquitectura y la comunicación con el cliente hasta el deploy y la entrega final.",
@@ -56,7 +56,7 @@
     "quickFacts": [
       ["Ubicación", "CABA, Buenos Aires"],
       ["Inglés", "B2 — Upper Intermediate"],
-      ["Actualmente aprendiendo", "Spect Driven Development con AI, AWS"],
+      ["Actualmente aprendiendo", "Spec-Driven Development con AI, AWS"],
       ["Abierto a oportunidades", "Remoto · Híbrido · Freelance"]
     ]
   },
@@ -272,11 +272,12 @@
       ["Git · GitHub", "Diario"]
     ],
     "Herramientas IA": [
-      ["Claude Code", "Diario"],
+      ["Agentic Workflows", "Activo"],
       ["AI-Driven Development", "Diario"],
-      ["Harness Engineering ", "Activo"],
+      ["Harness Engineering", "Activo"],
+      ["Context Engineering", "Activo"],
       ["LLM Orchestration", "Activo"],
-      ["Agentic Workflows", "Activo"]
+      ["Claude Code", "Diario"]
     ]
   },
   "experience": [
@@ -363,7 +364,7 @@
     "paragraphs": [
       "Soy Tomás, desarrollador Full Stack de Buenos Aires. Empecé en esto de forma autodidacta porque genuinamente me gustaba construir cosas que la gente pudiera usar y eso no cambió.",
       "Me gusta tener ownership completo de lo que construyo, entender el negocio, tomar decisiones de arquitectura, hablar con el cliente y hacer el deploy. Eso me llevó a trabajar en plataformas empresariales de seguros, colaborar con agencias y lanzar proyectos propios como DJ Presskit.",
-      "Lo técnico lo aprendo rápido. Lo que no se aprende rápido es escuchar bien, comunicar claro, sostener la responsabilidad y eso es lo que más me importa."
+      "Lo técnico lo aprendo rápido — últimamente construyo AI-augmented y agentic-first, con el desarrollo AI-driven como parte de mi día a día. Lo que no se aprende rápido es escuchar bien, comunicar claro y sostener la responsabilidad, y eso es lo que más me importa."
     ],
     "currently": [
       {

@@ -1,0 +1,41 @@
+# Tomás Pérez — Full-Stack Developer
+
+> Full-stack developer (3+ years) working agentic-first: AI-driven development, harness
+> engineering, LLM orchestration and context engineering as part of the daily workflow.
+> Backend-oriented across Node.js, NestJS, React, Next.js and TypeScript. Based in
+> Buenos Aires, Argentina. Open to product-focused roles, freelance and collaborations.
+
+## About
+
+Tomás Pérez is a backend-oriented full-stack developer. He builds and modernises
+enterprise platforms and ships production SaaS, owning work end-to-end — architecture,
+client communication and deploy. He works AI-augmented and agentic-first: AI-driven
+development, harness engineering, LLM orchestration and context engineering, with
+Claude Code in daily use. English level: B2 (Upper Intermediate, certified).
+
+## Core stack
+
+- Languages: JavaScript, TypeScript, Python (side projects)
+- Frontend: React, Next.js, Tailwind CSS, Framer Motion
+- Backend: Node.js, NestJS, Express, REST APIs
+- Data & Infra: PostgreSQL, MySQL, Oracle SQL, Redis, Docker, OpenShift, Vercel
+- Architecture: Hexagonal, Clean Architecture, SOLID, Monorepo, Multitenant
+- AI tooling: Agentic Workflows, AI-Driven Development, Harness Engineering, Context Engineering, LLM Orchestration
+
+## Featured work
+
+- Zurich / Santander — Enterprise insurance platforms (Full-stack, backend-oriented).
+  Legacy modernisation, performance, business-critical features. Fixed 44 security
+  vulnerabilities in 2 days; cut PDF report times by 50%.
+- DJ Presskit — SaaS, official SoundCloud partner (co-developer, full-stack). Generates
+  professional press-kit sites for DJs; multitenant, real-time dashboard, 60+ active artists.
+- iPhone BRC — High-conversion e-commerce landing (frontend). 13K+ views in 90 days,
+  delivered in under 4 weeks.
+
+## Links
+
+- Site: https://tomasperezdev.space
+- LinkedIn: https://www.linkedin.com/in/tomas-perez-developer
+- Email: tomas.perez.developer@gmail.com
+- English (EN): https://tomasperezdev.space/en
+- Spanish (ES): https://tomasperezdev.space/es

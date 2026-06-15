@@ -4,7 +4,7 @@
     "proyects": "Proyects",
     "contact": "Contact"
   },
-  "CV": "/cv/FULLSTACK-TOMAS_PEREZ_en.pdf",
+  "cv": "/cv/FULLSTACK-TOMAS_PEREZ_en.pdf",
   "form": {
     "name": "Name",
     "name-input": "Enter your name",
@@ -14,7 +14,7 @@
     "message-input": "Enter a message",
     "send": "Send"
   },
-  "about-me": "I'm Tomás, a <strong>Full-stack</strong> developer with a passion for technology, continuous learning, and creating innovative solutions. I specialize in designing and building robust and scalable web applications.<br /> My focus is not only on the code, but also on the impact the solutions can have. I combine my technical expertise with interpersonal skills that allow me to lead teams, communicate complex ideas effectively, and collaborate in agile environments using the <strong>SCRUM methodology</strong>.<br /> My technical skills on the frontend include developing intuitive and responsive interfaces with <strong> React, Next.js, Typescript and Tailwind CSS </strong> to deliver modern and functional results. On the backend, I focus on building solid and secure APIs with technologies like <strong>Node.js, Nest.js, and Express</strong>, always complementing these solutions with well-structured relational databases like <strong>PostgreSQL/Mysql</strong>, and an ORM like <strong>Prisma/Sequelize</strong> to optimize the data flow.<br /> My <strong>English level is C1 <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificate)</a> </strong>, which allows me to communicate effectively with international teams.<br /> Beyond the technical, I am an analytical, creative and problem solving person. I enjoy challenges because each one is an opportunity to learn and grow, both professionally and personally.",
+  "about-me": "I'm Tomás, a <strong>Full-stack</strong> developer with a passion for technology, continuous learning, and creating innovative solutions. I specialize in designing and building robust and scalable web applications.<br /> My focus is not only on the code, but also on the impact the solutions can have. I combine my technical expertise with interpersonal skills that allow me to lead teams, communicate complex ideas effectively, and collaborate in agile environments using the <strong>SCRUM methodology</strong>.<br /> My technical skills on the frontend include developing intuitive and responsive interfaces with <strong> React, Next.js, Typescript and Tailwind CSS </strong> to deliver modern and functional results. On the backend, I focus on building solid and secure APIs with technologies like <strong>Node.js, Nest.js, and Express</strong>, always complementing these solutions with well-structured relational databases like <strong>PostgreSQL/Mysql</strong>, and an ORM like <strong>Prisma/Sequelize</strong> to optimize the data flow.<br /> My <strong>English level is B2 — Upper Intermediate <a target='_blank' href='https://cert.efset.org/frCgKc'>(Certificate)</a> </strong>, which allows me to communicate effectively with international teams.<br /> Beyond the technical, I am an analytical, creative and problem solving person. I enjoy challenges because each one is an opportunity to learn and grow, both professionally and personally.",
   "proyects": {
     "hydrotek": {
       "date": "Jul 2023 - Dic 2023",
@@ -45,7 +45,7 @@
     "statusLine": "Available for product-focused roles, freelance work, and meaningful collaborations.",
     "statusLineShort": "Available",
     "tagline": "Creating software that solves real problems not just technical ones.",
-    "tagHighlight": "3+ years building with Node.js, React, Next.js, NestJS and TypeScript",
+    "tagHighlight": "3+ years with Node.js, React, Next.js, NestJS and TypeScript — now building AI-augmented and agentic-first, every day.",
     "tagTrailing": "Currently shipping enterprise platforms at Zurich/Santander and a SoundCloud-partnered SaaS.",
     "longBio": [
       "Building software that solves real-world problems, not just technical ones. Over 3 years of experience building with Node.js, React, Next.js, Tailwind CSS, NestJS, TypeScript, and SQL. Currently developing enterprise platforms in Zurich and Santander, as well as freelance projects, including a DJ SaaS platform with an official partnership with SoundCloud."
@@ -53,7 +53,7 @@
     "quickFacts": [
       ["Based", "CABA, Buenos Aires"],
       ["English", "B2 — Upper Intermediate"],
-      ["Currently learning", "Spect Driven Development with AI, AWS"],
+      ["Currently learning", "Spec-Driven Development with AI, AWS"],
       ["Open to", "Remote · Hybrid · Freelance"]
     ]
   },
@@ -269,11 +269,12 @@
       ["Git · GitHub ", "Daily"]
     ],
     "AI Tooling": [
-      ["Claude Code", "Daily"],
+      ["Agentic Workflows", "Active"],
       ["AI-Driven Development", "Daily"],
-      ["Harness Engineering ", "Active"],
+      ["Harness Engineering", "Active"],
+      ["Context Engineering", "Active"],
       ["LLM Orchestration", "Active"],
-      ["Agentic Workflows", "Active"]
+      ["Claude Code", "Daily"]
     ]
   },
   "experience": [
@@ -360,7 +361,7 @@
     "paragraphs": [
       "I'm Tomás, a Full Stack Developer based in Buenos Aires. I got into this on my own because I genuinely enjoyed building things people could actually use and that hasn't changed.",
       "I like having full ownership over what I build. Understanding the business, making architecture decisions, talking to the client, and handling the deploy. That's what led me to work on enterprise insurance platforms, collaborate with agencies, and launch my own projects like DJ Presskit.",
-      "I pick up new tech fast. But what can't be learned quickly is listening well, communicating clearly, owning the outcome and that's what I care about most."
+      "I pick up new tech fast — lately I build AI-augmented and agentic-first, with AI-driven development part of my daily workflow. What can't be learned quickly, though, is listening well, communicating clearly and owning the outcome — and that's what I care about most."
     ],
     "currently": [
       {
