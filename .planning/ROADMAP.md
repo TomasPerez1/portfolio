@@ -320,8 +320,9 @@ Zero new npm dependencies are required (everything is a native Next.js 16 file c
   2. View-source on `/es` shows `<html lang="es">`
   3. No code path reads `NEXT_LOCALE` cookie for `<html lang>` anymore (verified by grep/search)
   4. `next build && next start` still completes cleanly — no new hydration mismatch introduced by the header read
-**Plans**: TBD
-**Open Questions**: None — middleware-header pattern documented and small (~3-line middleware change + 1-line layout change).
+**Plans**: 1 plan
+- [ ] 11-01-PLAN.md — Relocate+rename middleware->src/proxy.ts (sets x-locale request header), swap root layout to read it for <html lang>, human build+view-source validation
+**Open Questions**: None — middleware-header pattern documented and small (~3-line middleware change + 1-line layout change). Resolved: relocate+rename middleware.ts->src/proxy.ts (CRITICAL: file never ran inside app/); build validation is a human checkpoint per CLAUDE.md "never build".
 
 ---
 
@@ -429,7 +430,7 @@ Zero new npm dependencies are required (everything is a native Next.js 16 file c
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 10. SSR Content Fix | 2/2 | Complete    | 2026-06-14 |
-| 11. `<html lang>` Fix | 0/? | Not started | - |
+| 11. `<html lang>` Fix | 0/1 | Not started | - |
 | 12. Keyword Strategy & Copy | 0/? | Not started | - |
 | 13. Metadata, Canonical/Hreflang & JSON-LD | 0/? | Not started | - |
 | 14. OG Images | 0/? | Not started | - |
