@@ -5,13 +5,12 @@ export const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: "--font-display",
-  // "optional" instead of "swap": on a cold first visit, if Bricolage isn't ready
-  // within ~100ms the browser keeps the (metric-adjusted) fallback and does NOT swap
-  // it later — eliminating the layout shift on the huge clamp(80px,…,275px) headline
-  // (main CLS source). adjustFontFallback (default true) keeps the fallback metrics
-  // close to Bricolage so the difference is barely noticeable; the real font is used
-  // on subsequent navigations once cached.
-  display: "optional",
+  // "swap" keeps the signature stroked headline rendering in Bricolage (the brand
+  // font) — "optional" was dropping it to the fallback on cold cache, which looked
+  // wrong on the -webkit-text-stroke surname. The font is preloaded and the routes are
+  // static (fast edge delivery), so the swap lands quickly; adjustFontFallback +
+  // the size-matched fallback below keep any residual layout shift minimal.
+  display: "swap",
   preload: true,
   fallback: [
     "system-ui",
