@@ -38,6 +38,10 @@ export function proxy(request: NextRequest) {
   // 1. Ignorar rutas estáticas, APIs y archivos
   if (
     pathname.startsWith("/_next/") ||
+    // Vercel platform namespace (Web Analytics / Speed Insights beacons).
+    // /_vercel/insights/view has no extension, so the `includes(".")` guard below
+    // does NOT catch it — without this it gets rewritten to /en/_vercel/... -> 404.
+    pathname.startsWith("/_vercel/") ||
     pathname.startsWith("/api/") ||
     pathname.includes(".") ||
     pathname.startsWith("/favicon.ico")
@@ -80,6 +84,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/",
-    "/((?!api|_next/static|_next/image|favicon.ico|images|icons).*)",
+    "/((?!api|_next/static|_next/image|_vercel|favicon.ico|images|icons).*)",
   ],
 };
