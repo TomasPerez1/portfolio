@@ -13,6 +13,7 @@
   "dependencies": {
     "@next/eslint-plugin-next": "^14.2.16",
     "@types/react-dom": "^19.2.3",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^1.1.0",
     "framer-motion": "^12.38.0",
     "geist": "^1.7.0",

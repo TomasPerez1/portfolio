@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { Provider } from "../providers";
 import { Toaster } from "sonner";
 import { bricolage, geist, jetbrainsMono } from "../fonts";
@@ -110,6 +111,8 @@ export default async function RootLayout({
             <SpeedInsights />
           </>
         </Provider>
+        {/* Consume no context: sits outside <Provider> so theme/motion re-renders don't touch it. */}
+        <Analytics />
       </body>
     </html>
   );
