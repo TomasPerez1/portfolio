@@ -23,7 +23,7 @@ function ClientPage({ lang = "en", data }: ClientPageProps) {
       <main className="bg-bg min-h-screen flex flex-col">
         <Nav lang={lang} />
         <Hero lang={lang} />
-        <StackTicker />
+        {/* <StackTicker /> */}
         <About lang={lang} />
         <FeaturedWork lang={lang} />
         {/* <ProjectsGrid lang={lang} /> */}

@@ -7,3 +7,7 @@
 export
 
 _local
+
+# Engram — versionar solo el nombre de proyecto, no los chunks de memoria
+.engram/*
+!.engram/config.json
